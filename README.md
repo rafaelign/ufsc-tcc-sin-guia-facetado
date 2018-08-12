@@ -1,2 +1,3 @@
-# ufsc-tcc-sin-app
-Aplicação desenvolvida no TCC da UFSC em Sistemas de Informação
+# Guia utilizando uma classificação facetada
+
+Aplicação desenvolvida na conclusão da graduação em Sistemas de Informação - UFSC
