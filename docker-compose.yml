@@ -1,0 +1,33 @@
+version: '3'
+services:
+  web:
+    image: hitalos/laravel:latest
+    ports:
+      - 8080:80
+    volumes:
+      - ./:/var/www
+    links:
+      - db
+      - redis
+    environment:
+      DB_HOST: db
+      DB_DATABASE: guia-laravel
+      DB_USERNAME: webapp
+      DB_PASSWORD: 123456
+      DB_CONNECTION: mysql
+      REDIS_HOST: redis
+      SESSION_DRIVER: redis
+      CACHE_DRIVER: redis
+  db:
+    image: mariadb
+    ports:
+      - 13306:3306
+    environment:
+      MYSQL_DATABASE: guia-laravel
+      MYSQL_USER: webapp
+      MYSQL_PASSWORD: 123456
+      MYSQL_ROOT_PASSWORD: p455w0rd
+  redis:
+    image: redis:4.0-alpine
+    ports:
+      - 16379:6379

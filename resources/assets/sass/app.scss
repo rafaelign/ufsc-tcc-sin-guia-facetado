@@ -1,0 +1,46 @@
+
+// Fonts
+//@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700");
+
+// Variables
+@import "variables";
+
+// Bulma
+@import '~bulma/bulma';
+
+// Buefy
+@import '~buefy/src/scss/buefy';
+
+// Fontawesome
+@import '~font-awesome/scss/font-awesome';
+
+// Material Design Icons
+@import '~@mdi/font/scss/materialdesignicons';
+
+html, body, #app {
+  height: 100%;
+}
+
+#app {
+  min-height: 100%;
+}
+
+.text-2-columns {
+  -webkit-column-count: 2;
+  -moz-column-count: 2;
+  column-count: 2;
+}
+
+@media screen and (max-width: 768px) {
+  #menu-toggle:checked + .nav-menu {
+    display: block;
+  }
+
+  .text-2-columns {
+    -webkit-column-count: 1;
+    -moz-column-count: 1;
+    column-count: 1;
+  }
+}
+
