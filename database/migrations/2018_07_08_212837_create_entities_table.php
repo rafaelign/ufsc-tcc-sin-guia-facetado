@@ -24,7 +24,6 @@ class CreateEntitiesTable extends Migration
             $table->longText('additional_data')->nullable();
             $table->tinyInteger('published')->default(0);
             $table->unsignedInteger('page_views')->default(0);
-            $table->unsignedInteger('rating')->default(0);
             $table->unsignedInteger('collection_id');
             $table->unsignedInteger('user_id');
             $table->timestamps();

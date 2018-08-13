@@ -17,6 +17,7 @@ class CreateCollectionsTable extends Migration
             $table->increments('id');
             $table->string('title', 50);
             $table->string('slug', 50)->unique();
+            $table->longText('description');
             $table->timestamps();
         });
     }
