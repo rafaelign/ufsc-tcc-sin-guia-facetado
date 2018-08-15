@@ -37,7 +37,7 @@
         </div>
         <div class="card-footer" v-if="action">
             <router-link class="card-footer-item" :to="{ path: action }">
-                <div class="icon"><i class="mdi mdi-link"></i></div><span>Acessar</span>
+                <b-icon icon="link"></b-icon> <span>Acessar</span>
             </router-link>
         </div>
     </div>

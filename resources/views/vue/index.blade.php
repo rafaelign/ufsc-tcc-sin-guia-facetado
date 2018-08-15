@@ -9,6 +9,7 @@
     <title>Document</title>
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/vendor.css') }}">
 </head>
 <body>
     <div id="app">
@@ -20,5 +21,6 @@
         </div>
     </div>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/vendor.js') }}"></script>
 </body>
 </html>

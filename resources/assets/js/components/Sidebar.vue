@@ -47,12 +47,12 @@
                 <ul>
                     <li>
                         <router-link :to="{ path: '/app/colecoes/' + item.slug + '/entidades' }">
-                            <span class="icon is-small"><i class="mdi mdi-view-list"></i></span> Técnicas Mapeadas
+                            <b-icon icon="view-list" size="is-small"></b-icon> <span>Técnicas Mapeadas</span>
                         </router-link>
                     </li>
                     <li>
                         <router-link :to="{ path: '/app/colecoes/' + item.slug + '/facetas' }">
-                            <span class="icon is-small"><i class="mdi mdi-information"></i></span> Facetas de Classificação
+                            <b-icon icon="information" size="is-small"></b-icon> <span>Facetas de Classificação</span>
                         </router-link>
                     </li>
                 </ul>

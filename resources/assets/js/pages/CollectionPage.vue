@@ -87,7 +87,7 @@
                             <div class="columns">
                                 <div class="column is-12 has-text-centered" v-if="entities.length > 3">
                                     <router-link :to="{ path: '/app/colecoes/' + $route.params.collection + '/entidades' }" class="is-medium">
-                                        <span class="icon is-small"><i class="mdi mdi-link"></i></span> <span>Ver todos</span>
+                                        <b-icon icon="link" size="is-small"></b-icon> <span>Ver todos</span>
                                     </router-link>
                                 </div>
                             </div>

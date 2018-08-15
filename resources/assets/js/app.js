@@ -9,7 +9,7 @@ import VueLoading from 'vue-loading-overlay'
 import Sidebar from './components/Sidebar'
 
 import Buefy from 'buefy'
-import 'buefy/lib/buefy.css'
+// import 'buefy/lib/buefy.css'
 
 import { routes } from './utils/routes';
 

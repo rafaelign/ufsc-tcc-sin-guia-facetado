@@ -3,7 +3,7 @@
 
     export default {
         components: {
-            VueMarkdown,
+            VueMarkdown
         },
         data: function () {
             return {
@@ -78,14 +78,14 @@
                             <div class="columns">
                                 <div class="column is-6">
                                     <div class="container">
-                                        <h2 class="subtitle"><span class="icon has-text-success"><i class="fa fa-plus"></i></span> Prós</h2>
+                                        <h2 class="subtitle"><b-icon icon="plus" class="has-text-success"></b-icon> <span>Prós</span></h2>
 
                                         <vue-markdown :source="entity.pros || 'Informação não encontrada :,('"></vue-markdown>
                                     </div>
                                 </div>
                                 <div class="column is-6">
                                     <div class="container">
-                                        <h2 class="subtitle"><span class="icon has-text-danger"><i class="fa fa-minus"></i></span> Contras</h2>
+                                        <h2 class="subtitle"><b-icon icon="minus" class="has-text-danger"></b-icon> <span>Contras</span></h2>
 
                                         <vue-markdown :source="entity.cons || 'Informação não encontrada :,('"></vue-markdown>
                                     </div>
@@ -99,7 +99,7 @@
                             <div class="columns">
                                 <div class="column is-12">
                                     <div class="container">
-                                        <h2 class="subtitle"><span class="icon has-text-success"><i class="fa fa-table"></i></span> Classificação completa</h2>
+                                        <h2 class="subtitle"><b-icon icon="table" class="has-text-success"></b-icon> <span>Classificação completa</span></h2>
                                         <div class="content">
                                             <table class="table">
                                                 <thead>
@@ -150,7 +150,7 @@
                             <div class="columns">
                                 <div class="column is-12">
                                     <div class="container">
-                                        <h2 class="subtitle"><span class="icon has-text-danger"><i class="fa fa-list-ol"></i></span> Referências</h2>
+                                        <h2 class="subtitle"><b-icon icon="view-list" class="has-text-danger"></b-icon> <span>Referências</span></h2>
                                         <ul>
                                             <li><b>[1]</b> Lorem ipsum dolor sit amet.</li>
                                             <li><b>[2]</b> Aenean enim ex, vestibulum eu enim.</li>

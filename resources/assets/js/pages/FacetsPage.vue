@@ -78,12 +78,6 @@
                                             <b-table-column field="user.title" label="Título" sortable>
                                                 {{ props.row.title }}
                                             </b-table-column>
-
-                                            <b-table-column field="created_at" label="Cadastrado em" width="200" sortable>
-                                                <span class="tag is-primary">
-                                                    {{ new Date(props.row.created_at).toLocaleDateString() }}
-                                                </span>
-                                            </b-table-column>
                                         </template>
 
                                         <template slot="detail" slot-scope="props">
@@ -97,7 +91,12 @@
                                                             <br><br>
                                                             <small>Opções:</small>
                                                             <ul v-if="props.row.values.length">
-                                                                <li v-for="value in props.row.values">{{ value.title }}</li>
+                                                                <li v-for="value in props.row.values">
+                                                                    <div><b-icon icon="chevron-right" size="is-small"></b-icon> <span>{{ value.title }}</span></div>
+                                                                    <div v-if="value.description.length" class="inner-list">
+                                                                        <small>{{ value.description }}</small>
+                                                                    </div>
+                                                                </li>
                                                             </ul>
                                                         </p>
                                                     </div>
@@ -114,3 +113,8 @@
         </div>
     </div>
 </template>
+
+<style scoped>
+    ul { list-style: none; }
+    .inner-list { margin-left: 12px;padding-left: 13px;border-left: 5px #CCC solid; }
+</style>
