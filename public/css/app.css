@@ -25169,7 +25169,7 @@ input[type=range].slider:not([orient="vertical"])::-ms-track {
 
 input[type=range].slider:not([orient="vertical"]).has-output + output,
 input[type=range].slider:not([orient="vertical"]).has-output-tooltip + output {
-  width: 3rem;
+  width: 4.5rem;
   background: #4a4a4a;
   border-radius: 4px;
   padding: .4rem .8rem;
@@ -25186,7 +25186,7 @@ input[type=range].slider:not([orient="vertical"]).has-output-tooltip + output {
 
 input[type=range].slider:not([orient="vertical"]).has-output {
   display: inline-block;
-  width: calc(100% - ( 4.2rem ));
+  width: calc(100% - ( 5.7rem ));
 }
 
 input[type=range].slider:not([orient="vertical"]).has-output + output {

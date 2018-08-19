@@ -149,7 +149,7 @@ class SeedFacetsTableWithReTechnique extends Migration
                 'slug'              => str_slug('Nível de informação disponível'),
                 'description'       => 'Tipo de categorização de informação disponível antes da execução da técnica',
                 'facet_group_id'    => $this->getFacetGroupId('Domínio do problema'),
-                'type'              => 'slider',
+                'type'              => 'checkbutton',
             ],
             [
                 'title'             => 'Definição do problema',

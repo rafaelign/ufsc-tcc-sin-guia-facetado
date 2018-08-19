@@ -32,8 +32,7 @@
         },
         methods: {
             filter: function () {
-                console.log(this.selectedFilters)
-                // this.$emit('filter', this.selectedFilters)
+                this.$emit('filter', this.selectedFilters)
             },
             setFilter: function (name, value) {
                 var filter = {
@@ -71,8 +70,8 @@
                 <div class="tile is-ancestor">
                     <div class="tile is-vertical is-12">
                         <div class="tile is-parent" v-for="group in horizontalData">
-                            <article class="tile is-child notification is-white">
-                                <p class="subtitle">{{ group.title }}</p>
+                            <article class="tile is-child is-white">
+                                <p class="subtitle has-text-weight-bold">{{ group.title }}</p>
                                 <div class="content">
                                     <div class="columns">
                                         <div class="column is-3" v-for="facet in group.facets">
@@ -91,13 +90,17 @@
 
                         <div class="tile">
                             <div class="tile is-parent" v-for="group in verticalData">
-                                <article class="tile is-child notification is-white">
-                                    <p class="subtitle">{{ group.title }}</p>
+                                <article class="tile is-child is-white">
+                                    <p class="subtitle has-text-weight-bold">{{ group.title }}</p>
                                     <div class="content">
                                         <div class="field" v-for="facet in group.facets">
                                             <small>{{ facet.title }}</small>
                                             <br>
-                                            <dynamic-form :type="facet.type" :options="facet.values"></dynamic-form>
+                                            <dynamic-form
+                                                    :type="facet.type"
+                                                    :name="facet.slug"
+                                                    :options="facet.values"
+                                                    @setFilter="setFilter"></dynamic-form>
                                         </div>
                                     </div>
                                 </article>

@@ -72444,8 +72444,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         filter: function filter() {
-            console.log(this.selectedFilters);
-            // this.$emit('filter', this.selectedFilters)
+            this.$emit('filter', this.selectedFilters);
         },
         setFilter: function setFilter(name, value) {
             var filter = {
@@ -72647,6 +72646,7 @@ var render = function() {
                   "false-value": _vm.switchConfig.falseValue,
                   size: "is-medium"
                 },
+                on: { input: _vm.setFilter },
                 model: {
                   value: _vm.fieldValue,
                   callback: function($$v) {
@@ -72661,29 +72661,38 @@ var render = function() {
           1
         )
       : _vm.type === "slider"
-        ? _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.fieldValue,
-                expression: "fieldValue"
+        ? _c("section", [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.fieldValue,
+                  expression: "fieldValue"
+                }
+              ],
+              staticClass:
+                "slider is-fullwidth is-medium is-primary is-circle has-output",
+              attrs: {
+                step: _vm.sliderConfig.step,
+                min: _vm.sliderConfig.min,
+                max: _vm.sliderConfig.max,
+                id: _vm.name,
+                type: "range"
+              },
+              domProps: { value: _vm.fieldValue },
+              on: {
+                input: _vm.setFilter,
+                __r: function($event) {
+                  _vm.fieldValue = $event.target.value
+                }
               }
-            ],
-            staticClass: "slider is-fullwidth is-medium is-primary is-circle",
-            attrs: {
-              step: _vm.sliderConfig.step,
-              min: _vm.sliderConfig.min,
-              max: _vm.sliderConfig.max,
-              type: "range"
-            },
-            domProps: { value: _vm.fieldValue },
-            on: {
-              __r: function($event) {
-                _vm.fieldValue = $event.target.value
-              }
-            }
-          })
+            }),
+            _vm._v(" "),
+            _c("output", { attrs: { for: _vm.name } }, [
+              _vm._v(_vm._s(_vm.options[_vm.fieldValue].title))
+            ])
+          ])
         : _vm.type === "checkbox"
           ? _c(
               "section",
@@ -72697,10 +72706,11 @@ var render = function() {
                       "b-checkbox",
                       {
                         attrs: {
+                          "native-value": item.id,
                           name: item.slug,
-                          "native-value": item.value,
                           size: "is-medium"
                         },
+                        on: { input: _vm.setFilter },
                         model: {
                           value: _vm.fieldValue,
                           callback: function($$v) {
@@ -72725,7 +72735,8 @@ var render = function() {
                     "b-checkbox-button",
                     {
                       key: item.id,
-                      attrs: { "native-value": item.value, type: "is-primary" },
+                      attrs: { "native-value": item.id, type: "is-primary" },
+                      on: { input: _vm.setFilter },
                       model: {
                         value: _vm.fieldValue,
                         callback: function($$v) {
@@ -72772,46 +72783,42 @@ var render = function() {
             [
               _vm._l(_vm.horizontalData, function(group) {
                 return _c("div", { staticClass: "tile is-parent" }, [
-                  _c(
-                    "article",
-                    { staticClass: "tile is-child notification is-white" },
-                    [
-                      _c("p", { staticClass: "subtitle" }, [
-                        _vm._v(_vm._s(group.title))
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "content" }, [
-                        _c(
-                          "div",
-                          { staticClass: "columns" },
-                          _vm._l(group.facets, function(facet) {
-                            return _c(
-                              "div",
-                              { staticClass: "column is-3" },
-                              [
-                                _c(
-                                  "b-field",
-                                  { attrs: { label: facet.title } },
-                                  [
-                                    _c("dynamic-form", {
-                                      attrs: {
-                                        type: facet.type,
-                                        name: facet.slug,
-                                        options: facet.values
-                                      },
-                                      on: { setFilter: _vm.setFilter }
-                                    })
-                                  ],
-                                  1
-                                )
-                              ],
-                              1
-                            )
-                          })
-                        )
-                      ])
-                    ]
-                  )
+                  _c("article", { staticClass: "tile is-child is-white" }, [
+                    _c("p", { staticClass: "subtitle has-text-weight-bold" }, [
+                      _vm._v(_vm._s(group.title))
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "content" }, [
+                      _c(
+                        "div",
+                        { staticClass: "columns" },
+                        _vm._l(group.facets, function(facet) {
+                          return _c(
+                            "div",
+                            { staticClass: "column is-3" },
+                            [
+                              _c(
+                                "b-field",
+                                { attrs: { label: facet.title } },
+                                [
+                                  _c("dynamic-form", {
+                                    attrs: {
+                                      type: facet.type,
+                                      name: facet.slug,
+                                      options: facet.values
+                                    },
+                                    on: { setFilter: _vm.setFilter }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        })
+                      )
+                    ])
+                  ])
                 ])
               }),
               _vm._v(" "),
@@ -72820,39 +72827,39 @@ var render = function() {
                 { staticClass: "tile" },
                 _vm._l(_vm.verticalData, function(group) {
                   return _c("div", { staticClass: "tile is-parent" }, [
-                    _c(
-                      "article",
-                      { staticClass: "tile is-child notification is-white" },
-                      [
-                        _c("p", { staticClass: "subtitle" }, [
-                          _vm._v(_vm._s(group.title))
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "content" },
-                          _vm._l(group.facets, function(facet) {
-                            return _c(
-                              "div",
-                              { staticClass: "field" },
-                              [
-                                _c("small", [_vm._v(_vm._s(facet.title))]),
-                                _vm._v(" "),
-                                _c("br"),
-                                _vm._v(" "),
-                                _c("dynamic-form", {
-                                  attrs: {
-                                    type: facet.type,
-                                    options: facet.values
-                                  }
-                                })
-                              ],
-                              1
-                            )
-                          })
-                        )
-                      ]
-                    )
+                    _c("article", { staticClass: "tile is-child is-white" }, [
+                      _c(
+                        "p",
+                        { staticClass: "subtitle has-text-weight-bold" },
+                        [_vm._v(_vm._s(group.title))]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "content" },
+                        _vm._l(group.facets, function(facet) {
+                          return _c(
+                            "div",
+                            { staticClass: "field" },
+                            [
+                              _c("small", [_vm._v(_vm._s(facet.title))]),
+                              _vm._v(" "),
+                              _c("br"),
+                              _vm._v(" "),
+                              _c("dynamic-form", {
+                                attrs: {
+                                  type: facet.type,
+                                  name: facet.slug,
+                                  options: facet.values
+                                },
+                                on: { setFilter: _vm.setFilter }
+                              })
+                            ],
+                            1
+                          )
+                        })
+                      )
+                    ])
                   ])
                 })
               )

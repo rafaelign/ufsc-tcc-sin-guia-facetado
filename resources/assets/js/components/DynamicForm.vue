@@ -92,19 +92,24 @@
                 v-model="fieldValue"
                 :true-value="switchConfig.trueValue"
                 :false-value="switchConfig.falseValue"
-                size="is-medium">
+                size="is-medium"
+                @input="setFilter">
             {{ fieldValue }}
         </b-switch>
     </section>
 
-    <input
-            v-else-if="type === 'slider'"
-            class="slider is-fullwidth is-medium is-primary is-circle"
-            :step="sliderConfig.step"
-            :min="sliderConfig.min"
-            :max="sliderConfig.max"
-            v-model="fieldValue"
-            type="range">
+    <section v-else-if="type === 'slider'">
+        <input
+                class="slider is-fullwidth is-medium is-primary is-circle has-output"
+                :step="sliderConfig.step"
+                :min="sliderConfig.min"
+                :max="sliderConfig.max"
+                v-model="fieldValue"
+                :id="name"
+                type="range"
+                @input="setFilter">
+        <output :for="name">{{ options[ fieldValue ].title }}</output>
+    </section>
 
     <section
             class="margin-top-10"
@@ -112,9 +117,10 @@
         <div class="field" v-for="item in options" :key="item.id">
             <b-checkbox
                     v-model="fieldValue"
+                    :native-value="item.id"
                     :name="item.slug"
-                    :native-value="item.value"
-                    size="is-medium">{{ item.title }}</b-checkbox>
+                    size="is-medium"
+                    @input="setFilter">{{ item.title }}</b-checkbox>
         </div>
     </section>
 
@@ -125,8 +131,9 @@
                 v-for="item in options"
                 :key="item.id"
                 v-model="fieldValue"
-                :native-value="item.value"
-                type="is-primary">
+                :native-value="item.id"
+                type="is-primary"
+                @input="setFilter">
             <span>{{ item.value }}</span>
         </b-checkbox-button>
     </b-field>
