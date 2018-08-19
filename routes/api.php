@@ -18,8 +18,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('collections', 'CollectionController@index');
+
 Route::get('collections/{slug}', 'CollectionController@getCollectionBySlug');
+
 Route::get('collections/{slug}/entities', 'CollectionController@getEntitiesByCollectionSlug');
-Route::get('collections/{slug}/facets', 'CollectionController@getFacetsByCollectionSlug');
 
 Route::get('entities/{slug}', 'EntityController@getEntityBySlug');
+
+Route::get('facet_groups/{collectionSlug}', 'FacetGroupController@getFacetGroupsByCollectionSlug');

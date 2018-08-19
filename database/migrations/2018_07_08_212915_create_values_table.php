@@ -18,7 +18,7 @@ class CreateValuesTable extends Migration
             $table->string('title', 100);
             $table->string('slug', 250)->unique();
             $table->string('value', 200);
-            $table->enum('type', ['option', 'interval']);
+            $table->string('description', 250)->nullable();
             $table->unsignedInteger('facet_id');
             $table->timestamps();
             $table->softDeletes();

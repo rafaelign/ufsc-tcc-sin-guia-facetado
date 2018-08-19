@@ -18,6 +18,7 @@ class CreateFacetsTable extends Migration
             $table->string('title', 100);
             $table->string('slug', 150)->unique();
             $table->longText('description');
+            $table->string('type', 100);
             $table->unsignedInteger('facet_group_id');
             $table->unsignedInteger('collection_id');
             $table->unsignedInteger('user_id');

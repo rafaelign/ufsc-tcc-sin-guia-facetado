@@ -16,6 +16,7 @@ class CreateFacetGroupsTable extends Migration
         Schema::create('facet_groups', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title', 150);
+            $table->string('layout', 100);
             $table->timestamps();
         });
     }

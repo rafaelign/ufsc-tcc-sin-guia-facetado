@@ -12,6 +12,7 @@ class Facet extends Model
         'title',
         'slug',
         'description',
+        'type',
     ];
 
     public function collection()

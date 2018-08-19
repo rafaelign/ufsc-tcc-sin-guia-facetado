@@ -13,26 +13,34 @@
                 formProps: {},
                 collection: {},
                 entities: [],
-                facets: [],
+                facetGroups: [],
                 errors: []
             }
         },
-        created() {
+        created () {
             const slug = this.$route.params.collection;
 
             this.$root.showLoading();
 
+            // VUEX - storage - state - getters - mutatios
+            // localforage
+
             Promise.all([
                 axios.get('/api/collections/' + slug),
                 axios.get('/api/collections/' + slug + '/entities'),
-                axios.get('/api/collections/' + slug + '/facets')
-            ]).then(([responseCollection, responseEntities, responseFacets]) => {
+                axios.get('/api/facet_groups/' + slug)
+            ]).then(([responseCollection, responseEntities, responseFacetGroups]) => {
                 this.collection = responseCollection.data;
                 this.entities = responseEntities.data;
-                this.facets = responseFacets.data;
+                this.facetGroups = responseFacetGroups.data;
 
                 this.$root.hideLoading();
             }).catch((error) => this.errors = error.response.data.errors);
+        },
+        methods: {
+            filter: function (data) {
+                console.log('EntitiesPage', data)
+            }
         }
     };
 </script>
@@ -89,9 +97,13 @@
                             </div>
                         </div>
                     </div>
-
-                    <b-modal :active.sync="isComponentModalActive" class="modal modal-full-screen modal-fx-fadeInScale" width="100%">
-                        <modal-form v-bind="formProps" title="Selecione os filtros conforme as seguintes facetas"></modal-form>
+                    <!-- .sync="isComponentModalActive" -->
+                    <b-modal :active="true" class="modal modal-full-screen modal-fx-fadeInScale" width="100%">
+                        <modal-form v-bind="formProps"
+                                    title="Selecione os filtros conforme as seguintes facetas"
+                                    :horizontal-data="facetGroups.filter( ( elem ) => elem.layout === 'horizontal' )"
+                                    :vertical-data="facetGroups.filter( ( elem ) => elem.layout === 'vertical' )"
+                                    @filter="filter"></modal-form>
                     </b-modal>
                 </section>
             </div>

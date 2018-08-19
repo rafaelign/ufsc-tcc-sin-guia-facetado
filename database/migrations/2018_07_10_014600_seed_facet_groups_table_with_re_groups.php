@@ -15,19 +15,24 @@ class SeedFacetGroupsTableWithReGroups extends Migration
     {
         DB::table('facet_groups')->insert([
             [
-                'title' => 'Geral'
+                'title'     => 'Geral',
+                'layout'    => 'horizontal',
             ],
             [
-                'title' => 'Elicitor'
+                'title' => 'Elicitor',
+                'layout'    => 'vertical',
             ],
             [
-                'title' => 'Domínio do problema'
+                'title' => 'Domínio do problema',
+                'layout'    => 'vertical',
             ],
             [
-                'title' => 'Stakeholder'
+                'title' => 'Stakeholder',
+                'layout'    => 'vertical',
             ],
             [
-                'title' => 'Características gerais da técnica'
+                'title' => 'Características gerais da técnica',
+                'layout'    => 'vertical',
             ],
         ]);
     }

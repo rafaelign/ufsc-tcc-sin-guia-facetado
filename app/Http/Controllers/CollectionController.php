@@ -44,17 +44,4 @@ class CollectionController extends Controller
         return response()
             ->json($collection->entities);
     }
-
-    /**
-     * @param string $slug
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function getFacetsByCollectionSlug(string $slug)
-    {
-        $collection = Collection::where('slug', '=', $slug)
-            ->first();
-
-        return response()
-            ->json($collection->facets()->with('values')->get());
-    }
 }
