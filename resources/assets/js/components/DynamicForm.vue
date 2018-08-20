@@ -38,8 +38,8 @@
             this.fieldValue = this.option || this.fieldValue
 
             if (this.type === 'switch') {
-                this.switchConfig.falseValue = this.options[0].value
-                this.switchConfig.trueValue = this.options[1].value
+                this.switchConfig.falseValue = this.options[0].id
+                this.switchConfig.trueValue = this.options[1].id
 
                 this.fieldValue = this.fieldValue || this.switchConfig.falseValue
             }
@@ -65,7 +65,18 @@
         },
         methods: {
             setFilter () {
+                if (this.type === 'slider') {
+                    this.fieldValue = this.options[ this.fieldValue ].id
+                }
+
                 this.$emit('setFilter', this.fieldName, this.fieldValue)
+            },
+            switchValueToTitle() {
+                let opt = this.options.filter((item) => {
+                    return item.id === this.fieldValue
+                })
+
+                return opt[0].title
             }
         }
     }
@@ -94,7 +105,7 @@
                 :false-value="switchConfig.falseValue"
                 size="is-medium"
                 @input="setFilter">
-            {{ fieldValue }}
+            {{ switchValueToTitle() }}
         </b-switch>
     </section>
 

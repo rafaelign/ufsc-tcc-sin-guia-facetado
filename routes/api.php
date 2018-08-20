@@ -21,8 +21,10 @@ Route::get('collections', 'CollectionController@index');
 
 Route::get('collections/{slug}', 'CollectionController@getCollectionBySlug');
 
-Route::get('collections/{slug}/entities', 'CollectionController@getEntitiesByCollectionSlug');
+Route::get('collections/{slug}/entities', 'EntityController@getByCollectionSlug');
 
-Route::get('entities/{slug}', 'EntityController@getEntityBySlug');
+Route::post('collections/{slug}/entities', 'EntityController@getByCollectionSlug');
+
+Route::get('entities/{slug}', 'EntityController@getBySlug');
 
 Route::get('facet_groups/{collectionSlug}', 'FacetGroupController@getFacetGroupsByCollectionSlug');

@@ -19,4 +19,9 @@ class Value extends Model
     {
         return $this->belongsTo(Facet::class);
     }
+
+    public function entity()
+    {
+        return $this->belongsToMany(Entity::class, 'entities_values', 'value_id');
+    }
 }

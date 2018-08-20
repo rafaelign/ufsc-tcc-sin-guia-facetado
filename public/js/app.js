@@ -72313,12 +72313,16 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
         Card: __WEBPACK_IMPORTED_MODULE_1__components_Card___default.a
     },
     data: function data() {
+        var filteredEntities = [];
+
         return {
             isComponentModalActive: false,
             formProps: {},
             collection: {},
             entities: [],
             facetGroups: [],
+            filters: [],
+            filteredEntities: [],
             errors: []
         };
     },
@@ -72342,6 +72346,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
             _this.entities = responseEntities.data;
             _this.facetGroups = responseFacetGroups.data;
 
+            _this.filteredEntities = _this.entities;
             _this.$root.hideLoading();
         }).catch(function (error) {
             return _this.errors = error.response.data.errors;
@@ -72349,8 +72354,26 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
     },
 
     methods: {
-        filter: function filter(data) {
-            console.log('EntitiesPage', data);
+        updateFilter: function updateFilter(data) {
+            this.filters = data;
+            this.filter();
+        },
+        filter: function filter() {
+            var _this2 = this;
+
+            var slug = this.$route.params.collection;
+
+            this.$root.showLoading();
+
+            axios.post('/api/collections/' + slug + '/entities', this.filters, {
+                'Content-Type': 'application/json'
+            }).then(function (responseEntities) {
+                _this2.filteredEntities = responseEntities.data;
+
+                _this2.$root.hideLoading();
+            }).catch(function (error) {
+                return _this2.errors = error.response.data.errors;
+            });
         }
     }
 });
@@ -72445,6 +72468,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         filter: function filter() {
             this.$emit('filter', this.selectedFilters);
+            this.$parent.close();
         },
         setFilter: function setFilter(name, value) {
             var filter = {
@@ -72564,8 +72588,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         this.fieldValue = this.option || this.fieldValue;
 
         if (this.type === 'switch') {
-            this.switchConfig.falseValue = this.options[0].value;
-            this.switchConfig.trueValue = this.options[1].value;
+            this.switchConfig.falseValue = this.options[0].id;
+            this.switchConfig.trueValue = this.options[1].id;
 
             this.fieldValue = this.fieldValue || this.switchConfig.falseValue;
         }
@@ -72592,7 +72616,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         setFilter: function setFilter() {
+            if (this.type === 'slider') {
+                this.fieldValue = this.options[this.fieldValue].id;
+            }
+
             this.$emit('setFilter', this.fieldName, this.fieldValue);
+        },
+        switchValueToTitle: function switchValueToTitle() {
+            var _this = this;
+
+            var opt = this.options.filter(function (item) {
+                return item.id === _this.fieldValue;
+            });
+
+            return opt[0].title;
         }
     }
 });
@@ -72655,7 +72692,11 @@ var render = function() {
                   expression: "fieldValue"
                 }
               },
-              [_vm._v("\n        " + _vm._s(_vm.fieldValue) + "\n    ")]
+              [
+                _vm._v(
+                  "\n        " + _vm._s(_vm.switchValueToTitle()) + "\n    "
+                )
+              ]
             )
           ],
           1
@@ -73008,7 +73049,7 @@ var render = function() {
                             _vm._v(" "),
                             _c("p", [
                               _vm._v(
-                                "Nesta página estão listadas todas técnicas mapeadas através da pesquisa. Conforme falado anteriormente, foi utilizado um método de classificação facetada, agrupando as características presentes sob diversos aspectos."
+                                "Nesta página são apresentados os elementos que compôe a classificação acessada."
                               )
                             ])
                           ])
@@ -73016,32 +73057,52 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "row" }, [
-                      _c(
-                        "div",
-                        { staticClass: "columns" },
-                        _vm._l(_vm.entities, function(entity) {
-                          return _c(
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _vm.filteredEntities.length
+                      ? _c("div", { staticClass: "row" }, [
+                          _c(
                             "div",
-                            { staticClass: "column is-4" },
-                            [
-                              _c("card", {
-                                attrs: {
-                                  title: entity.title,
-                                  content: entity.short_description,
-                                  action:
-                                    "/app/colecoes/" +
-                                    _vm.$route.params.collection +
-                                    "/entidades/" +
-                                    entity.slug
-                                }
-                              })
-                            ],
-                            1
+                            { staticClass: "columns" },
+                            _vm._l(_vm.filteredEntities, function(entity) {
+                              return _c(
+                                "div",
+                                { staticClass: "column is-4" },
+                                [
+                                  _c("card", {
+                                    attrs: {
+                                      title: entity.title,
+                                      content: entity.short_description,
+                                      action:
+                                        "/app/colecoes/" +
+                                        _vm.$route.params.collection +
+                                        "/entidades/" +
+                                        entity.slug
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            })
                           )
-                        })
-                      )
-                    ])
+                        ])
+                      : _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "columns" }, [
+                            _c("div", { staticClass: "column is-12" }, [
+                              _vm.filters.length
+                                ? _c("p", [
+                                    _vm._v(
+                                      "Nenhum registro encontrado para o filtro informado."
+                                    )
+                                  ])
+                                : _c("p", [
+                                    _vm._v(
+                                      "Nenhum registro encontrado para esta classificação."
+                                    )
+                                  ])
+                            ])
+                          ])
+                        ])
                   ])
                 ]),
                 _vm._v(" "),
@@ -73049,7 +73110,15 @@ var render = function() {
                   "b-modal",
                   {
                     staticClass: "modal modal-full-screen modal-fx-fadeInScale",
-                    attrs: { active: true, width: "100%" }
+                    attrs: {
+                      active: _vm.isComponentModalActive,
+                      width: "100%"
+                    },
+                    on: {
+                      "update:active": function($event) {
+                        _vm.isComponentModalActive = $event
+                      }
+                    }
                   },
                   [
                     _c(
@@ -73070,7 +73139,7 @@ var render = function() {
                               return elem.layout === "vertical"
                             })
                           },
-                          on: { filter: _vm.filter }
+                          on: { filter: _vm.updateFilter }
                         },
                         "modal-form",
                         _vm.formProps,
@@ -73096,6 +73165,20 @@ var staticRenderFns = [
     return _c("li", { staticClass: "is-active" }, [
       _c("a", { attrs: { href: "#", "aria-current": "page" } }, [
         _vm._v("Técnicas Mapeadas")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "columns" }, [
+        _c("div", { staticClass: "column is-12" }, [
+          _c("h2", { staticClass: "subtitle" }, [
+            _vm._v("Registros encontrados")
+          ])
+        ])
       ])
     ])
   }

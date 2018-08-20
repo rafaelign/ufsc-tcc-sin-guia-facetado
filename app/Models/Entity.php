@@ -21,7 +21,7 @@ class Entity extends Model
 
     public function values()
     {
-        return $this->belongsToMany(Value::class);
+        return $this->belongsToMany(Value::class, 'entities_values', 'entity_id');
     }
 
     public function collection()

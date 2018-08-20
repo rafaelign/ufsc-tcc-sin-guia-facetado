@@ -8,12 +8,16 @@
             Card
         },
         data: function () {
+            let filteredEntities = [];
+
             return {
                 isComponentModalActive: false,
                 formProps: {},
                 collection: {},
                 entities: [],
                 facetGroups: [],
+                filters: [],
+                filteredEntities: [],
                 errors: []
             }
         },
@@ -34,12 +38,27 @@
                 this.entities = responseEntities.data;
                 this.facetGroups = responseFacetGroups.data;
 
+                this.filteredEntities = this.entities;
                 this.$root.hideLoading();
             }).catch((error) => this.errors = error.response.data.errors);
         },
         methods: {
-            filter: function (data) {
-                console.log('EntitiesPage', data)
+            updateFilter: function (data) {
+                this.filters = data;
+                this.filter()
+            },
+            filter: function () {
+                const slug = this.$route.params.collection;
+
+                this.$root.showLoading();
+
+                axios.post('/api/collections/' + slug + '/entities', this.filters, {
+                    'Content-Type': 'application/json'
+                }).then((responseEntities) => {
+                    this.filteredEntities = responseEntities.data;
+
+                    this.$root.hideLoading();
+                }).catch((error) => this.errors = error.response.data.errors);
             }
         }
     };
@@ -80,7 +99,7 @@
                                                 </button>
                                             </h1>
 
-                                            <p>Nesta página estão listadas todas técnicas mapeadas através da pesquisa. Conforme falado anteriormente, foi utilizado um método de classificação facetada, agrupando as características presentes sob diversos aspectos.</p>
+                                            <p>Nesta página são apresentados os elementos que compôe a classificação acessada.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -88,22 +107,39 @@
 
                             <div class="row">
                                 <div class="columns">
-                                    <div class="column is-4" v-for="entity in entities">
+                                    <div class="column is-12">
+                                        <h2 class="subtitle">Registros encontrados</h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" v-if="filteredEntities.length">
+                                <div class="columns">
+                                    <div class="column is-4" v-for="entity in filteredEntities">
                                         <card :title="entity.title"
                                               :content="entity.short_description"
                                               :action="'/app/colecoes/' + $route.params.collection + '/entidades/' + entity.slug"></card>
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="row" v-else>
+                                <div class="columns">
+                                    <div class="column is-12">
+                                        <p v-if="filters.length">Nenhum registro encontrado para o filtro informado.</p>
+                                        <p v-else>Nenhum registro encontrado para esta classificação.</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <!-- .sync="isComponentModalActive" -->
-                    <b-modal :active="true" class="modal modal-full-screen modal-fx-fadeInScale" width="100%">
+                    <!-- -->
+                    <b-modal :active.sync="isComponentModalActive" class="modal modal-full-screen modal-fx-fadeInScale" width="100%">
                         <modal-form v-bind="formProps"
                                     title="Selecione os filtros conforme as seguintes facetas"
                                     :horizontal-data="facetGroups.filter( ( elem ) => elem.layout === 'horizontal' )"
                                     :vertical-data="facetGroups.filter( ( elem ) => elem.layout === 'vertical' )"
-                                    @filter="filter"></modal-form>
+                                    @filter="updateFilter"></modal-form>
                     </b-modal>
                 </section>
             </div>

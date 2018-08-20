@@ -31,17 +31,4 @@ class CollectionController extends Controller
                 ->first()
         );
     }
-
-    /**
-     * @param string $slug
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function getEntitiesByCollectionSlug(string $slug)
-    {
-        $collection = Collection::where('slug', '=', $slug)
-            ->first();
-
-        return response()
-            ->json($collection->entities);
-    }
 }

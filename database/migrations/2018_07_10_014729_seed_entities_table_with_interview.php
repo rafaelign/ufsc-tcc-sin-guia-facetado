@@ -31,6 +31,7 @@ class SeedEntitiesTableWithInterview extends Migration
             'description'       => 'Esta técnica foi a mais encontrada através da revisão sistemática. Zowghi e Coulin (2005) destaca que este é, "talvez o método mais comum e estabelecido de elicitação de requisitos", indo de encontro com o que foi identificado na revisão. As entrevistas geralmente envolvem discussões individuais de um representante da equipe com a parte interessada em um novo sistema (HANSEN; BERENTE; AVITAL, 2014). Devido à capacidade desta técnica para obter conhecimento profundo, é considerada como técnica importante para obter e validar os requisitos de software (YOUSUF; ASGER, 2015).',
             'collection_id'     => $RETechniqueCollection->id,
             'user_id'           => $user->id,
+            'published'         => 1,
             'created_at'        => Carbon::now(),
             'updated_at'        => Carbon::now(),
         ]);
@@ -80,9 +81,9 @@ class SeedEntitiesTableWithInterview extends Migration
                 ->where('slug', str_slug($facet . ' ' . $value))
                 ->first();
 
-            DB::table('entities_facets')->insert([
+            DB::table('entities_values')->insert([
                 'entity_id' => $interviewId,
-                'facet_id' => $facetValues->facet_id,
+                // 'facet_id' => $facetValues->facet_id,
                 'value_id' => $facetValues->id,
             ]);
         }
@@ -95,7 +96,7 @@ class SeedEntitiesTableWithInterview extends Migration
      */
     public function down()
     {
-        DB::delete('DELETE FROM entities_facets WHERE entity_id IN (SELECT id FROM entities WHERE slug LIKE ?)', [str_slug('Técnicas de Elicitação de Requisitos Entrevista')]);
+        DB::delete('DELETE FROM entities_values WHERE entity_id IN (SELECT id FROM entities WHERE slug LIKE ?)', [str_slug('Técnicas de Elicitação de Requisitos Entrevista')]);
         DB::delete('DELETE FROM entities WHERE slug LIKE ?', [str_slug('Técnicas de Elicitação de Requisitos Entrevista')]);
     }
 }

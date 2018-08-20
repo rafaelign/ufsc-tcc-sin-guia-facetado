@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEntitiesFacetsTable extends Migration
+class CreateEntitiesValuesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,14 @@ class CreateEntitiesFacetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('entities_facets', function (Blueprint $table) {
+        Schema::create('entities_values', function (Blueprint $table) {
             $table->unsignedInteger('entity_id');
-            $table->unsignedInteger('facet_id');
             $table->unsignedInteger('value_id');
             $table->timestamps();
-            $table->softDeletes();
 
             $table->foreign('entity_id')
                 ->references('id')
                 ->on('entities');
-
-            $table->foreign('facet_id')
-                ->references('id')
-                ->on('facets');
 
             $table->foreign('value_id')
                 ->references('id')
@@ -41,6 +35,6 @@ class CreateEntitiesFacetsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('entities_facets');
+        Schema::dropIfExists('entities_values');
     }
 }

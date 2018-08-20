@@ -33,6 +33,7 @@
         methods: {
             filter: function () {
                 this.$emit('filter', this.selectedFilters)
+                this.$parent.close();
             },
             setFilter: function (name, value) {
                 var filter = {
