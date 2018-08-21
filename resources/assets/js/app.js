@@ -6,11 +6,8 @@ import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import VueMarkdown from 'vue-markdown'
 import VueLoading from 'vue-loading-overlay'
-import SocialSharing from 'vue-social-sharing'
 import Sidebar from './components/Sidebar'
-
 import Buefy from 'buefy'
-// import 'buefy/lib/buefy.css'
 
 import { routes } from './utils/routes';
 
@@ -19,7 +16,6 @@ Vue.use(VueRouter);
 Vue.use(Buefy);
 Vue.use(VueMarkdown);
 Vue.use(VueLoading);
-Vue.use(SocialSharing);
 
 const router = new VueRouter({
     mode: 'history',

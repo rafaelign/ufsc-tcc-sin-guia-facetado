@@ -8,8 +8,6 @@
             Card
         },
         data: function () {
-            let filteredEntities = [];
-
             return {
                 isComponentModalActive: false,
                 formProps: {},
@@ -133,7 +131,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- -->
+
                     <b-modal :active.sync="isComponentModalActive" class="modal modal-full-screen modal-fx-fadeInScale" width="100%">
                         <modal-form v-bind="formProps"
                                     title="Selecione os filtros conforme as seguintes facetas"

@@ -1,9 +1,17 @@
 <script>
     import ClipLoader from 'vue-spinner/src/ClipLoader'
+    import VueGoodshareFacebook from 'vue-goodshare/src/providers/Facebook'
+    import VueGoodshareGoogleplus from 'vue-goodshare/src/providers/GooglePlus'
+    import VueGoodshareTwitter from 'vue-goodshare/src/providers/Twitter'
+    import VueGoodshareLinkedin from 'vue-goodshare/src/providers/LinkedIn'
 
     export default {
         components: {
-            ClipLoader
+            ClipLoader,
+            VueGoodshareFacebook,
+            VueGoodshareGoogleplus,
+            VueGoodshareTwitter,
+            VueGoodshareLinkedin
         },
         data: function () {
             return {
@@ -59,5 +67,47 @@
             </li>
         </ul>
         <clip-loader v-if="isLoadingMenu" class="is-centered"></clip-loader>
+
+        <nav class="navbar is-fixed-bottom">
+            <div class="navbar-item">
+                <ul>
+                    <p class="menu-label has-text-centered">
+                        Compartilhe
+                    </p>
+                    <li>
+                        <vue-goodshare-facebook
+                                page_url="https://github.com"
+                                title_social="Facebook"
+                                has_counter
+                                has_icon
+                        ></vue-goodshare-facebook>
+                    </li>
+                    <li>
+                        <vue-goodshare-googleplus
+                                page_url="https://github.com"
+                                title_social="Google"
+                                has_counter
+                                has_icon
+                        ></vue-goodshare-googleplus>
+                    </li>
+                    <li>
+                        <vue-goodshare-twitter
+                                page_url="https://github.com"
+                                title_social="Twitter"
+                                has_counter
+                                has_icon
+                        ></vue-goodshare-twitter>
+                    </li>
+                    <li>
+                        <vue-goodshare-linkedin
+                                page_url="https://github.com"
+                                title_social="Linkedin"
+                                has_counter
+                                has_icon
+                        ></vue-goodshare-linkedin>
+                    </li>
+                </ul>
+            </div>
+        </nav>
     </aside>
 </template>
