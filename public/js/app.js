@@ -72668,6 +72668,10 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
             _this.values = responseEntityValues.data;
             _this.facets = responseFacets.data;
 
+            axios.put('/api/entities/page_views/' + _this.entity.id).catch(function (error) {
+                return _this.errors = error.response.data.errors;
+            });
+
             _this.$root.hideLoading();
         }).catch(function (error) {
             return _this.errors = error.response.data.errors;

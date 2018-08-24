@@ -35,6 +35,9 @@
                 this.values = responseEntityValues.data;
                 this.facets = responseFacets.data;
 
+                axios.put('/api/entities/page_views/' + this.entity.id)
+                    .catch((error) => this.errors = error.response.data.errors);
+
                 this.$root.hideLoading();
             }).catch((error) => this.errors = error.response.data.errors);
         }

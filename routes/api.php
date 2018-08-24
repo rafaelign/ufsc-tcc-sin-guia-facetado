@@ -31,4 +31,6 @@ Route::get('entities/{slug}', 'EntityController@getBySlug');
 
 Route::get('entities/{slug}/values', 'EntityController@getValuesByEntitySlug');
 
+Route::put('entities/page_views/{id}', 'EntityController@addPageView');
+
 Route::get('facet_groups/{collectionSlug}', 'FacetGroupController@getFacetGroupsByCollectionSlug');

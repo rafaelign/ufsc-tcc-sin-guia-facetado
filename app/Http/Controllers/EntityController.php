@@ -65,6 +65,10 @@ class EntityController extends Controller
             ]));
     }
 
+    /**
+     * @param string $slug
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getValuesByEntitySlug(string $slug)
     {
         $values = Value::join('entities_values', 'value_id', 'id')
@@ -84,5 +88,21 @@ class EntityController extends Controller
             ]);
 
         return response()->json($values);
+    }
+
+    /**
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function addPageView(int $id)
+    {
+        $entity = Entity::find($id);
+        $entity->page_views = (int) $entity->page_views + 1;
+        $entity->save();
+
+        return response()->json([
+            'id' => $entity->id,
+            'page_views' => $entity->page_views,
+        ]);
     }
 }
