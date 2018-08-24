@@ -32,6 +32,6 @@ class Facet extends Model
 
     public function group()
     {
-        return $this->belongsTo(FacetGroup::class);
+        return $this->belongsTo(FacetGroup::class, 'facet_group_id', 'id');
     }
 }

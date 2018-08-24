@@ -1,14 +1,20 @@
 <script>
     import VueMarkdown from 'vue-markdown'
+    import References from '../components/References'
+    import Classification from '../components/Classification'
 
     export default {
         components: {
-            VueMarkdown
+            VueMarkdown,
+            Classification,
+            References
         },
         data: function () {
             return {
                 collection: {},
                 entity: {},
+                values: [],
+                facets: [],
                 errors: []
             }
         },
@@ -20,10 +26,14 @@
 
             Promise.all([
                 axios.get('/api/collections/' + collectionSlug),
-                axios.get('/api/entities/' + entitySlug)
-            ]).then(([responseCollections, responseEntities]) => {
+                axios.get('/api/entities/' + entitySlug),
+                axios.get('/api/entities/' + entitySlug + '/values'),
+                axios.get('/api/facet_groups/' + collectionSlug)
+            ]).then(([responseCollections, responseEntities, responseEntityValues, responseFacets]) => {
                 this.collection = responseCollections.data;
                 this.entity = responseEntities.data;
+                this.values = responseEntityValues.data;
+                this.facets = responseFacets.data;
 
                 this.$root.hideLoading();
             }).catch((error) => this.errors = error.response.data.errors);
@@ -99,46 +109,7 @@
                             <div class="columns">
                                 <div class="column is-12">
                                     <div class="container">
-                                        <h2 class="subtitle"><b-icon icon="table" class="has-text-success"></b-icon> <span>Classificação completa</span></h2>
-                                        <div class="content">
-                                            <table class="table">
-                                                <thead>
-                                                <tr>
-                                                    <th><abbr title="Position">Pos</abbr></th>
-                                                    <th>Team</th>
-                                                    <th><abbr title="Played">Pld</abbr></th>
-                                                    <th><abbr title="Points">Pts</abbr></th>
-                                                    <th>Qualification or relegation</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr>
-                                                    <th>1</th>
-                                                    <td><a href="https://en.wikipedia.org/wiki/Leicester_City_F.C." title="Leicester City F.C.">Leicester City</a> <strong>(C)</strong>
-                                                    </td>
-                                                    <td>38</td>
-                                                    <td>81</td>
-                                                    <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage" title="2016–17 UEFA Champions League">Champions League group stage</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <th>1</th>
-                                                    <td><a href="https://en.wikipedia.org/wiki/Leicester_City_F.C." title="Leicester City F.C.">Leicester City</a> <strong>(C)</strong>
-                                                    </td>
-                                                    <td>38</td>
-                                                    <td>81</td>
-                                                    <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage" title="2016–17 UEFA Champions League">Champions League group stage</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <th>1</th>
-                                                    <td><a href="https://en.wikipedia.org/wiki/Leicester_City_F.C." title="Leicester City F.C.">Leicester City</a> <strong>(C)</strong>
-                                                    </td>
-                                                    <td>38</td>
-                                                    <td>81</td>
-                                                    <td>Qualification for the <a href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage" title="2016–17 UEFA Champions League">Champions League group stage</a></td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                        <classification :values="values" :items="facets"></classification>
                                     </div>
                                 </div>
                             </div>
@@ -150,12 +121,7 @@
                             <div class="columns">
                                 <div class="column is-12">
                                     <div class="container">
-                                        <h2 class="subtitle"><b-icon icon="view-list" class="has-text-danger"></b-icon> <span>Referências</span></h2>
-                                        <ul>
-                                            <li><b>[1]</b> Lorem ipsum dolor sit amet.</li>
-                                            <li><b>[2]</b> Aenean enim ex, vestibulum eu enim.</li>
-                                            <li><b>[3]</b> Duis eget lacus quis orci rhoncus aliquet.</li>
-                                        </ul>
+                                        <references title="Referências" :items="entity.references"></references>
                                     </div>
                                 </div>
                             </div>

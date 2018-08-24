@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Entity;
+use App\Models\FacetGroup;
+use App\Models\Value;
 use Illuminate\Http\Request;
 
 class EntityController extends Controller
@@ -18,6 +20,7 @@ class EntityController extends Controller
         return response()->json(
             Entity::where('slug', '=', $slug)
                 ->where('published', 1)
+                ->with('references')
                 ->first()
         );
     }
@@ -60,5 +63,26 @@ class EntityController extends Controller
                 'entities.slug',
                 'entities.short_description',
             ]));
+    }
+
+    public function getValuesByEntitySlug(string $slug)
+    {
+        $values = Value::join('entities_values', 'value_id', 'id')
+            ->whereIn('entities_values.entity_id', function ($query) use ($slug) {
+                $query->select('id')
+                    ->from('entities')
+                    ->where('slug', '=', $slug)
+                    ->where('published', '=', Entity::PUBLISHED)
+                    ->get(['id']);
+            })
+            ->get([
+                'values.id',
+                'values.title',
+                'values.value',
+                'values.description',
+                'values.facet_id',
+            ]);
+
+        return response()->json($values);
     }
 }

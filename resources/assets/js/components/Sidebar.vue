@@ -68,7 +68,7 @@
         </ul>
         <clip-loader v-if="isLoadingMenu" class="is-centered"></clip-loader>
 
-        <nav class="navbar is-fixed-bottom">
+        <nav class="navbar is-fixed-bottom socialbar" style="opacity: unset">
             <div class="navbar-item">
                 <ul>
                     <p class="menu-label has-text-centered">

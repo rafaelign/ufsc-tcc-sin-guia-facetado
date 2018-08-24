@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Entity extends Model
 {
+    /** @var int PUBLISHED */
+    const PUBLISHED = 1;
+
     protected $table = 'entities';
 
     protected $fillable = [
@@ -36,6 +39,6 @@ class Entity extends Model
 
     public function references()
     {
-        return $this->belongsToMany(Reference::class);
+        return $this->belongsToMany(Reference::class, 'entities_references', 'entity_id');
     }
 }

@@ -31,4 +31,16 @@ class CollectionController extends Controller
                 ->first()
         );
     }
+
+    /**
+     * @param string $slug
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getFacetsByCollectionSlug(string $slug)
+    {
+        $collection = Collection::where('slug', '=', $slug)
+            ->first();
+
+        return response()->json($collection->facets()->with('values')->get());
+    }
 }

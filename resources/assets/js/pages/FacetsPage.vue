@@ -1,5 +1,10 @@
 <script>
+    import References from '../components/References'
+
     export default {
+        components: {
+            References
+        },
         data: function () {
             return {
                 collection: {},
@@ -93,7 +98,7 @@
                                                             <ul v-if="props.row.values.length">
                                                                 <li v-for="value in props.row.values">
                                                                     <div><b-icon icon="chevron-right" size="is-small"></b-icon> <span>{{ value.title }}</span></div>
-                                                                    <div v-if="value.description.length" class="inner-list">
+                                                                    <div v-if="value.description" class="inner-list">
                                                                         <small>{{ value.description }}</small>
                                                                     </div>
                                                                 </li>
@@ -107,6 +112,19 @@
                                 </div>
                             </div>
                         </div>
+
+                        <hr>
+
+                        <div class="row">
+                            <div class="columns">
+                                <div class="column is-12">
+                                    <div class="container">
+                                        <references title="Referências" :items="['Lorem ipsum dolor sit amet.', 'Aenean enim ex, vestibulum eu enim.']"></references>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </section>
