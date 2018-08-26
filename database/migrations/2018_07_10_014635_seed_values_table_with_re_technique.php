@@ -290,16 +290,16 @@ class SeedValuesTableWithReTechnique extends Migration
             ],
             'Tempo de processo' => [
                 [
-                    'title' => 'Fim',
-                    'value' => 'Fim',
-                ],
-                [
                     'title' => 'Início',
-                    'value' => 'Início',
+                    'value' => '0',
                 ],
                 [
                     'title' => 'Meio',
-                    'value' => 'Meio',
+                    'value' => '1',
+                ],
+                [
+                    'title' => 'Fim',
+                    'value' => '2',
                 ],
             ],
             'Frequência de utilização' => [

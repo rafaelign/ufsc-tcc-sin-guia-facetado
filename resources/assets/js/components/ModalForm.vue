@@ -1,9 +1,9 @@
 <script>
-    import DynamicForm from './DynamicForm'
+    import DynamicField from './DynamicField'
 
     export default {
         components: {
-            DynamicForm
+            DynamicField
         },
         props: {
             title: {
@@ -28,35 +28,11 @@
                 selectedFilters: []
             }
         },
-        created () {
-        },
         methods: {
             filter: function () {
-                this.$emit('filter', this.selectedFilters)
-                this.$parent.close();
+                this.$emit('filter')
+                this.$parent.close()
             },
-            setFilter: function (name, value) {
-                var filter = {
-                    name: name,
-                    value: value
-                }
-
-                var i = null
-
-                let item = this.selectedFilters.filter( (a, b) => {
-                    i = b
-                    return a.name === filter.name
-                });
-
-                if (item.length) {
-                    this.selectedFilters.splice(i, 1)
-                }
-
-                this.selectedFilters.push({
-                    name: name,
-                    value: value
-                })
-            }
         }
     }
 </script>
@@ -77,11 +53,10 @@
                                     <div class="columns">
                                         <div class="column is-3" v-for="facet in group.facets">
                                             <b-field :label="facet.title">
-                                                <dynamic-form
+                                                <dynamic-field
                                                         :type="facet.type"
                                                         :name="facet.slug"
-                                                        :options="facet.values"
-                                                        @setFilter="setFilter"></dynamic-form>
+                                                        :options="facet.values"></dynamic-field>
                                             </b-field>
                                         </div>
                                     </div>
@@ -97,11 +72,10 @@
                                         <div class="field" v-for="facet in group.facets">
                                             <small>{{ facet.title }}</small>
                                             <br>
-                                            <dynamic-form
+                                            <dynamic-field
                                                     :type="facet.type"
                                                     :name="facet.slug"
-                                                    :options="facet.values"
-                                                    @setFilter="setFilter"></dynamic-form>
+                                                    :options="facet.values"></dynamic-field>
                                         </div>
                                     </div>
                                 </article>

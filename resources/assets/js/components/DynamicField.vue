@@ -1,4 +1,6 @@
 <script>
+    import { mapMutations } from 'vuex'
+
     export default {
         props: {
             type: {
@@ -35,48 +37,62 @@
             };
         },
         created () {
-            this.fieldValue = this.option || this.fieldValue
-
             if (this.type === 'switch') {
-                this.switchConfig.falseValue = this.options[0].id
-                this.switchConfig.trueValue = this.options[1].id
+                this.switchConfig.falseValue = parseInt(this.options[0].id)
+                this.switchConfig.trueValue = parseInt(this.options[1].id)
 
-                this.fieldValue = this.fieldValue || this.switchConfig.falseValue
+                this.addDefaultValue({
+                    name: this.name,
+                    value: this.switchConfig.falseValue
+                })
             }
 
             if (this.type === 'slider') {
-                this.sliderConfig.min = this.options[0].value
-                this.sliderConfig.max = this.options[ this.options.length - 1 ].value
+                this.sliderConfig.min = parseInt(this.options[0].value)
+                this.sliderConfig.max = parseInt(this.options[ this.options.length - 1 ].value)
 
-                this.fieldValue = this.fieldValue || 0
+                this.addDefaultValue({
+                    name: this.name,
+                    value: this.sliderConfig.min
+                })
             }
 
-            if (this.type === 'checkbox') {
-                this.fieldValue = this.fieldValue || []
+            if (this.type === 'checkbox' || this.type === 'checkbutton') {
+                this.addDefaultValue({
+                    name: this.name,
+                    value: []
+                })
             }
 
-            if (this.type === 'checkbutton') {
-                this.fieldValue = this.fieldValue || []
-            }
-
-            if (this.name) {
-                this.fieldName = this.name
-            }
+            this.fieldName = this.name
+            this.fieldValue = this.getFilter(this.name)
         },
         methods: {
+            ...mapMutations([
+                'addFilter',
+                'addDefaultValue'
+            ]),
             setFilter () {
-                if (this.type === 'slider') {
-                    this.fieldValue = this.options[ this.fieldValue ].id
+                let filter = {
+                    name: this.fieldName,
+                    value: this.fieldValue
                 }
 
-                this.$emit('setFilter', this.fieldName, this.fieldValue)
+                if (this.type === 'slider') {
+                    filter.value = this.options[ this.fieldValue ].id
+                }
+
+                this.addFilter(filter)
             },
             switchValueToTitle() {
                 let opt = this.options.filter((item) => {
                     return item.id === this.fieldValue
                 })
 
-                return opt[0].title
+                return opt[0].title || ''
+            },
+            getFilter: function (name) {
+                return this.$store.getters.getFilterValueByName(name)
             }
         }
     }

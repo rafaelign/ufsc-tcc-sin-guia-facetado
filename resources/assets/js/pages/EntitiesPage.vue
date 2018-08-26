@@ -50,7 +50,7 @@
 
                 this.$root.showLoading();
 
-                axios.post('/api/collections/' + slug + '/entities', this.filters, {
+                axios.post('/api/collections/' + slug + '/entities', this.$store.getters.getFilters, {
                     'Content-Type': 'application/json'
                 }).then((responseEntities) => {
                     this.filteredEntities = responseEntities.data;
@@ -97,7 +97,7 @@
                                                 </button>
                                             </h1>
 
-                                            <p>Nesta página são apresentados os elementos que compôe a classificação acessada.</p>
+                                            <p>Nesta página são apresentados os elementos que compõe a classificação acessada.</p>
                                         </div>
                                     </div>
                                 </div>
