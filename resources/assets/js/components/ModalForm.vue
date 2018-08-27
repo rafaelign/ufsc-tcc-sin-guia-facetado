@@ -33,6 +33,10 @@
                 this.$emit('filter')
                 this.$parent.close()
             },
+            reset: function () {
+                this.$emit('reset')
+                this.$parent.close()
+            },
         }
     }
 </script>
@@ -86,7 +90,7 @@
             </form>
         </section>
         <footer class="modal-card-foot buttons is-centered">
-            <button class="button is-medium" type="button">
+            <button class="button is-medium" type="button" @click="reset">
                 <b-icon icon="eraser"></b-icon> <span>Limpar</span>
             </button>
             <button class="button is-medium is-primary" @click="filter">

@@ -17691,6 +17691,9 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
             });
 
             state.defaultValues.push(filter);
+        },
+        resetFilters: function resetFilters(state) {
+            state.filters = [];
         }
     },
     getters: {
@@ -73252,19 +73255,23 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_ModalForm__ = __webpack_require__(276);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_ModalForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_ModalForm__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Card__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Card___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_Card__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_ModalForm__ = __webpack_require__(276);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_ModalForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_ModalForm__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Card__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Card___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_Card__);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: {
-        ModalForm: __WEBPACK_IMPORTED_MODULE_0__components_ModalForm___default.a,
-        Card: __WEBPACK_IMPORTED_MODULE_1__components_Card___default.a
+        ModalForm: __WEBPACK_IMPORTED_MODULE_1__components_ModalForm___default.a,
+        Card: __WEBPACK_IMPORTED_MODULE_2__components_Card___default.a
     },
     data: function data() {
         return {
@@ -73273,7 +73280,6 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
             collection: {},
             entities: [],
             facetGroups: [],
-            filters: [],
             filteredEntities: [],
             errors: []
         };
@@ -73305,11 +73311,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
         });
     },
 
-    methods: {
-        updateFilter: function updateFilter(data) {
-            this.filters = data;
-            this.filter();
-        },
+    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapMutations */])(['resetFilters']), {
         filter: function filter() {
             var _this2 = this;
 
@@ -73326,8 +73328,13 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
             }).catch(function (error) {
                 return _this2.errors = error.response.data.errors;
             });
+        },
+        reset: function reset() {
+            this.resetFilters();
+            this.filteredEntities = this.entities;
+            this.filter();
         }
-    }
+    })
 });
 
 /***/ }),
@@ -73418,6 +73425,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         filter: function filter() {
             this.$emit('filter');
+            this.$parent.close();
+        },
+        reset: function reset() {
+            this.$emit('reset');
             this.$parent.close();
         }
     }
@@ -73855,7 +73866,11 @@ var render = function() {
     _c("footer", { staticClass: "modal-card-foot buttons is-centered" }, [
       _c(
         "button",
-        { staticClass: "button is-medium", attrs: { type: "button" } },
+        {
+          staticClass: "button is-medium",
+          attrs: { type: "button" },
+          on: { click: _vm.reset }
+        },
         [
           _c("b-icon", { attrs: { icon: "eraser" } }),
           _vm._v(" "),
@@ -73966,25 +73981,61 @@ var render = function() {
                               _vm._v(
                                 "\n                                            " +
                                   _vm._s(_vm.collection.title) +
-                                  "\n                                            "
+                                  "\n\n                                            "
                               ),
                               _c(
-                                "button",
+                                "div",
                                 {
                                   staticClass:
-                                    "button is-primary is-medium is-pulled-right",
-                                  on: {
-                                    click: function($event) {
-                                      _vm.isComponentModalActive = true
-                                    }
-                                  }
+                                    "field has-addons is-pulled-right"
                                 },
                                 [
-                                  _c("b-icon", { attrs: { icon: "filter" } }),
+                                  _c("p", { staticClass: "control" }, [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "button is-danger is-medium",
+                                        on: {
+                                          click: function($event) {
+                                            _vm.reset()
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("b-icon", {
+                                          attrs: { icon: "eraser" }
+                                        }),
+                                        _vm._v(" "),
+                                        _c("span", [_vm._v("Limpar filtros")])
+                                      ],
+                                      1
+                                    )
+                                  ]),
                                   _vm._v(" "),
-                                  _c("span", [_vm._v("Filtrar")])
-                                ],
-                                1
+                                  _c("p", { staticClass: "control" }, [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "button is-primary is-medium",
+                                        on: {
+                                          click: function($event) {
+                                            _vm.isComponentModalActive = true
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("b-icon", {
+                                          attrs: { icon: "filter" }
+                                        }),
+                                        _vm._v(" "),
+                                        _c("span", [_vm._v("Filtrar")])
+                                      ],
+                                      1
+                                    )
+                                  ])
+                                ]
                               )
                             ]),
                             _vm._v(" "),
@@ -74030,7 +74081,7 @@ var render = function() {
                       : _c("div", { staticClass: "row" }, [
                           _c("div", { staticClass: "columns" }, [
                             _c("div", { staticClass: "column is-12" }, [
-                              _vm.filters.length
+                              _vm.$store.getters.getFilters.length
                                 ? _c("p", [
                                     _vm._v(
                                       "Nenhum registro encontrado para o filtro informado."
@@ -74080,7 +74131,7 @@ var render = function() {
                               return elem.layout === "vertical"
                             })
                           },
-                          on: { filter: _vm.updateFilter }
+                          on: { filter: _vm.filter, reset: _vm.reset }
                         },
                         "modal-form",
                         _vm.formProps,

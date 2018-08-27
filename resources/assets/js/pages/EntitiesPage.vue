@@ -1,4 +1,5 @@
 <script>
+    import { mapMutations } from 'vuex'
     import ModalForm from '../components/ModalForm'
     import Card from '../components/Card'
 
@@ -14,7 +15,6 @@
                 collection: {},
                 entities: [],
                 facetGroups: [],
-                filters: [],
                 filteredEntities: [],
                 errors: []
             }
@@ -41,10 +41,9 @@
             }).catch((error) => this.errors = error.response.data.errors);
         },
         methods: {
-            updateFilter: function (data) {
-                this.filters = data;
-                this.filter()
-            },
+            ...mapMutations([
+                'resetFilters'
+            ]),
             filter: function () {
                 const slug = this.$route.params.collection;
 
@@ -57,6 +56,11 @@
 
                     this.$root.hideLoading();
                 }).catch((error) => this.errors = error.response.data.errors);
+            },
+            reset: function () {
+                this.resetFilters()
+                this.filteredEntities = this.entities
+                this.filter()
             }
         }
     };
@@ -91,10 +95,19 @@
                                         <div class="container">
                                             <h1 class="title">
                                                 {{ collection.title }}
-                                                <button class="button is-primary is-medium is-pulled-right"
-                                                        @click="isComponentModalActive = true">
-                                                    <b-icon icon="filter"></b-icon> <span>Filtrar</span>
-                                                </button>
+
+                                                <div class="field has-addons is-pulled-right">
+                                                    <p class="control">
+                                                        <button class="button is-danger is-medium" @click="reset()">
+                                                            <b-icon icon="eraser"></b-icon> <span>Limpar filtros</span>
+                                                        </button>
+                                                    </p>
+                                                    <p class="control">
+                                                        <button class="button is-primary is-medium" @click="isComponentModalActive = true">
+                                                            <b-icon icon="filter"></b-icon> <span>Filtrar</span>
+                                                        </button>
+                                                    </p>
+                                                </div>
                                             </h1>
 
                                             <p>Nesta página são apresentados os elementos que compõe a classificação acessada.</p>
@@ -111,7 +124,7 @@
                                 </div>
                             </div>
 
-                            <div class="row" v-if="filteredEntities.length">
+                            <div class="row"  v-if="filteredEntities.length">
                                 <div class="columns">
                                     <div class="column is-4" v-for="entity in filteredEntities">
                                         <card :title="entity.title"
@@ -121,10 +134,10 @@
                                 </div>
                             </div>
 
-                            <div class="row" v-else>
+                            <div class="row"  v-else>
                                 <div class="columns">
                                     <div class="column is-12">
-                                        <p v-if="filters.length">Nenhum registro encontrado para o filtro informado.</p>
+                                        <p v-if="$store.getters.getFilters.length">Nenhum registro encontrado para o filtro informado.</p>
                                         <p v-else>Nenhum registro encontrado para esta classificação.</p>
                                     </div>
                                 </div>
@@ -137,7 +150,8 @@
                                     title="Selecione os filtros conforme as seguintes facetas"
                                     :horizontal-data="facetGroups.filter( ( elem ) => elem.layout === 'horizontal' )"
                                     :vertical-data="facetGroups.filter( ( elem ) => elem.layout === 'vertical' )"
-                                    @filter="updateFilter"></modal-form>
+                                    @filter="filter"
+                                    @reset="reset"></modal-form>
                     </b-modal>
                 </section>
             </div>

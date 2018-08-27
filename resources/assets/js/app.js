@@ -45,6 +45,9 @@ const store = new Vuex.Store({
             })
 
             state.defaultValues.push(filter)
+        },
+        resetFilters (state) {
+            state.filters = []
         }
     },
     getters: {
