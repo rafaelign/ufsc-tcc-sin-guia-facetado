@@ -70662,6 +70662,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     data: function data() {
         return {
+            url: 'https://tcc-ufsc-guia-facetado.herokuapp.com/',
             entities: [],
             errors: [],
             isLoadingMenu: false
@@ -72037,7 +72038,7 @@ var render = function() {
                 [
                   _c("vue-goodshare-facebook", {
                     attrs: {
-                      page_url: "https://github.com",
+                      page_url: _vm.url,
                       title_social: "Facebook",
                       has_counter: "",
                       has_icon: ""
@@ -72052,7 +72053,7 @@ var render = function() {
                 [
                   _c("vue-goodshare-googleplus", {
                     attrs: {
-                      page_url: "https://github.com",
+                      page_url: _vm.url,
                       title_social: "Google",
                       has_counter: "",
                       has_icon: ""
@@ -72067,7 +72068,7 @@ var render = function() {
                 [
                   _c("vue-goodshare-twitter", {
                     attrs: {
-                      page_url: "https://github.com",
+                      page_url: _vm.url,
                       title_social: "Twitter",
                       has_counter: "",
                       has_icon: ""
@@ -72082,7 +72083,7 @@ var render = function() {
                 [
                   _c("vue-goodshare-linkedin", {
                     attrs: {
-                      page_url: "https://github.com",
+                      page_url: _vm.url,
                       title_social: "Linkedin",
                       has_counter: "",
                       has_icon: ""
