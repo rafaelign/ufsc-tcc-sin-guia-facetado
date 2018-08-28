@@ -15,6 +15,7 @@
         },
         data: function () {
             return {
+                url: 'https://tcc-ufsc-guia-facetado.herokuapp.com/',
                 entities: [],
                 errors: [],
                 isLoadingMenu: false
@@ -76,7 +77,7 @@
                     </p>
                     <li>
                         <vue-goodshare-facebook
-                                page_url="https://github.com"
+                                :page_url="url"
                                 title_social="Facebook"
                                 has_counter
                                 has_icon
@@ -84,7 +85,7 @@
                     </li>
                     <li>
                         <vue-goodshare-googleplus
-                                page_url="https://github.com"
+                                :page_url="url"
                                 title_social="Google"
                                 has_counter
                                 has_icon
@@ -92,7 +93,7 @@
                     </li>
                     <li>
                         <vue-goodshare-twitter
-                                page_url="https://github.com"
+                                :page_url="url"
                                 title_social="Twitter"
                                 has_counter
                                 has_icon
@@ -100,7 +101,7 @@
                     </li>
                     <li>
                         <vue-goodshare-linkedin
-                                page_url="https://github.com"
+                                :page_url="url"
                                 title_social="Linkedin"
                                 has_counter
                                 has_icon
