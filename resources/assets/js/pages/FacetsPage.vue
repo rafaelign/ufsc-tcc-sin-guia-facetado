@@ -113,13 +113,11 @@
                             </div>
                         </div>
 
-                        <hr>
-
                         <div class="row">
                             <div class="columns">
                                 <div class="column is-12">
                                     <div class="container">
-                                        <references title="Referências" :items="['Lorem ipsum dolor sit amet.', 'Aenean enim ex, vestibulum eu enim.']"></references>
+                                        <references title="Referências" :items="[]"></references>
                                     </div>
                                 </div>
                             </div>

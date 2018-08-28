@@ -74539,8 +74539,6 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _c("hr"),
-                _vm._v(" "),
                 _c("div", { staticClass: "row" }, [
                   _c("div", { staticClass: "columns" }, [
                     _c("div", { staticClass: "column is-12" }, [
@@ -74549,13 +74547,7 @@ var render = function() {
                         { staticClass: "container" },
                         [
                           _c("references", {
-                            attrs: {
-                              title: "Referências",
-                              items: [
-                                "Lorem ipsum dolor sit amet.",
-                                "Aenean enim ex, vestibulum eu enim."
-                              ]
-                            }
+                            attrs: { title: "Referências", items: [] }
                           })
                         ],
                         1

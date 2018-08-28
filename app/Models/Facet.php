@@ -22,7 +22,7 @@ class Facet extends Model
 
     public function references()
     {
-        return $this->belongsToMany(Reference::class);
+        return $this->belongsToMany(Reference::class, 'facets_references', 'facet_id');
     }
 
     public function values()

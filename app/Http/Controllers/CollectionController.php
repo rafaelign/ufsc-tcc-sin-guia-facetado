@@ -41,6 +41,10 @@ class CollectionController extends Controller
         $collection = Collection::where('slug', '=', $slug)
             ->first();
 
-        return response()->json($collection->facets()->with('values')->get());
+        return response()->json($collection
+            ->facets()
+            ->with('values')
+            ->with('references')
+            ->get());
     }
 }
