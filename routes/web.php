@@ -13,4 +13,4 @@ Route::get('/app/{vue_capture?}', function () {
 //})->where('name', '[A-Za-z\-]*');
 
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin', 'HomeController@index')->name('home');

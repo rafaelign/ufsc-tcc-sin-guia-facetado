@@ -11,3 +11,7 @@ mix
     ], 'public/css/vendor.css')
     .copy('resources/assets/images', 'public/images')
     .copy('node_modules/bulma-modal-fx/dist/css/modal-fx.css.min.map', 'public/css/modal-fx.css.min.map');
+
+mix
+    .js('resources/assets/js/admin.js', 'public/js')
+    .sass('resources/assets/sass/admin.scss', 'public/css');
