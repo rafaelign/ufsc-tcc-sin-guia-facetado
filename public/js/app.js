@@ -51525,7 +51525,8 @@ var router = new __WEBPACK_IMPORTED_MODULE_2_vue_router__["a" /* default */]({
 var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
     state: {
         filters: [],
-        defaultValues: []
+        defaultValues: [],
+        isLoading: false
     },
     mutations: {
         addFilter: function addFilter(state, filter) {
@@ -51548,6 +51549,12 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
         },
         resetFilters: function resetFilters(state) {
             state.filters = [];
+        },
+        loading: function loading(state) {
+            state.isLoading = true;
+        },
+        loaded: function loaded(state) {
+            state.isLoading = false;
         }
     },
     getters: {
@@ -51570,6 +51577,12 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
         },
         getFilters: function getFilters(state) {
             return state.filters || [];
+        },
+        isLoading: function isLoading(state) {
+            return state.isLoading;
+        },
+        isLoaded: function isLoaded(state) {
+            return !state.isLoading;
         }
     }
 });
@@ -51583,18 +51596,7 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
         Loading: __WEBPACK_IMPORTED_MODULE_4_vue_loading_overlay___default.a
     },
     data: function data() {
-        return {
-            isLoading: false
-        };
-    },
-
-    methods: {
-        showLoading: function showLoading() {
-            this.isLoading = true;
-        },
-        hideLoading: function hideLoading() {
-            this.isLoading = false;
-        }
+        return {};
     }
 });
 
@@ -72205,7 +72207,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return !this.$root.isLoading
+  return this.$store.getters.isLoaded
     ? _c("div", { staticClass: "row" }, [_vm._m(0)])
     : _vm._e()
 }
@@ -72332,19 +72334,23 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_markdown__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_markdown___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_markdown__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Card__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Card___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_Card__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_markdown__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_markdown___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_markdown__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Card__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Card___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_Card__);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: {
-        VueMarkdown: __WEBPACK_IMPORTED_MODULE_0_vue_markdown___default.a,
-        Card: __WEBPACK_IMPORTED_MODULE_1__components_Card___default.a
+        VueMarkdown: __WEBPACK_IMPORTED_MODULE_1_vue_markdown___default.a,
+        Card: __WEBPACK_IMPORTED_MODULE_2__components_Card___default.a
     },
     data: function data() {
         return {
@@ -72358,7 +72364,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
         var slug = this.$route.params.collection;
 
-        this.$root.showLoading();
+        this.loading();
 
         Promise.all([axios.get('/api/collections/' + slug), axios.get('/api/collections/' + slug + '/entities')]).then(function (_ref) {
             var _ref2 = _slicedToArray(_ref, 2),
@@ -72368,11 +72374,13 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
             _this.collection = responseCollection.data;
             _this.entities = responseEntities.data;
 
-            _this.$root.hideLoading();
+            _this.loaded();
         }).catch(function (error) {
             return _this.errors = error.response.data.errors;
         });
-    }
+    },
+
+    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapMutations */])(['loading', 'loaded']))
 });
 
 /***/ }),
@@ -72468,7 +72476,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return !this.$root.isLoading
+  return this.$store.getters.isLoaded
     ? _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "column is-8 content-box hero" }, [
           _c("section", { staticClass: "hero" }, [
@@ -72676,13 +72684,17 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_markdown__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_markdown___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_markdown__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_References__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_References___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_References__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Classification__ = __webpack_require__(270);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Classification___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_Classification__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_markdown__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_markdown___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_markdown__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_References__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_References___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_References__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Classification__ = __webpack_require__(270);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Classification___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_Classification__);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 
 
 
@@ -72690,9 +72702,9 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: {
-        VueMarkdown: __WEBPACK_IMPORTED_MODULE_0_vue_markdown___default.a,
-        Classification: __WEBPACK_IMPORTED_MODULE_2__components_Classification___default.a,
-        References: __WEBPACK_IMPORTED_MODULE_1__components_References___default.a
+        VueMarkdown: __WEBPACK_IMPORTED_MODULE_1_vue_markdown___default.a,
+        Classification: __WEBPACK_IMPORTED_MODULE_3__components_Classification___default.a,
+        References: __WEBPACK_IMPORTED_MODULE_2__components_References___default.a
     },
     data: function data() {
         return {
@@ -72709,7 +72721,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
         var collectionSlug = this.$route.params.collection;
         var entitySlug = this.$route.params.entity;
 
-        this.$root.showLoading();
+        this.loading();
 
         Promise.all([axios.get('/api/collections/' + collectionSlug), axios.get('/api/entities/' + entitySlug), axios.get('/api/entities/' + entitySlug + '/values'), axios.get('/api/facet_groups/' + collectionSlug)]).then(function (_ref) {
             var _ref2 = _slicedToArray(_ref, 4),
@@ -72727,11 +72739,13 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
                 return _this.errors = error.response.data.errors;
             });
 
-            _this.$root.hideLoading();
+            _this.loaded();
         }).catch(function (error) {
             return _this.errors = error.response.data.errors;
         });
-    }
+    },
+
+    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapMutations */])(['loading', 'loaded']))
 });
 
 /***/ }),
@@ -72975,7 +72989,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return !this.$root.isLoading
+  return this.$store.getters.isLoaded
     ? _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "column is-8 content-box" }, [
           _c("section", { staticClass: "hero" }, [
@@ -73291,9 +73305,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
         var slug = this.$route.params.collection;
 
-        this.$root.showLoading();
-
-        // VUEX - storage - state - getters - mutatios
+        this.loading();
         // localforage
 
         Promise.all([axios.get('/api/collections/' + slug), axios.get('/api/collections/' + slug + '/entities'), axios.get('/api/facet_groups/' + slug)]).then(function (_ref) {
@@ -73307,26 +73319,26 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
             _this.facetGroups = responseFacetGroups.data;
 
             _this.filteredEntities = _this.entities;
-            _this.$root.hideLoading();
+            _this.loaded();
         }).catch(function (error) {
             return _this.errors = error.response.data.errors;
         });
     },
 
-    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapMutations */])(['resetFilters']), {
+    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapMutations */])(['resetFilters', 'loading', 'loaded']), {
         filter: function filter() {
             var _this2 = this;
 
             var slug = this.$route.params.collection;
 
-            this.$root.showLoading();
+            this.loading();
 
             axios.post('/api/collections/' + slug + '/entities', this.$store.getters.getFilters, {
                 'Content-Type': 'application/json'
             }).then(function (responseEntities) {
                 _this2.filteredEntities = responseEntities.data;
 
-                _this2.$root.hideLoading();
+                _this2.loaded();
             }).catch(function (error) {
                 return _this2.errors = error.response.data.errors;
             });
@@ -73916,7 +73928,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    !this.$root.isLoading
+    this.$store.getters.isLoaded
       ? _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "column is-8 content-box hero" }, [
             _c(
@@ -74283,15 +74295,19 @@ exports.push([module.i, "\nul[data-v-31dd5482] { list-style: none;\n}\n.inner-li
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_References__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_References___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_References__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_References__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_References___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_References__);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: {
-        References: __WEBPACK_IMPORTED_MODULE_0__components_References___default.a
+        References: __WEBPACK_IMPORTED_MODULE_1__components_References___default.a
     },
     data: function data() {
         return {
@@ -74305,7 +74321,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
         var slug = this.$route.params.collection;
 
-        this.$root.showLoading();
+        this.loading();
 
         Promise.all([axios.get('/api/collections/' + slug), axios.get('/api/collections/' + slug + '/facets')]).then(function (_ref) {
             var _ref2 = _slicedToArray(_ref, 2),
@@ -74315,11 +74331,13 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
             _this.collection = responseCollection.data;
             _this.facets = responseFacets.data;
 
-            _this.$root.hideLoading();
+            _this.loaded();
         }).catch(function (error) {
             return _this.errors = error.response.data.errors;
         });
-    }
+    },
+
+    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapMutations */])(['loading', 'loaded']))
 });
 
 /***/ }),
@@ -74330,7 +74348,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return !this.$root.isLoading
+  return this.$store.getters.isLoaded
     ? _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "column is-8 content-box hero" }, [
           _c("section", { staticClass: "hero" }, [

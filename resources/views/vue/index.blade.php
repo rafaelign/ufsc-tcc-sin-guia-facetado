@@ -13,7 +13,7 @@
 </head>
 <body>
     <div id="app">
-        <loading :active.sync="isLoading" :can-cancel="false"></loading>
+        <loading :active.sync="this.$store.getters.isLoading" :can-cancel="false"></loading>
 
         <div class="columns">
             <sidebar></sidebar>

@@ -25,7 +25,8 @@ const router = new VueRouter({
 const store = new Vuex.Store({
     state: {
         filters: [],
-        defaultValues: []
+        defaultValues: [],
+        isLoading: false
     },
     mutations: {
         addFilter (state, filter) {
@@ -48,6 +49,12 @@ const store = new Vuex.Store({
         },
         resetFilters (state) {
             state.filters = []
+        },
+        loading (state) {
+            state.isLoading = true
+        },
+        loaded (state) {
+            state.isLoading = false
         }
     },
     getters: {
@@ -68,6 +75,12 @@ const store = new Vuex.Store({
         },
         getFilters: (state) => {
             return state.filters || []
+        },
+        isLoading: (state) => {
+            return state.isLoading
+        },
+        isLoaded: (state) => {
+            return ! state.isLoading
         }
     }
 });
@@ -81,16 +94,6 @@ const app = new Vue({
         Loading: VueLoading
     },
     data() {
-        return {
-            isLoading: false
-        }
-    },
-    methods: {
-        showLoading () {
-            this.isLoading = true
-        },
-        hideLoading () {
-            this.isLoading = false
-        }
+        return {}
     }
 });

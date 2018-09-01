@@ -29,7 +29,7 @@
                     this.entities = response.data
                     this.isLoadingMenu = false
                 })
-                .catch((error) => this.errors = error.response.data.errors);
+                .catch((error) => this.errors = error.response.data.errors)
         }
     }
 </script>

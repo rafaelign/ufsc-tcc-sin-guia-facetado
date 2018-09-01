@@ -1,4 +1,5 @@
 <script>
+    import { mapMutations } from 'vuex'
     import References from '../components/References'
 
     export default {
@@ -13,25 +14,31 @@
             }
         },
         created() {
-            const slug = this.$route.params.collection;
+            const slug = this.$route.params.collection
 
-            this.$root.showLoading();
+            this.loading()
 
             Promise.all([
                 axios.get('/api/collections/' + slug),
                 axios.get('/api/collections/' + slug + '/facets')
             ]).then(([responseCollection, responseFacets]) => {
-                this.collection = responseCollection.data;
-                this.facets = responseFacets.data;
+                this.collection = responseCollection.data
+                this.facets = responseFacets.data
 
-                this.$root.hideLoading();
-            }).catch((error) => this.errors = error.response.data.errors);
+                this.loaded()
+            }).catch((error) => this.errors = error.response.data.errors)
+        },
+        methods: {
+            ...mapMutations([
+                'loading',
+                'loaded'
+            ])
         }
     };
 </script>
 
 <template>
-    <div class="row" v-if="! this.$root.isLoading">
+    <div class="row" v-if="this.$store.getters.isLoaded">
         <div class="column is-8 content-box hero">
             <section class="hero">
                 <div class="hero-body">

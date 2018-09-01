@@ -1,5 +1,5 @@
 <template>
-    <div class="row" v-if="! this.$root.isLoading">
+    <div class="row" v-if="this.$store.getters.isLoaded">
         <div class="column is-8 content-box hero">
             <section class="hero">
                 <div class="hero-body">

@@ -1,4 +1,5 @@
 <script>
+    import { mapMutations } from 'vuex'
     import VueMarkdown from 'vue-markdown'
     import References from '../components/References'
     import Classification from '../components/Classification'
@@ -19,10 +20,10 @@
             }
         },
         created() {
-            const collectionSlug = this.$route.params.collection;
-            const entitySlug = this.$route.params.entity;
+            const collectionSlug = this.$route.params.collection
+            const entitySlug = this.$route.params.entity
 
-            this.$root.showLoading();
+            this.loading()
 
             Promise.all([
                 axios.get('/api/collections/' + collectionSlug),
@@ -30,22 +31,28 @@
                 axios.get('/api/entities/' + entitySlug + '/values'),
                 axios.get('/api/facet_groups/' + collectionSlug)
             ]).then(([responseCollections, responseEntities, responseEntityValues, responseFacets]) => {
-                this.collection = responseCollections.data;
-                this.entity = responseEntities.data;
-                this.values = responseEntityValues.data;
-                this.facets = responseFacets.data;
+                this.collection = responseCollections.data
+                this.entity = responseEntities.data
+                this.values = responseEntityValues.data
+                this.facets = responseFacets.data
 
                 axios.put('/api/entities/page_views/' + this.entity.id)
-                    .catch((error) => this.errors = error.response.data.errors);
+                    .catch((error) => this.errors = error.response.data.errors)
 
-                this.$root.hideLoading();
-            }).catch((error) => this.errors = error.response.data.errors);
+                this.loaded()
+            }).catch((error) => this.errors = error.response.data.errors)
+        },
+        methods: {
+            ...mapMutations([
+                'loading',
+                'loaded'
+            ])
         }
     };
 </script>
 
 <template>
-    <div class="row" v-if="! this.$root.isLoading">
+    <div class="row" v-if="this.$store.getters.isLoaded">
         <div class="column is-8 content-box">
             <section class="hero">
                 <div class="hero-body">

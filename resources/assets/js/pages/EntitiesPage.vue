@@ -22,9 +22,7 @@
         created () {
             const slug = this.$route.params.collection;
 
-            this.$root.showLoading();
-
-            // VUEX - storage - state - getters - mutatios
+            this.loading()
             // localforage
 
             Promise.all([
@@ -37,25 +35,27 @@
                 this.facetGroups = responseFacetGroups.data;
 
                 this.filteredEntities = this.entities;
-                this.$root.hideLoading();
+                this.loaded()
             }).catch((error) => this.errors = error.response.data.errors);
         },
         methods: {
             ...mapMutations([
-                'resetFilters'
+                'resetFilters',
+                'loading',
+                'loaded'
             ]),
             filter: function () {
-                const slug = this.$route.params.collection;
+                const slug = this.$route.params.collection
 
-                this.$root.showLoading();
+                this.loading()
 
                 axios.post('/api/collections/' + slug + '/entities', this.$store.getters.getFilters, {
                     'Content-Type': 'application/json'
                 }).then((responseEntities) => {
-                    this.filteredEntities = responseEntities.data;
+                    this.filteredEntities = responseEntities.data
 
-                    this.$root.hideLoading();
-                }).catch((error) => this.errors = error.response.data.errors);
+                    this.loaded()
+                }).catch((error) => this.errors = error.response.data.errors)
             },
             reset: function () {
                 this.resetFilters()
@@ -68,7 +68,7 @@
 
 <template>
     <div>
-        <div class="row" v-if="! this.$root.isLoading">
+        <div class="row" v-if="this.$store.getters.isLoaded">
             <div class="column is-8 content-box hero">
                 <section class="hero">
                     <div class="hero-body">
