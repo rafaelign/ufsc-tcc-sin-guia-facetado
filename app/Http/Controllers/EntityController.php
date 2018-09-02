@@ -29,10 +29,10 @@ class EntityController extends Controller
      * @param string $slug
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getByCollectionSlug(Request $request, string $slug)
+    public function getByClassificationSlug(Request $request, string $slug)
     {
-        $entities = Entity::join('collections', 'collections.id', 'entities.collection_id')
-            ->where('collections.slug', '=', $slug)
+        $entities = Entity::join('classifications', 'classifications.id', 'entities.classification_id')
+            ->where('classifications.slug', '=', $slug)
             ->where('entities.published', 1)
             ->with('values');
 

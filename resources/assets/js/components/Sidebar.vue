@@ -24,7 +24,7 @@
         created () {
             this.isLoadingMenu = true;
 
-            axios.get('/api/collections')
+            axios.get('/api/classifications')
                 .then((response) => {
                     this.entities = response.data
                     this.isLoadingMenu = false
@@ -35,13 +35,12 @@
 </script>
 
 <template>
-    <aside class="column is-2 is-narrow-mobile is-fullheight section is-hidden-mobile">
-        <figure class="image has-text-centered">
-            <img src="/images/logo.png" alt="Logo">
-        </figure>
-        <p class="menu-label is-hidden-touch">
-            Menu
-        </p>
+    <aside class="column is-4 is-4-tablet is-3-desktop is-3-widescreen is-2-fullhd is-fullheight is-narrow-mobile">
+        <div class="has-text-centered-mobile">
+            <figure class="image">
+                <img src="/images/logo.png" alt="Logo" style="max-width: 300px;">
+            </figure>
+        </div>
         <ul class="menu-list">
             <li>
                 <router-link to="/app">
@@ -49,18 +48,18 @@
                 </router-link>
             </li>
             <li v-for="item,key in entities">
-                <router-link :to="{ path: '/app/colecoes/' + item.slug }">
+                <router-link :to="{ path: '/app/classificacoes/' + item.slug }">
                     {{ item.title }}
                 </router-link>
 
                 <ul>
                     <li>
-                        <router-link :to="{ path: '/app/colecoes/' + item.slug + '/entidades' }">
+                        <router-link :to="{ path: '/app/classificacoes/' + item.slug + '/entidades' }">
                             <b-icon icon="view-list" size="is-small"></b-icon> <span>Técnicas Mapeadas</span>
                         </router-link>
                     </li>
                     <li>
-                        <router-link :to="{ path: '/app/colecoes/' + item.slug + '/facetas' }">
+                        <router-link :to="{ path: '/app/classificacoes/' + item.slug + '/facetas' }">
                             <b-icon icon="information" size="is-small"></b-icon> <span>Facetas de Classificação</span>
                         </router-link>
                     </li>
@@ -69,10 +68,10 @@
         </ul>
         <clip-loader v-if="isLoadingMenu" class="is-centered"></clip-loader>
 
-        <nav class="navbar is-fixed-bottom socialbar" style="opacity: unset">
+        <nav class="navbar is-fixed-bottom socialbar is-hidden-mobile" style="opacity: unset">
             <div class="navbar-item">
                 <ul>
-                    <p class="menu-label has-text-centered">
+                    <p class="menu-label">
                         Compartilhe
                     </p>
                     <li>

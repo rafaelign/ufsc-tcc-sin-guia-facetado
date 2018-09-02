@@ -19,17 +19,17 @@ class SeedEntitiesTableWithInterview extends Migration
             ->where('email', 'admin@mailinator.com')
             ->first();
 
-        $RETechniqueCollection = DB::table('collections')
+        $RETechniqueClassification= DB::table('classifications')
             ->select(['id', 'title'])
             ->where('slug', str_slug('Técnicas de Elicitação de Requisitos'))
             ->first();
 
         DB::table('entities')->insert([
             'title'             => 'Entrevista',
-            'slug'              => str_slug($RETechniqueCollection->title . ' Entrevista'),
+            'slug'              => str_slug($RETechniqueClassification->title . ' Entrevista'),
             'short_description' => 'As entrevistas geralmente envolvem discussões individuais de um representante da equipe com a parte interessada em um novo sistema (HANSEN; BERENTE; AVITAL, 2014).',
             'description'       => 'Esta técnica foi a mais encontrada através da revisão sistemática. Zowghi e Coulin (2005) destaca que este é, "talvez o método mais comum e estabelecido de elicitação de requisitos", indo de encontro com o que foi identificado na revisão. As entrevistas geralmente envolvem discussões individuais de um representante da equipe com a parte interessada em um novo sistema (HANSEN; BERENTE; AVITAL, 2014). Devido à capacidade desta técnica para obter conhecimento profundo, é considerada como técnica importante para obter e validar os requisitos de software (YOUSUF; ASGER, 2015).',
-            'collection_id'     => $RETechniqueCollection->id,
+            'classification_id' => $RETechniqueClassification->id,
             'user_id'           => $user->id,
             'published'         => 1,
             'created_at'        => Carbon::now(),
@@ -38,7 +38,7 @@ class SeedEntitiesTableWithInterview extends Migration
 
         $interview = DB::table('entities')
             ->select(['id'])
-            ->where('slug', str_slug($RETechniqueCollection->title . ' Entrevista'))
+            ->where('slug', str_slug($RETechniqueClassification->title . ' Entrevista'))
             ->first();
 
         $this->values($interview->id, [

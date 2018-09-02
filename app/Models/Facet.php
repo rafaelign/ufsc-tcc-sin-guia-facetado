@@ -15,9 +15,9 @@ class Facet extends Model
         'type',
     ];
 
-    public function collection()
+    public function classification()
     {
-        return $this->belongsTo(Collection::class);
+        return $this->belongsTo(Classification::class);
     }
 
     public function references()

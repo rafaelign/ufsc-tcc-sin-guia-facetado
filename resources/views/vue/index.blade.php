@@ -17,7 +17,9 @@
 
         <div class="columns">
             <sidebar></sidebar>
-            <router-view ></router-view>
+            <div class="column is-8 is-8-tablet is-9-desktop is-9-widescreen is-10-fullhd">
+                <router-view ></router-view>
+            </div>
         </div>
     </div>
     <script src="{{ asset('js/app.js') }}"></script>

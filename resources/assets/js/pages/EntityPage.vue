@@ -3,16 +3,18 @@
     import VueMarkdown from 'vue-markdown'
     import References from '../components/References'
     import Classification from '../components/Classification'
+    import Breadcrumb from '../components/Breadcrumb'
 
     export default {
         components: {
             VueMarkdown,
             Classification,
-            References
+            References,
+            Breadcrumb
         },
         data: function () {
             return {
-                collection: {},
+                classification: {},
                 entity: {},
                 values: [],
                 facets: [],
@@ -20,18 +22,18 @@
             }
         },
         created() {
-            const collectionSlug = this.$route.params.collection
+            const classificationSlug = this.$route.params.classification
             const entitySlug = this.$route.params.entity
 
             this.loading()
 
             Promise.all([
-                axios.get('/api/collections/' + collectionSlug),
+                axios.get('/api/classifications/' + classificationSlug),
                 axios.get('/api/entities/' + entitySlug),
                 axios.get('/api/entities/' + entitySlug + '/values'),
-                axios.get('/api/facet_groups/' + collectionSlug)
-            ]).then(([responseCollections, responseEntities, responseEntityValues, responseFacets]) => {
-                this.collection = responseCollections.data
+                axios.get('/api/facet_groups/' + classificationSlug)
+            ]).then(([responseClassification, responseEntities, responseEntityValues, responseFacets]) => {
+                this.classification = responseClassification.data
                 this.entity = responseEntities.data
                 this.values = responseEntityValues.data
                 this.facets = responseFacets.data
@@ -57,26 +59,12 @@
             <section class="hero">
                 <div class="hero-body">
                     <div class="container">
-                        <nav class="breadcrumb has-arrow-separator is-right" aria-label="breadcrumbs">
-                            <ul>
-                                <li>
-                                    <router-link to="/app">
-                                        Guia Facetado de Engenharia de Requisitos
-                                    </router-link>
-                                </li>
-                                <li>
-                                    <router-link :to="{ path: '/app/colecoes/' + collection.slug }">
-                                        {{ collection.title }}
-                                    </router-link>
-                                </li>
-                                <li>
-                                    <router-link to="/app/elicitacao-requisitos/entidades">
-                                        Técnicas Mapeadas
-                                    </router-link>
-                                </li>
-                                <li class="is-active"><a href="#" aria-current="page">{{ entity.title }}</a></li>
-                            </ul>
-                        </nav>
+                        <breadcrumb :items="[
+                                { url: '#', title: 'Guia Facetado de Engenharia de Requisitos' },
+                                { url: '/app/colecoes/' + classification.slug, title: classification.title },
+                                { url: '/app/elicitacao-requisitos/entidades', title: 'Técnicas Mapeadas' },
+                                { url: '#', title: entity.title, active: true }
+                            ]"></breadcrumb>
 
                         <div class="row">
                             <div class="columns">

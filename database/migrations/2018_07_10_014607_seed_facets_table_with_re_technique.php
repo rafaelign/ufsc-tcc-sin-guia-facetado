@@ -19,12 +19,12 @@ class SeedFacetsTableWithReTechnique extends Migration
             ->where('email', 'admin@mailinator.com')
             ->first();
 
-        $collection = DB::table('collections')
+        $classification = DB::table('classifications')
             ->select(['id'])
             ->where('slug', str_slug('Técnicas de Elicitação de Requisitos'))
             ->first();
 
-        $this->create($user->id, $collection->id, [
+        $this->create($user->id, $classification->id, [
             [
                 'title'             => 'Categoria',
                 'slug'              => str_slug('Categoria'),
@@ -182,11 +182,11 @@ class SeedFacetsTableWithReTechnique extends Migration
         ]);
     }
 
-    private function create($userId, $collectionId, array $facets)
+    private function create($userId, $classificationId, array $facets)
     {
         foreach ($facets as $facet) {
             DB::table('facets')->insert(array_merge($facet, [
-                'collection_id' => $collectionId,
+                'classification_id' => $classificationId,
                 'user_id'       => $userId,
                 'created_at'    => Carbon::now(),
                 'updated_at'    => Carbon::now(),
@@ -211,14 +211,14 @@ class SeedFacetsTableWithReTechnique extends Migration
      */
     public function down()
     {
-        $RETechniqueCollection = DB::table('collections')
+        $RETechniqueClassification = DB::table('classifications')
             ->select(['id'])
             ->where('slug', str_slug('Técnicas de Elicitação de Requisitos'))
             ->first();
 
         $REFacets = DB::table('facets')
             ->select(['id'])
-            ->where('collection_id', $RETechniqueCollection->id)
+            ->where('classification_id', $RETechniqueClassification->id)
             ->get();
 
         foreach ($REFacets as $facet) {

@@ -20,6 +20,6 @@ class RETechniqueCollectionSeeder extends Seeder
     private function create(array $collection)
     {
         DB::table('collections')->insert($collection);
-        $this->command->info("Collection {$collection['titkle']} created");
+        $this->command->info("Classification {$collection['titkle']} created");
     }
 }

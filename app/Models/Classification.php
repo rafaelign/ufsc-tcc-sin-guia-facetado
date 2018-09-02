@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Collection extends Model
+class Classification extends Model
 {
-    protected $table = 'collections';
+    protected $table = 'classifications';
 
     protected $fillable = [
         'title',

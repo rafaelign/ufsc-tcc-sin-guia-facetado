@@ -24,14 +24,14 @@ class CreateEntitiesTable extends Migration
             $table->longText('additional_data')->nullable();
             $table->tinyInteger('published')->default(0);
             $table->unsignedInteger('page_views')->default(0);
-            $table->unsignedInteger('collection_id');
+            $table->unsignedInteger('classification_id');
             $table->unsignedInteger('user_id');
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('collection_id')
+            $table->foreign('classification_id')
                 ->references('id')
-                ->on('collections');
+                ->on('classifications');
 
             $table->foreign('user_id')
                 ->references('id')

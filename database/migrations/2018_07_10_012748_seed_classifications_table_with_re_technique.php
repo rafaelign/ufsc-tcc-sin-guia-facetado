@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Carbon\Carbon;
 
-class SeedCollectionsTableWithReTechnique extends Migration
+class SeedClassificationsTableWithReTechnique extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class SeedCollectionsTableWithReTechnique extends Migration
      */
     public function up()
     {
-        DB::table('collections')->insert([
+        DB::table('classifications')->insert([
             'title' => 'Técnicas de Elicitação de Requisitos',
             'slug' => str_slug('Técnicas de Elicitação de Requisitos'),
             'description' => 'Conteúdo da página associada a coleção de técnicas de elicitação de requisitos.',
@@ -30,12 +30,12 @@ class SeedCollectionsTableWithReTechnique extends Migration
      */
     public function down()
     {
-        $RETechniqueCollection = DB::table('collections')
+        $RETechniqueCollection = DB::table('classifications')
             ->select(['id'])
             ->where('slug', str_slug('Técnicas de Elicitação de Requisitos'))
             ->first();
 
-        DB::table('collections')
+        DB::table('classifications')
             ->delete($RETechniqueCollection->id);
     }
 }

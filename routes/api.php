@@ -17,15 +17,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('collections', 'CollectionController@index');
+Route::get('classifications', 'ClassificationController@index');
 
-Route::get('collections/{slug}', 'CollectionController@getCollectionBySlug');
+Route::get('classifications/{slug}', 'ClassificationController@getClassificationBySlug');
 
-Route::get('collections/{slug}/entities', 'EntityController@getByCollectionSlug');
+Route::get('classifications/{slug}/entities', 'EntityController@getByClassificationSlug');
 
-Route::post('collections/{slug}/entities', 'EntityController@getByCollectionSlug');
+Route::post('classifications/{slug}/entities', 'EntityController@getByClassificationSlug');
 
-Route::get('collections/{slug}/facets', 'CollectionController@getFacetsByCollectionSlug');
+Route::get('classifications/{slug}/facets', 'ClassificationController@getFacetsByClassificationSlug');
 
 Route::get('entities/{slug}', 'EntityController@getBySlug');
 
@@ -33,4 +33,4 @@ Route::get('entities/{slug}/values', 'EntityController@getValuesByEntitySlug');
 
 Route::put('entities/page_views/{id}', 'EntityController@addPageView');
 
-Route::get('facet_groups/{collectionSlug}', 'FacetGroupController@getFacetGroupsByCollectionSlug');
+Route::get('facet_groups/{classificationSlug}', 'FacetGroupController@getFacetGroupsByClassificationSlug');

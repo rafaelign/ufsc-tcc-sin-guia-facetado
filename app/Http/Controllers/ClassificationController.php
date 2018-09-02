@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Collection;
+use App\Models\Classification;
 use Illuminate\Http\Request;
 
-class CollectionController extends Controller
+class ClassificationController extends Controller
 {
     /**
      * Show the application dashboard.
@@ -14,7 +14,7 @@ class CollectionController extends Controller
      */
     public function index()
     {
-        return response()->json(Collection::all(['title', 'slug']));
+        return response()->json(Classification::all(['title', 'slug']));
     }
 
     /**
@@ -23,10 +23,10 @@ class CollectionController extends Controller
      * @param string $slug
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getCollectionBySlug(string $slug)
+    public function getClassificationBySlug(string $slug)
     {
         return response()->json(
-            Collection::where('slug', '=', $slug)
+            Classification::where('slug', '=', $slug)
                 ->with('entities')
                 ->first()
         );
@@ -36,9 +36,9 @@ class CollectionController extends Controller
      * @param string $slug
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getFacetsByCollectionSlug(string $slug)
+    public function getFacetsByClassificationSlug(string $slug)
     {
-        $collection = Collection::where('slug', '=', $slug)
+        $collection = Classification::where('slug', '=', $slug)
             ->first();
 
         return response()->json($collection

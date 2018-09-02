@@ -20,7 +20,7 @@ class CreateFacetsTable extends Migration
             $table->longText('description');
             $table->string('type', 100);
             $table->unsignedInteger('facet_group_id');
-            $table->unsignedInteger('collection_id');
+            $table->unsignedInteger('classification_id');
             $table->unsignedInteger('user_id');
             $table->timestamps();
             $table->softDeletes();
@@ -29,9 +29,9 @@ class CreateFacetsTable extends Migration
                 ->references('id')
                 ->on('facet_groups');
 
-            $table->foreign('collection_id')
+            $table->foreign('classification_id')
                 ->references('id')
-                ->on('collections');
+                ->on('classifications');
 
             $table->foreign('user_id')
                 ->references('id')

@@ -2,17 +2,19 @@
     import { mapMutations } from 'vuex'
     import ModalForm from '../components/ModalForm'
     import Card from '../components/Card'
+    import Breadcrumb from '../components/Breadcrumb'
 
     export default {
         components: {
             ModalForm,
-            Card
+            Card,
+            Breadcrumb
         },
         data: function () {
             return {
                 isComponentModalActive: false,
                 formProps: {},
-                collection: {},
+                classification: {},
                 entities: [],
                 facetGroups: [],
                 filteredEntities: [],
@@ -20,17 +22,17 @@
             }
         },
         created () {
-            const slug = this.$route.params.collection;
+            const slug = this.$route.params.classification;
 
             this.loading()
             // localforage
 
             Promise.all([
-                axios.get('/api/collections/' + slug),
-                axios.get('/api/collections/' + slug + '/entities'),
+                axios.get('/api/classifications/' + slug),
+                axios.get('/api/classifications/' + slug + '/entities'),
                 axios.get('/api/facet_groups/' + slug)
-            ]).then(([responseCollection, responseEntities, responseFacetGroups]) => {
-                this.collection = responseCollection.data;
+            ]).then(([responseClassification, responseEntities, responseFacetGroups]) => {
+                this.classification = responseClassification.data;
                 this.entities = responseEntities.data;
                 this.facetGroups = responseFacetGroups.data;
 
@@ -45,11 +47,11 @@
                 'loaded'
             ]),
             filter: function () {
-                const slug = this.$route.params.collection
+                const slug = this.$route.params.classification
 
                 this.loading()
 
-                axios.post('/api/collections/' + slug + '/entities', this.$store.getters.getFilters, {
+                axios.post('/api/classifications/' + slug + '/entities', this.$store.getters.getFilters, {
                     'Content-Type': 'application/json'
                 }).then((responseEntities) => {
                     this.filteredEntities = responseEntities.data
@@ -73,28 +75,18 @@
                 <section class="hero">
                     <div class="hero-body">
                         <div class="container">
-                            <nav class="breadcrumb has-arrow-separator is-right" aria-label="breadcrumbs">
-                                <ul>
-                                    <li>
-                                        <router-link to="/app">
-                                            Guia Facetado de Engenharia de Requisitos
-                                        </router-link>
-                                    </li>
-                                    <li>
-                                        <router-link :to="{ path: '/app/colecoes/' + this.collection.slug }">
-                                            {{ this.collection.title }}
-                                        </router-link>
-                                    </li>
-                                    <li class="is-active"><a href="#" aria-current="page">Técnicas Mapeadas</a></li>
-                                </ul>
-                            </nav>
+                            <breadcrumb :items="[
+                                { url: '#', title: 'Guia Facetado de Engenharia de Requisitos' },
+                                { url: '/app/colecoes/' + classification.slug, title: classification.title },
+                                { url: '#', title: 'Técnicas Mapeadas', active: true }
+                            ]"></breadcrumb>
 
                             <div class="row">
                                 <div class="columns">
                                     <div class="column is-12">
                                         <div class="container">
                                             <h1 class="title">
-                                                {{ collection.title }}
+                                                {{ classification.title }}
 
                                                 <div class="field has-addons is-pulled-right">
                                                     <p class="control">
@@ -129,7 +121,7 @@
                                     <div class="column is-4" v-for="entity in filteredEntities">
                                         <card :title="entity.title"
                                               :content="entity.short_description"
-                                              :action="'/app/colecoes/' + $route.params.collection + '/entidades/' + entity.slug"></card>
+                                              :action="'/app/classificacoes/' + $route.params.classification + '/entidades/' + entity.slug"></card>
                                     </div>
                                 </div>
                             </div>

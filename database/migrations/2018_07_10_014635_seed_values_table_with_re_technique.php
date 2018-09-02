@@ -358,14 +358,14 @@ class SeedValuesTableWithReTechnique extends Migration
      */
     public function down()
     {
-        $RETechniqueCollection = DB::table('collections')
+        $RETechniqueClassification = DB::table('classifications')
             ->select(['id'])
             ->where('slug', str_slug('Técnicas de Elicitação de Requisitos'))
             ->first();
 
         $REFacets = DB::table('facets')
             ->select(['id'])
-            ->where('collection_id', $RETechniqueCollection->id)
+            ->where('classification_id', $RETechniqueClassification->id)
             ->get();
 
         foreach ($REFacets as $facet) {
