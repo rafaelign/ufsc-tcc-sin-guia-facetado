@@ -63,25 +63,20 @@
                     <h2 class="subtitle" v-else>Nenhum exemplo encontrado para esta classificação</h2>
                 </div>
 
-                    <div class="row">
-                        <div class="columns">
-                            <div class="column is-4" v-for="entity in entities">
-                                <card :title="entity.title"
-                                      :content="entity.short_description"
-                                      :action="'/app/classificacoes/' + $route.params.classification + '/entidades/' + entity.slug"></card>
-                            </div>
+                <div class="row content">
+                    <div class="columns is-multiline">
+                        <div class="column is-4 is-6-tablet is-12-mobile" v-for="entity in entities">
+                            <card :title="entity.title"
+                                  :content="entity.short_description"
+                                  :action="'/app/classificacoes/' + $route.params.classification + '/entidades/' + entity.slug"></card>
                         </div>
                     </div>
+                </div>
 
-                    <div class="row">
-                        <div class="columns">
-                            <div class="column is-12 has-text-centered" v-if="entities.length > 3">
-                                <router-link :to="{ path: '/app/classificacoes/' + $route.params.classification + '/entidades' }" class="is-medium">
-                                    <b-icon icon="link" size="is-small"></b-icon> <span>Ver todos</span>
-                                </router-link>
-                            </div>
-                        </div>
-                    </div>
+                <div class="row content has-text-centered" v-if="entities.length > 3">
+                    <router-link :to="{ path: '/app/classificacoes/' + $route.params.classification + '/entidades' }" class="is-medium">
+                        <b-icon icon="link" size="is-small"></b-icon> <span>Ver todos</span>
+                    </router-link>
                 </div>
             </div>
         </section>

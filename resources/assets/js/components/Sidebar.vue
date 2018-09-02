@@ -1,17 +1,11 @@
 <script>
     import ClipLoader from 'vue-spinner/src/ClipLoader'
-    import VueGoodshareFacebook from 'vue-goodshare/src/providers/Facebook'
-    import VueGoodshareGoogleplus from 'vue-goodshare/src/providers/GooglePlus'
-    import VueGoodshareTwitter from 'vue-goodshare/src/providers/Twitter'
-    import VueGoodshareLinkedin from 'vue-goodshare/src/providers/LinkedIn'
+    import ShareButtons from './ShareButtons'
 
     export default {
         components: {
             ClipLoader,
-            VueGoodshareFacebook,
-            VueGoodshareGoogleplus,
-            VueGoodshareTwitter,
-            VueGoodshareLinkedin
+            ShareButtons
         },
         data: function () {
             return {
@@ -65,48 +59,17 @@
                     </li>
                 </ul>
             </li>
+            <li class="is-hidden-tablet">
+                <router-link to="#">Compartilhe</router-link>
+
+                <share-buttons></share-buttons>
+            </li>
         </ul>
         <clip-loader v-if="isLoadingMenu" class="is-centered"></clip-loader>
 
         <nav class="navbar is-fixed-bottom socialbar is-hidden-mobile" style="opacity: unset">
             <div class="navbar-item">
-                <ul>
-                    <p class="menu-label">
-                        Compartilhe
-                    </p>
-                    <li>
-                        <vue-goodshare-facebook
-                                :page_url="url"
-                                title_social="Facebook"
-                                has_counter
-                                has_icon
-                        ></vue-goodshare-facebook>
-                    </li>
-                    <li>
-                        <vue-goodshare-googleplus
-                                :page_url="url"
-                                title_social="Google"
-                                has_counter
-                                has_icon
-                        ></vue-goodshare-googleplus>
-                    </li>
-                    <li>
-                        <vue-goodshare-twitter
-                                :page_url="url"
-                                title_social="Twitter"
-                                has_counter
-                                has_icon
-                        ></vue-goodshare-twitter>
-                    </li>
-                    <li>
-                        <vue-goodshare-linkedin
-                                :page_url="url"
-                                title_social="Linkedin"
-                                has_counter
-                                has_icon
-                        ></vue-goodshare-linkedin>
-                    </li>
-                </ul>
+                <share-buttons label="Compartilhe"></share-buttons>
             </div>
         </nav>
     </aside>

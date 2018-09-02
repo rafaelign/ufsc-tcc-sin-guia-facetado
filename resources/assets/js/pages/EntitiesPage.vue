@@ -69,84 +69,63 @@
 </script>
 
 <template>
-    <div>
-        <div class="row" v-if="this.$store.getters.isLoaded">
-            <div class="column is-8 content-box hero">
-                <section class="hero">
-                    <div class="hero-body">
-                        <div class="container">
-                            <breadcrumb :items="[
-                                { url: '#', title: 'Guia Facetado de Engenharia de Requisitos' },
-                                { url: '/app/colecoes/' + classification.slug, title: classification.title },
-                                { url: '#', title: 'Técnicas Mapeadas', active: true }
-                            ]"></breadcrumb>
+    <section v-if="this.$store.getters.isLoaded">
+        <section class="hero">
+            <div class="hero-body">
+                <breadcrumb :items="[
+                    { url: '#', title: 'Guia Facetado de Engenharia de Requisitos' },
+                    { url: '/app/colecoes/' + classification.slug, title: classification.title },
+                    { url: '#', title: 'Técnicas Mapeadas', active: true }
+                ]"></breadcrumb>
 
-                            <div class="row">
-                                <div class="columns">
-                                    <div class="column is-12">
-                                        <div class="container">
-                                            <h1 class="title">
-                                                {{ classification.title }}
+                <div class="row content">
+                    <h1 class="title">
+                        <div class="field has-addons is-pulled-right">
+                            <p class="control">
+                                <button class="button is-danger is-medium" @click="reset()">
+                                    <b-icon icon="eraser"></b-icon> <span>Limpar filtros</span>
+                                </button>
+                            </p>
+                            <p class="control">
+                                <button class="button is-primary is-medium" @click="isComponentModalActive = true">
+                                    <b-icon icon="filter"></b-icon> <span>Filtrar</span>
+                                </button>
+                            </p>
+                        </div>
 
-                                                <div class="field has-addons is-pulled-right">
-                                                    <p class="control">
-                                                        <button class="button is-danger is-medium" @click="reset()">
-                                                            <b-icon icon="eraser"></b-icon> <span>Limpar filtros</span>
-                                                        </button>
-                                                    </p>
-                                                    <p class="control">
-                                                        <button class="button is-primary is-medium" @click="isComponentModalActive = true">
-                                                            <b-icon icon="filter"></b-icon> <span>Filtrar</span>
-                                                        </button>
-                                                    </p>
-                                                </div>
-                                            </h1>
+                        {{ classification.title }}
+                    </h1>
 
-                                            <p>Nesta página são apresentados os elementos que compõe a classificação acessada.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <p class="has-text-justified">Nesta página são apresentados os elementos que compõe a classificação acessada.</p>
+                </div>
 
-                            <div class="row">
-                                <div class="columns">
-                                    <div class="column is-12">
-                                        <h2 class="subtitle">Registros encontrados</h2>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row"  v-if="filteredEntities.length">
-                                <div class="columns">
-                                    <div class="column is-4" v-for="entity in filteredEntities">
-                                        <card :title="entity.title"
-                                              :content="entity.short_description"
-                                              :action="'/app/classificacoes/' + $route.params.classification + '/entidades/' + entity.slug"></card>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row"  v-else>
-                                <div class="columns">
-                                    <div class="column is-12">
-                                        <p v-if="$store.getters.getFilters.length">Nenhum registro encontrado para o filtro informado.</p>
-                                        <p v-else>Nenhum registro encontrado para esta classificação.</p>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="row content"  v-if="filteredEntities.length">
+                    <div class="columns is-multiline">
+                        <div class="column is-12">
+                            <h2 class="subtitle">Registros encontrados</h2>
+                        </div>
+                        <div class="column is-4 is-6-tablet is-12-mobile" v-for="entity in filteredEntities">
+                            <card :title="entity.title"
+                                  :content="entity.short_description"
+                                  :action="'/app/classificacoes/' + $route.params.classification + '/entidades/' + entity.slug"></card>
                         </div>
                     </div>
+                </div>
 
-                    <b-modal :active.sync="isComponentModalActive" class="modal modal-full-screen modal-fx-fadeInScale" width="100%">
-                        <modal-form v-bind="formProps"
-                                    title="Selecione os filtros conforme as seguintes facetas"
-                                    :horizontal-data="facetGroups.filter( ( elem ) => elem.layout === 'horizontal' )"
-                                    :vertical-data="facetGroups.filter( ( elem ) => elem.layout === 'vertical' )"
-                                    @filter="filter"
-                                    @reset="reset"></modal-form>
-                    </b-modal>
-                </section>
+                <div class="row content" v-else>
+                    <p v-if="$store.getters.getFilters.length">Nenhum registro encontrado para o filtro informado.</p>
+                    <p v-else>Nenhum registro encontrado para esta classificação.</p>
+                </div>
             </div>
-        </div>
-    </div>
+
+            <b-modal :active.sync="isComponentModalActive" class="modal modal-full-screen modal-fx-fadeInScale" width="100%">
+                <modal-form v-bind="formProps"
+                            title="Selecione os filtros conforme as seguintes facetas"
+                            :horizontal-data="facetGroups.filter( ( elem ) => elem.layout === 'horizontal' )"
+                            :vertical-data="facetGroups.filter( ( elem ) => elem.layout === 'vertical' )"
+                            @filter="filter"
+                            @reset="reset"></modal-form>
+            </b-modal>
+        </section>
+    </section>
 </template>

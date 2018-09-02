@@ -25820,12 +25820,17 @@ body,
   background-color: inherit;
 }
 
+.socialbar a:hover {
+  background-color: inherit;
+  color: inherit;
+}
+
 .navbar.socialbar.is-fixed-bottom {
   z-index: 0;
 }
 
 .socialbar .navbar-item {
-  background-color: white;
+  background-color: transparent;
 }
 
 @media screen and (max-width: 768px) {
