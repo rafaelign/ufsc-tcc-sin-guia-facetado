@@ -18,6 +18,8 @@ services:
       REDIS_HOST: redis
       SESSION_DRIVER: redis
       CACHE_DRIVER: redis
+      APP_DEBUG: 'true'
+      APP_URL: 'http://localhost:8080'
   db:
     image: mariadb
     ports:

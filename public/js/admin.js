@@ -903,6 +903,15 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     methods: {}
 });
 
+(function () {
+    var burger = document.querySelector('.burger');
+    var menu = document.querySelector('#' + burger.dataset.target);
+    burger.addEventListener('click', function () {
+        burger.classList.toggle('is-active');
+        menu.classList.toggle('is-active');
+    });
+})();
+
 /***/ }),
 
 /***/ 3:
