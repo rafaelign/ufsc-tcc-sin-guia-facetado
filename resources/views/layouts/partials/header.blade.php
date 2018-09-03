@@ -18,6 +18,9 @@
                 <a class="navbar-item" href="{{ route('classifications') }}">
                     {{ __('Classifications') }}
                 </a>
+                <a class="navbar-item" href="{{ route('users') }}">
+                    {{ __('Users') }}
+                </a>
                 <a class="navbar-item" href="/app" target="_blank">
                     {{ __('Go to aplication') }}
                 </a>

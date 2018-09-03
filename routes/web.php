@@ -30,6 +30,12 @@ Route::prefix('admin')->group(function () {
     Route::get('/classifications/{classificationId}/facets', 'FacetController@index')->name('facets');
     Route::get('/classifications/{classificationId}/facets/{id}', 'FacetController@edit')->name('facets.edit');
 
+    // Users
+    Route::get('/users', 'UserController@index')->name('users');
+    Route::get('/users/{id}', 'UserController@edit')->name('users.edit');
+    Route::post('/users', 'UserController@store')->name('users.store');
+    Route::put('/users/{id}', 'UserController@update')->name('users.update');
+
     // Authentication Routes...
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
     Route::post('login', 'Auth\LoginController@login');
