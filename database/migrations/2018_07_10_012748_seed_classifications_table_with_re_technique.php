@@ -18,6 +18,7 @@ class SeedClassificationsTableWithReTechnique extends Migration
             'title' => 'Técnicas de Elicitação de Requisitos',
             'slug' => str_slug('Técnicas de Elicitação de Requisitos'),
             'description' => 'Conteúdo da página associada a coleção de técnicas de elicitação de requisitos.',
+            'published' => 1,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);

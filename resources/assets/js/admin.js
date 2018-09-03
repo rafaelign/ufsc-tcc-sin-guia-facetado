@@ -10,9 +10,34 @@ const app = new Vue({
     el: '#app',
     components: {},
     data() {
-        return {}
+        return {
+            loading: false
+        }
     },
-    methods: {}
+    methods: {
+        isLoading: function () {
+            return this.loading
+        },
+        updatePublish: function (classificationId) {
+            console.log(classificationId)
+
+            if (this.isLoading()) {
+                return
+            }
+
+            this.loading = true
+
+            axios.put('/admin/classifications/' + classificationId + '/update_publish')
+                .then((response) => {
+                    console.log(response.data);
+                    this.loading = false
+
+                    if (! response.data.error) {
+                        window.location.reload(true)
+                    }
+                })
+        },
+    }
 });
 
 (function() {

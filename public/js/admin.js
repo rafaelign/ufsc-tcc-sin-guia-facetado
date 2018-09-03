@@ -897,10 +897,36 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     el: '#app',
     components: {},
     data: function data() {
-        return {};
+        return {
+            loading: false
+        };
     },
 
-    methods: {}
+    methods: {
+        isLoading: function isLoading() {
+            return this.loading;
+        },
+        updatePublish: function updatePublish(classificationId) {
+            var _this = this;
+
+            console.log(classificationId);
+
+            if (this.isLoading()) {
+                return;
+            }
+
+            this.loading = true;
+
+            axios.put('/admin/classifications/' + classificationId + '/update_publish').then(function (response) {
+                console.log(response.data);
+                _this.loading = false;
+
+                if (!response.data.error) {
+                    window.location.reload(true);
+                }
+            });
+        }
+    }
 });
 
 (function () {
