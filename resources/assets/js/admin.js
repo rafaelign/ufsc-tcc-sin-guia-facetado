@@ -17,9 +17,12 @@ const app = new Vue({
 
 (function() {
     let burger = document.querySelector('.burger');
-    let menu = document.querySelector('#'+burger.dataset.target);
-    burger.addEventListener('click', function() {
-        burger.classList.toggle('is-active');
-        menu.classList.toggle('is-active');
-    });
+    let menu = burger !== null ? document.querySelector('#'+burger.dataset.target) : null;
+
+    if (burger && menu) {
+        burger.addEventListener('click', function() {
+            burger.classList.toggle('is-active');
+            menu.classList.toggle('is-active');
+        });
+    }
 })();

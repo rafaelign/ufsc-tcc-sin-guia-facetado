@@ -1,8 +1,8 @@
 <nav class="navbar is-white">
     <div class="container">
         <div class="navbar-brand">
-            <a class="navbar-item brand-text" href="../">
-                Bulma Admin
+            <a class="navbar-item brand-text" href="/admin">
+                <img src="{{ asset('images/logo.png') }}" alt="Guia facetado logo" style="max-width: 120px;">
             </a>
             <div class="navbar-burger burger" data-target="navMenu">
                 <span></span>
@@ -12,18 +12,24 @@
         </div>
         <div id="navMenu" class="navbar-menu">
             <div class="navbar-start">
-                <a class="navbar-item" href="admin.html">
-                    Home
+                <a class="navbar-item" href="#">
+                    {{ __('Dashboard') }}
                 </a>
-                <a class="navbar-item" href="admin.html">
-                    Orders
+                <a class="navbar-item" href="#">
+                    {{ __('Classifications') }}
                 </a>
-                <a class="navbar-item" href="admin.html">
-                    Payments
+                <a class="navbar-item" href="/app" target="_blank">
+                    {{ __('Go to aplication') }}
                 </a>
-                <a class="navbar-item" href="admin.html">
-                    Exceptions
+            </div>
+            <div class="navbar-end">
+                <a class="navbar-item" href="{{ route('logout') }}"
+                   onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
                 </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
             </div>
         </div>
     </div>

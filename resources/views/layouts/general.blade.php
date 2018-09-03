@@ -5,12 +5,9 @@
     @include('layouts.partials.header')
     <!-- EOF Header navbar -->
 
-    <div class="container">
+    <div class="container is-fluid">
         <div class="columns">
-            <div class="column is-3">
-                @include('layouts.partials.sidebar')
-            </div>
-            <div class="column is-9">
+            <div class="column is-12">
                 @yield('breadcrumb')
 
                 @yield('message')
