@@ -15,8 +15,20 @@ Route::get('/app/{vue_capture?}', function () {
 Route::prefix('admin')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
 
+    // Classifications
     Route::get('/classifications', 'ClassificationController@index')->name('classifications');
+    Route::get('/classifications/{id}', 'ClassificationController@edit')->name('classifications.edit');
+    Route::post('/classifications', 'ClassificationController@store')->name('classifications.store');
+    Route::put('/classifications/{id}', 'ClassificationController@update')->name('classifications.update');
     Route::put('/classifications/{id}/update_publish', 'ClassificationController@updatePublishedStatus')->name('classifications.publish');
+
+    // Entities
+    Route::get('/classifications/{classificationId}/entities', 'EntityController@index')->name('entities');
+    Route::get('/classifications/{classificationId}/entities/{id}', 'EntityController@edit')->name('entities.edit');
+
+    // Facets
+    Route::get('/classifications/{classificationId}/facets', 'FacetController@index')->name('facets');
+    Route::get('/classifications/{classificationId}/facets/{id}', 'FacetController@edit')->name('facets.edit');
 
     // Authentication Routes...
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

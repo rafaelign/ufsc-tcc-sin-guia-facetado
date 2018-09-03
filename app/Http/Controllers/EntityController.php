@@ -105,4 +105,17 @@ class EntityController extends Controller
             'page_views' => $entity->page_views,
         ]);
     }
+
+    /**
+     * @param int $classificationId
+     */
+    public function index(int $classificationId)
+    {}
+
+    /**
+     * @param int $classificationId
+     * @param int $id
+     */
+    public function edit(int $classificationId, int $id)
+    {}
 }
