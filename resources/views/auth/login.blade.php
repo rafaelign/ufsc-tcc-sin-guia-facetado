@@ -12,7 +12,7 @@
             @csrf
             <div class="field">
                 <div class="control">
-                    <input id="email" type="email" class="input{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="{{ __('Your Email') }}" required autofocus>
+                    <input id="email" type="email" class="input is-medium{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="{{ __('Your Email') }}" required autofocus>
 
                     @if ($errors->has('email'))
                         <span class="invalid-feedback" role="alert">
@@ -24,7 +24,7 @@
 
             <div class="field">
                 <div class="control">
-                    <input id="password" type="password" class="input{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="{{ __('Your Password') }}" required>
+                    <input id="password" type="password" class="input is-medium{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="{{ __('Your Password') }}" required>
 
                     @if ($errors->has('password'))
                         <span class="invalid-feedback" role="alert">

@@ -10,6 +10,13 @@
 @endsection
 
 @section('content')
+    <h2 class="subtitle">
+        <a href="{{ route('classifications.edit', ['id' => 0]) }}" class="button is-medium is-pulled-right">
+            <span class="icon"><span class="mdi mdi-check"></span></span> <span>{{ __('New') }}</span>
+        </a>
+
+        {{ __('Classifications') }}
+    </h2>
     <section class="info-tiles">
         @forelse ($classifications as $classification)
             <div class="card">
@@ -22,7 +29,7 @@
                     </div>
                 </div>
                 <footer class="card-footer">
-                    <a href="#" class="card-footer-item">
+                    <a href="{{ route('classifications.edit', ['id' => $classification->id]) }}" class="card-footer-item">
                         <span class="icon"><span class="mdi mdi-pencil"></span></span> {{ __('Edit') }}
                     </a>
                     <a href="#" class="card-footer-item">

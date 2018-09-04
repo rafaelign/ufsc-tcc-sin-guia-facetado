@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Classification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class ClassificationController extends Controller
 {
@@ -23,6 +25,89 @@ class ClassificationController extends Controller
         return view('classification.index', [
             'classifications' => Classification::all()
         ]);
+    }
+
+    public function edit(int $id)
+    {
+        $classification = Classification::find($id);
+
+        return view('classification.edit', [
+            'classification' => $classification,
+            'id' => $id,
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|max:50',
+            'slug' => 'required|unique:classifications|max:50',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->route('classifications.edit', ['id' => 0])
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $classification = new Classification;
+
+        $classification->title = $request->title;
+        $classification->slug = $request->slug;
+        $classification->description = $request->description;
+
+        if ($classification->save()) {
+            return redirect()
+                ->route('classifications');
+        }
+
+        return redirect()
+            ->route('classifications.edit', ['id' => 0])
+            ->withInput();
+    }
+
+    /**
+     * @param Request $request
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(Request $request, int $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|max:50',
+            'slug' => [
+                'required',
+                'max:50',
+                Rule::unique('classifications')->ignore($id, 'id')
+            ]
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->route('classifications.edit', ['id' => $id])
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $classification = Classification::find($id);
+
+        $classification->title = $request->title;
+        $classification->slug = $request->slug;
+        $classification->description = $request->description;
+
+        if ($classification->save()) {
+            return redirect()
+                ->route('classifications');
+        }
+
+        return redirect()
+            ->route('classifications.edit', ['id' => $id])
+            ->withInput();
     }
 
     /**
