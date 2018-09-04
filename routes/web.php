@@ -35,6 +35,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/users/{id}', 'UserController@edit')->name('users.edit');
     Route::post('/users', 'UserController@store')->name('users.store');
     Route::put('/users/{id}', 'UserController@update')->name('users.update');
+    Route::delete('/users/{id}', 'UserController@destroy')->name('users.delete');
 
     // Authentication Routes...
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

@@ -37,6 +37,14 @@ const app = new Vue({
                     }
                 })
         },
+        attemptDeleteuser: function () {
+            let id = document.querySelector('.modal-confirm').dataset.id;
+
+            axios.delete('/admin/users/' + id)
+                .then(() => {
+                    window.location.reload(true)
+                })
+        }
     }
 });
 
@@ -48,6 +56,33 @@ const app = new Vue({
         burger.addEventListener('click', function() {
             burger.classList.toggle('is-active');
             menu.classList.toggle('is-active');
+        });
+    }
+})();
+
+(function () {
+    let deleteButton = document.querySelector('.delete-button');
+    let modal = deleteButton !== null ? document.querySelector('#'+deleteButton.dataset.target) : null;
+    let modalConfirm = document.querySelector('.modal-confirm');
+    let modalCancel = document.querySelector('.modal-cancel');
+    let modalClose = document.querySelector('.modal-cancel-x');
+
+    if (deleteButton && modal) {
+        deleteButton.addEventListener('click', function () {
+            modalConfirm.dataset.id = deleteButton.dataset.id;
+            modal.classList.toggle('is-active');
+        });
+    }
+
+    if (modalCancel && modalClose) {
+        modalCancel.addEventListener('click', function () {
+            modal.classList.toggle('is-active');
+            modalConfirm.dataset.id = '';
+        });
+
+        modalClose.addEventListener('click', function () {
+            modal.classList.toggle('is-active');
+            modalConfirm.dataset.id = '';
         });
     }
 })();

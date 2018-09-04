@@ -925,6 +925,13 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                     window.location.reload(true);
                 }
             });
+        },
+        attemptDeleteuser: function attemptDeleteuser() {
+            var id = document.querySelector('.modal-confirm').dataset.id;
+
+            axios.delete('/admin/users/' + id).then(function () {
+                window.location.reload(true);
+            });
         }
     }
 });
@@ -937,6 +944,33 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
         burger.addEventListener('click', function () {
             burger.classList.toggle('is-active');
             menu.classList.toggle('is-active');
+        });
+    }
+})();
+
+(function () {
+    var deleteButton = document.querySelector('.delete-button');
+    var modal = deleteButton !== null ? document.querySelector('#' + deleteButton.dataset.target) : null;
+    var modalConfirm = document.querySelector('.modal-confirm');
+    var modalCancel = document.querySelector('.modal-cancel');
+    var modalClose = document.querySelector('.modal-cancel-x');
+
+    if (deleteButton && modal) {
+        deleteButton.addEventListener('click', function () {
+            modalConfirm.dataset.id = deleteButton.dataset.id;
+            modal.classList.toggle('is-active');
+        });
+    }
+
+    if (modalCancel && modalClose) {
+        modalCancel.addEventListener('click', function () {
+            modal.classList.toggle('is-active');
+            modalConfirm.dataset.id = '';
+        });
+
+        modalClose.addEventListener('click', function () {
+            modal.classList.toggle('is-active');
+            modalConfirm.dataset.id = '';
         });
     }
 })();

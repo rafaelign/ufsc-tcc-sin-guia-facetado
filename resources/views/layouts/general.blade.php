@@ -8,11 +8,13 @@
     <div class="container is-fluid">
         <div class="columns">
             <div class="column is-12">
-                @yield('breadcrumb')
+                <div class="container">
+                    @yield('breadcrumb')
 
-                @yield('message')
+                    @yield('message')
 
-                @yield('content')
+                    @yield('content')
+                </div>
             </div>
         </div>
     </div>
