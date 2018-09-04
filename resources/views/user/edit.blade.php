@@ -13,7 +13,10 @@
 @section('content')
     <div class="coluns">
         <div class="column is-8">
-            <form id="form" action="{{ (int) $id > 0 ? route('users.update', ['id' => (int) $id]) : route('users.store') }}" method="{{ (int) $id > 0 ? 'PUT' : 'POST' }}">
+            <form id="form" action="{{ (int) $id > 0 ? route('users.update', ['id' => (int) $id]) : route('users.store') }}" method="POST">
+                @if ((int) $id > 0)
+                    @method('PUT')
+                @endif
                 @csrf
                 <div class="field">
                     <label class="label">{{ __('Name') }}</label>

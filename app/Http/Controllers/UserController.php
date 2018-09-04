@@ -66,7 +66,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        dd('test');
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'email' => 'required|unique:users|max:255',
@@ -103,7 +102,6 @@ class UserController extends Controller
      */
     public function update(Request $request, int $id)
     {
-        dd('Test');
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'email' => 'required|unique:users|max:255',
@@ -117,7 +115,6 @@ class UserController extends Controller
         }
 
         $user = User::find($id);
-        dd($user);
 
         $user->name = $request->name;
         $user->email = $request->email;
