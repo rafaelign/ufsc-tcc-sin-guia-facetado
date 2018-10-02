@@ -161,7 +161,7 @@
                 :native-value="item.id"
                 type="is-primary"
                 @input="setFilter">
-            <span>{{ item.value }}</span>
+            <span>{{ item.title }}</span>
         </b-checkbox-button>
     </b-field>
 </template>

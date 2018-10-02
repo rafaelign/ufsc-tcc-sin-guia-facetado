@@ -37,10 +37,18 @@ const app = new Vue({
                     }
                 })
         },
-        attemptDeleteuser: function () {
+        attemptDeleteUser: function () {
             let id = document.querySelector('.modal-confirm').dataset.id;
 
             axios.delete('/admin/users/' + id)
+                .then(() => {
+                    window.location.reload(true)
+                })
+        },
+        attemptDeleteEntity: function () {
+            let id = document.querySelector('.modal-confirm').dataset.id;
+
+            axios.delete('/admin/entities/' + id)
                 .then(() => {
                     window.location.reload(true)
                 })

@@ -4,39 +4,47 @@
     <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
             <li><a href="{{ route('home') }}" aria-current="page">{{ __('Dashboard') }}</a></li>
-            <li class="is-active"><a href="#" aria-current="page">{{ __('Users') }}</a></li>
+            <li><a href="{{ route('classifications') }}" aria-current="page">{{ __('Classifications') }}</a></li>
+            <li class="is-active"><a href="#" aria-current="page">{{ __('Entities') }}</a></li>
         </ul>
     </nav>
 @endsection
 
 @section('content')
-    <h1 class="subtitle">
-        <a href="{{ route('users.edit', ['id' => 0]) }}" class="button is-medium is-pulled-right">
+    <h2 class="subtitle">
+        <a href="{{ route('entities.edit', [
+            'classificationId' => 0,
+            'id' => 0
+        ]) }}" class="button is-medium is-pulled-right">
             <span class="icon"><span class="mdi mdi-check"></span></span> <span>{{ __('New') }}</span>
         </a>
-        {{ __('Users') }}
-    </h1>
+
+        {{ __('Entities') }}
+    </h2>
     <table class="table is-fullwidth is-striped is-hoverable is-bordered">
         <thead>
-            <tr>
-                <th><abbr title="{{ __('Id') }}">#</abbr></th>
-                <th>{{ __('Name') }}</th>
-                <th>{{ __('E-mail') }}</th>
-                <th class="has-text-centered">{{ __('Actions') }}</th>
-            </tr>
+        <tr>
+            <th><abbr title="{{ __('Id') }}">#</abbr></th>
+            <th>{{ __('Name') }}</th>
+            <th>{{ __('E-mail') }}</th>
+            <th class="has-text-centered">{{ __('Actions') }}</th>
+        </tr>
         </thead>
         <tbody>
-        @foreach ($users as $user)
+        @foreach ($entities as $entity)
             <tr>
-                <td>{{ $user->id }}</td>
-                <td>{{ $user->name }}</td>
-                <td>{{ $user->email }}</td>
+                <td>{{ $entity->id }}</td>
+                <td>{{ $entity->title }}</td>
+                <td>{{ $entity->short_description }}</td>
                 <td class="has-text-centered">
-                    <a href="{{ route('users.edit', ['id' => $user->id]) }}" class="button is-small">
+                    <a href="{{ route('entities.edit', [
+                        'classificationId' => $entity->classification_id,
+                        'id' => $entity->id
+                    ]) }}" class="button is-small">
                         <span class="icon"><span class="mdi mdi-pencil"></span></span>
                     </a>
                     <a class="button is-small delete-button"
-                       data-target="modal" aria-haspopup="true" data-id="{{ $user->id }}"
+                       data-target="modal" aria-haspopup="true" data-id="{{ $entity->id }}"
                        onclick="event.preventDefault();">
                         <span class="icon"><span class="mdi mdi-delete"></span></span>
                     </a>
@@ -45,25 +53,25 @@
         @endforeach
         </tbody>
         <tfoot>
-            <tr>
-                <td colspan="4">
-                    {{ $users->links('vendor.pagination.simple-default') }}
-                </td>
-            </tr>
+        <tr>
+            <td colspan="4">
+                {{ $entities->links('vendor.pagination.simple-default') }}
+            </td>
+        </tr>
         </tfoot>
     </table>
     <div class="modal" id="modal">
         <div class="modal-background"></div>
         <div class="modal-card">
             <header class="modal-card-head">
-                <p class="modal-card-title">{{ __('Delete user') }}</p>
+                <p class="modal-card-title">{{ __('Delete entity') }}</p>
                 <button class="delete modal-cancel-x" aria-label="close"></button>
             </header>
             <section class="modal-card-body">
                 {{ __('Are you sure?') }}
             </section>
             <footer class="modal-card-foot">
-                <button class="button is-danger modal-confirm" data-id="" @click="attemptDeleteUser()">{{ __('Delete') }}</button>
+                <button class="button is-danger modal-confirm" data-id="" @click="attemptDeleteEntity()">{{ __('Delete') }}</button>
                 <button class="button modal-cancel">Cancel</button>
             </footer>
         </div>

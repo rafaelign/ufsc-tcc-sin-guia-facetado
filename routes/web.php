@@ -22,13 +22,17 @@ Route::prefix('admin')->group(function () {
     Route::put('/classifications/{id}', 'ClassificationController@update')->name('classifications.update');
     Route::put('/classifications/{id}/update_publish', 'ClassificationController@updatePublishedStatus')->name('classifications.publish');
 
-    // Entities
+    // Classification Entities
     Route::get('/classifications/{classificationId}/entities', 'EntityController@index')->name('entities');
-    Route::get('/classifications/{classificationId}/entities/{id}', 'EntityController@edit')->name('entities.edit');
+
+    // Classification Facets
+    Route::get('/classifications/{classificationId}/facets', 'FacetController@index')->name('facets');
+
+    // Entities
+    Route::get('/entities/{id}', 'EntityController@edit')->name('entities.edit');
 
     // Facets
-    Route::get('/classifications/{classificationId}/facets', 'FacetController@index')->name('facets');
-    Route::get('/classifications/{classificationId}/facets/{id}', 'FacetController@edit')->name('facets.edit');
+    Route::get('/facets/{id}', 'FacetController@edit')->name('facets.edit');
 
     // Users
     Route::get('/users', 'UserController@index')->name('users');

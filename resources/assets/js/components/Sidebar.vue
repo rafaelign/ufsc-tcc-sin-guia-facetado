@@ -49,7 +49,7 @@
                 <ul>
                     <li>
                         <router-link :to="{ path: '/app/classificacoes/' + item.slug + '/entidades' }">
-                            <b-icon icon="view-list" size="is-small"></b-icon> <span>Técnicas Mapeadas</span>
+                            <b-icon icon="view-list" size="is-small"></b-icon> <span>Entidades Classificadas</span>
                         </router-link>
                     </li>
                     <li>
