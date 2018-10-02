@@ -83,7 +83,6 @@ class SeedEntitiesTableWithInterview extends Migration
 
             DB::table('entities_values')->insert([
                 'entity_id' => $interviewId,
-                // 'facet_id' => $facetValues->facet_id,
                 'value_id' => $facetValues->id,
             ]);
         }

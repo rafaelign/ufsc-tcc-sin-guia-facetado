@@ -14,310 +14,354 @@ class SeedValuesTableWithReTechnique extends Migration
      */
     public function up()
     {
+        // 4 16 21 30
         $data = [
             'Categoria' => [
                 [
                     'title' => 'Cognitiva',
-                    'value' => 'Cognitiva',
+                    'value' => 'cognitiva',
+                    'description' => 'Tem o objetivo de analisar e coletar informações até o nível do pensamento humano, compreendendo os problemas em profundidade.',
                 ],
                 [
                     'title' => 'Contextual',
-                    'value' => 'Contextual',
+                    'value' => 'contextual',
+                    'description' => 'É uma combinação entre entrevista não estruturada, análise do contexto do usuário e prototipagem, afim de coletar dados sobre os procedimentos, ambiente, padrões e fluxo de trabalho.',
                 ],
                 [
                     'title' => 'Grupo',
-                    'value' => 'Grupo',
+                    'value' => 'grupo',
+                    'description' => 'São técnicas que envolvem times ou grupos de stakeholders, cada um com sua especialidade a favor de um objetivo.',
                 ],
                 [
                     'title' => 'Inovadora',
-                    'value' => 'Inovadora',
+                    'value' => 'inovadora',
+                    'description' => 'São técnicas consideradas novas, que procuram resolver lacunas que as outras técnicas deixam.',
                 ],
                 [
                     'title' => 'Tradicional',
-                    'value' => 'Tradicional',
+                    'value' => 'tradicional',
+                    'description' => 'As técnicas mais antigas e mais comuns são chamadas de tradicionais.',
                 ],
             ],
             'Fonte principal' => [
                 [
                     'title' => 'Analista com conhecimento no domínio',
-                    'value' => 'Analista com conhecimento no domínio',
+                    'value' => 'analista-conhecimento-domínio',
+                    'description' => 'Analista que discute sobre o produto com diferentes grupos de pessoas para desenvolver a compreensão do problema.',
                 ],
                 [
                     'title' => 'Analistas e Stakeholders',
-                    'value' => 'Analistas e Stakeholders',
+                    'value' => 'analistas-takeholders',
+                    'description' => 'Analistas e Stakeholders se comunicam e organizam o conhecimento sobre os requisitos.',
                 ],
                 [
                     'title' => 'Documentação',
-                    'value' => 'Documentação',
+                    'value' => 'documentacao',
+                    'description' => 'Leitura da documentação existente ou do próprio sistema em uso.',
                 ],
                 [
                     'title' => 'Especialista',
-                    'value' => 'Especialista',
+                    'value' => 'especialista',
+                    'description' => 'Envolve um especialista no conhecimento de domínio para a execução da coleta.',
                 ],
                 [
                     'title' => 'Facilitador externo',
-                    'value' => 'Facilitador externo',
+                    'value' => 'facilitador-externo',
+                    'description' => 'Stakeholders se reúnem para criar ou revisar informações de alto nível dos produtos.',
                 ],
                 [
                     'title' => 'Observador',
-                    'value' => 'Observador',
+                    'value' => 'observador',
+                    'description' => 'Um observador analisa uma pessoa ou grupo em seu contexto e coleta informações detalhadas sobre suas práticas.',
                 ],
             ],
             'Tipo de técnica' => [
                 [
                     'title' => 'Direta',
-                    'value' => 'Direta',
+                    'value' => 'direta',
+                    'description' => 'Possui contato direto com os interessados.',
                 ],
                 [
                     'title' => 'Indireta',
-                    'value' => 'Indireta',
+                    'value' => 'indireta',
+                    'description' => 'Não possui contato direto com os interessados.',
                 ],
             ],
             'Tipo de dado' => [
                 [
-                    'value' => 'Qualitativo',
                     'title' => 'Qualitativo',
+                    'value' => 'qualitativo',
+                    'description' => 'Possui o foco em aspectos subjetivos, atingindo motivações não explícitas.',
                 ],
                 [
                     'title' => 'Quantitativo',
-                    'value' => 'Quantitativo',
+                    'value' => 'quantitativo',
+                    'description' => 'Procuram apurar características explicitas, onde é possível mensurar os resultados.'
                 ],
             ],
             'Comunicação' => [
                 [
                     'title' => 'Bidirecional',
-                    'value' => 'Bidirecional',
+                    'value' => 'bidirecional',
+                    'description' => 'O fluxo de informação ocorre em ambas as direções.',
                 ],
                 [
                     'title' => 'Unidirecional',
-                    'value' => 'Unidirecional',
+                    'value' => 'unidirecional',
+                    'description' => 'O fluxo de informação só ocorre em uma direção.',
                 ],
             ],
             'Treinamento na técnica de elicitação' => [
                 [
                     'title' => 'Nenhum',
-                    'value' => '0',
+                    'value' => 'nenhum',
+                    'description' => 'Não é necessário.',
                 ],
                 [
                     'title' => 'Baixo',
-                    'value' => '1',
+                    'value' => 'baixo',
+                    'description' => 'Treinamento sem prática',
                 ],
                 [
                     'title' => 'Alto',
-                    'value' => '2',
+                    'value' => 'alto',
+                    'description' => 'Treinamento formal e prática',
                 ],
             ],
             'Experiência do elicitor' => [
                 [
                     'title' => 'Baixo',
-                    'value' => '0',
+                    'value' => 'baixo',
+                    'description' => 'Menos de dois projetos de elicitação de requisitos.',
                 ],
                 [
                     'title' => 'Médio',
-                    'value' => '1',
+                    'value' => 'medio',
+                    'description' => 'De dois a cinco projetos de elicitação de requisitos.',
                 ],
                 [
                     'title' => 'Alto',
-                    'value' => '2',
+                    'value' => 'alto',
+                    'description' => 'Mais de cinco projetos de elicitação de requisitos.',
                 ],
             ],
             'Experiência com técnicas de elicitação' => [
                 [
                     'title' => 'Nenhum',
-                    'value' => '0',
+                    'value' => 'nenhum',
+                    'description' => 'Nenhuma aplicação de técnica.',
                 ],
                 [
                     'title' => 'Baixo',
-                    'value' => '1',
+                    'value' => 'baixo',
+                    'description' => 'De uma a cinco de técnica.',
                 ],
                 [
                     'title' => 'Alto',
-                    'value' => '2',
+                    'value' => 'alto',
+                    'description' => 'Mais de cinco aplicações de técnica.',
                 ],
             ],
             'Familiaridade com o domínio' => [
                 [
                     'title' => 'Nenhum',
-                    'value' => '0',
+                    'value' => 'nenhum',
+                    'description' => 'Não é necessário',
                 ],
                 [
                     'title' => 'Baixo',
-                    'value' => '1',
+                    'value' => 'baixo',
+                    'description' => 'De um a dois projetos ou conhecimento formal.',
                 ],
                 [
                     'title' => 'Alto',
-                    'value' => '2',
+                    'value' => 'alto',
+                    'description' => 'Acima de dois projetos ou conhecimento formal.',
                 ],
             ],
             'Pessoas por sessão' => [
                 [
                     'title' => 'Em massa',
-                    'value' => 'Em massa',
+                    'value' => 'em-massa',
+                    'description' => 'Mais que cinco pessoas',
                 ],
                 [
                     'title' => 'Grupo',
-                    'value' => 'Grupo',
+                    'value' => 'grupo',
+                    'description' => 'De duas a cinco pessoas.',
                 ],
                 [
                     'title' => 'Individual',
-                    'value' => 'Individual',
+                    'value' => 'individual',
+                    'description' => 'Uma pessoa.',
                 ],
             ],
             'Consenso entre os stakeholders' => [
                 [
                     'title' => 'Baixo',
-                    'value' => 'Baixo',
+                    'value' => 'baixo',
+                    'description' => 'Sem consenso entre os stakeholders.',
                 ],
                 [
                     'title' => 'Alto',
-                    'value' => 'Alto',
+                    'value' => 'alto',
+                    'description' => 'Com consenso entre os stakeholders.',
 
                 ],
             ],
             'Interesse do stakeholder' => [
                 [
                     'title' => 'Nenhum',
-                    'value' => '0',
+                    'value' => 'nenhum',
+                    'description' => 'Sem interesse.',
                 ],
                 [
                     'title' => 'Baixo',
-                    'value' => '1',
+                    'value' => 'baixo',
+                    'description' => 'Pouco interessado.',
                 ],
                 [
                     'title' => 'Alto',
-                    'value' => '2',
+                    'value' => 'alto',
+                    'description' => 'Muito interessado',
                 ],
             ],
             'Especialidade' => [
                 [
                     'title' => 'Especialista',
-                    'value' => 'Especialista',
+                    'value' => 'especialista',
+                    'description' => 'Mais de cinco anos de trabalho com o domínio.',
                 ],
                 [
                     'title' => 'Bem informado',
-                    'value' => 'Bem informado',
+                    'value' => 'bem-informado',
+                    'description' => 'De dois a cinco anos de trabalho com o domínio.',
                 ],
                 [
                     'title' => 'Iniciante',
-                    'value' => 'Iniciante',
+                    'value' => 'iniciante',
+                    'description' => 'Menos de dois anos de trabalho com o domínio.',
                 ],
             ],
             'Articulação' => [
                 [
                     'title' => 'Baixo',
-                    'value' => '0',
+                    'value' => 'baixo',
+                    'description' => 'Não precisa compartilhar o conhecimento claramente.',
                 ],
                 [
                     'title' => 'Médio',
-                    'value' => '1',
+                    'value' => 'medio',
+                    'description' => 'Precisa compartilhar conhecimento razoavelmente bem.',
                 ],
                 [
                     'title' => 'Alto',
-                    'value' => '2',
+                    'value' => 'alto',
+                    'description' => 'Precisa compartilhar o conhecimento muito bem.',
                 ],
             ],
             'Disponibilidade de tempo' => [
                 [
                     'title' => 'Baixo',
-                    'value' => '0',
+                    'value' => 'baixo',
+                    'description' => 'Tem menos tempos que o necessário.',
                 ],
                 [
                     'title' => 'Alto',
-                    'value' => '1',
+                    'value' => 'alto',
+                    'description' => 'Tem tempo suficiente.',
                 ],
             ],
             'Local/Acessibilidade' => [
                 [
                     'title' => 'Longe',
-                    'value' => 'Longe',
+                    'value' => 'longe',
+                    'description' => 'Está em um cidade diferente do elicitor.',
                 ],
                 [
                     'title' => 'Perto',
-                    'value' => 'Perto',
+                    'value' => 'perto',
+                    'description' => 'Está na mesma cidade do elicitor.',
                 ],
             ],
             'Tipo de informação a elicitar' => [
                 [
                     'title' => 'Básica',
-                    'value' => 'Básica',
+                    'value' => 'basica',
+                    'description' => 'Coleta informações associadas a conceitos, atributos e elementos.',
                 ],
                 [
                     'title' => 'Estratégica',
-                    'value' => 'Estratégica',
+                    'value' => 'estrategica',
+                    'description' => 'Coleta informações associadas a estratégia, controle e diretivas.',
                 ],
                 [
                     'title' => 'Tática',
-                    'value' => 'Tática',
+                    'value' => 'tatica',
+                    'description' => 'Coleta informações associadas a processos, funções e heurísticas.',
                 ],
             ],
             'Nível de informação disponível' => [
                 [
                     'title' => 'Inferior',
-                    'value' => 'Inferior',
+                    'value' => 'inferior',
+                    'description' => 'Necessita de informações básicas e/ou táticas.',
                 ],
                 [
                     'title' => 'Nenhum',
-                    'value' => 'Nenhum',
+                    'value' => 'nenhum',
+                    'description' => 'Não é necessário.',
                 ],
                 [
                     'title' => 'Superior',
-                    'value' => 'Superior',
+                    'value' => 'superior',
+                    'description' => 'Necessita de informações táticas e/ou estratégicas.',
                 ],
             ],
             'Definição do problema' => [
                 [
                     'title' => 'Baixo',
-                    'value' => '0',
+                    'value' => 'baixo',
+                    'description' => 'Fracamente definido',
                 ],
                 [
                     'title' => 'Alto',
-                    'value' => '1',
+                    'value' => 'alto',
+                    'description' => 'Bem definido',
                 ],
             ],
             'Restrição de tempo do projeto' => [
                 [
                     'title' => 'Baixo',
-                    'value' => '0',
+                    'value' => 'baixo',
+                    'description' => 'Tempo mais que suficiente.',
                 ],
                 [
                     'title' => 'Médio',
-                    'value' => '1',
+                    'value' => 'medio',
+                    'description' => 'Tempo suficiente.',
                 ],
                 [
                     'title' => 'Alto',
-                    'value' => '2',
+                    'value' => 'alto',
+                    'description' => 'Tempo insuficiente.',
                 ],
             ],
             'Tempo de processo' => [
                 [
                     'title' => 'Início',
-                    'value' => '0',
+                    'value' => 'inicio',
+                    'description' => 'Elicitação das definições gerais.',
                 ],
                 [
                     'title' => 'Meio',
-                    'value' => '1',
+                    'value' => 'meio',
+                    'description' => 'Elicitação dos requisitos chave.',
                 ],
                 [
                     'title' => 'Fim',
-                    'value' => '2',
-                ],
-            ],
-            'Frequência de utilização' => [
-                [
-                    'title' => 'Conforme a natureza do projeto',
-                    'value' => 'Conforme a natureza do projeto',
-                ],
-                [
-                    'title' => 'Nunca',
-                    'value' => 'Nunca',
-                ],
-                [
-                    'title' => 'Por projeto',
-                    'value' => 'Por projeto',
-                ],
-                [
-                    'title' => 'Projetos terceirizados',
-                    'value' => 'Projetos terceirizados',
+                    'value' => 'fim',
+                    'description' => 'Elicitação das informações finais.',
                 ],
             ],
         ];
