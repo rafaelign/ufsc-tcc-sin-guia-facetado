@@ -221,7 +221,7 @@ Ao final é interessante validar as respostas dadas pelo stakeholder.
 
             DB::table('entities_references')->insert([
                 'entity_id' => $interviewId,
-                'value_id' => $getReference->id,
+                'reference_id' => $getReference->id,
                 'code' => (int) $reference['code'],
             ]);
         }
@@ -234,6 +234,7 @@ Ao final é interessante validar as respostas dadas pelo stakeholder.
      */
     public function down()
     {
+        DB::delete('DELETE FROM entities_references WHERE entity_id IN (SELECT id FROM entities WHERE slug LIKE ?)', [str_slug('Técnicas de Elicitação de Requisitos Entrevista')]);
         DB::delete('DELETE FROM entities_values WHERE entity_id IN (SELECT id FROM entities WHERE slug LIKE ?)', [str_slug('Técnicas de Elicitação de Requisitos Entrevista')]);
         DB::delete('DELETE FROM entities WHERE slug LIKE ?', [str_slug('Técnicas de Elicitação de Requisitos Entrevista')]);
     }
