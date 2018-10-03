@@ -93,7 +93,7 @@ Exemplo da análise estatística PCA.
         $this->values($interview->id, [
             'Categoria' => 'Cognitiva',
             'Tipo de técnica' => 'Indireta',
-            'Tipo de dado' => 'Quantitativa',
+            'Tipo de dado' => 'Quantitativo',
             'Comunicação' => 'Bidirecional',
             'Treinamento na técnica de elicitação' => 'Alto',
             'Experiência do elicitor' => 'Médio',
@@ -114,7 +114,7 @@ Exemplo da análise estatística PCA.
         ]);
 
         $this->values($interview->id, [
-            'Tipo de dado' => 'Qualitativa',
+            'Tipo de dado' => 'Qualitativo',
             'Comunicação' => 'Unidirecional',
             'Experiência do elicitor' => 'Alto',
             'Experiência com técnicas de elicitação' => 'Alto',

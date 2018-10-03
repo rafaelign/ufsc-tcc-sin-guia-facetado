@@ -135,7 +135,7 @@ Através desta sessão a equipe define determinados requisitos que são relevant
             'Categoria' => 'Grupo',
             'Fonte principal' => 'Analistas e Stakeholders',
             'Tipo de técnica' => 'Direta',
-            'Tipo de dado' => 'Qualitativa',
+            'Tipo de dado' => 'Qualitativo',
             'Comunicação' => 'Bidirecional',
             'Treinamento na técnica de elicitação' => 'Alto',
             'Experiência do elicitor' => 'Alto',

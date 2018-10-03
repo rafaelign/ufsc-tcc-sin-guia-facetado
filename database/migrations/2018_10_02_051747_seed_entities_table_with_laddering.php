@@ -96,7 +96,7 @@ Estes passos formam níveis de pergunta e respostas, criando uma hierarquia entr
             'Categoria' => 'Cognitiva',
             'Fonte principal' => 'Especialista',
             'Tipo de técnica' => 'Indireta',
-            'Tipo de dado' => 'Quantitativa',
+            'Tipo de dado' => 'Quantitativo',
             'Comunicação' => 'Bidirecional',
             'Treinamento na técnica de elicitação' => 'Alto',
             'Experiência do elicitor' => 'Médio',
@@ -117,7 +117,7 @@ Estes passos formam níveis de pergunta e respostas, criando uma hierarquia entr
         ]);
 
         $this->values($interview->id, [
-            'Tipo de dado' => 'Qualitativa',
+            'Tipo de dado' => 'Qualitativo',
             'Comunicação' => 'Unidirecional',
             'Experiência do elicitor' => 'Alto',
             'Experiência com técnicas de elicitação' => 'Alto',

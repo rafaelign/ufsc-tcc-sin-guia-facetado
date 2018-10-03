@@ -93,7 +93,7 @@ Também é possível explorar outras formas de questões, tudo vai depender do p
         $this->values($interview->id, [
             'Categoria' => 'Tradicional',
             'Tipo de técnica' => 'Indireta',
-            'Tipo de dado' => 'Quantitativa',
+            'Tipo de dado' => 'Quantitativo',
             'Comunicação' => 'Unidirecional',
             'Treinamento na técnica de elicitação' => 'Baixo',
             'Experiência do elicitor' => 'Médio',

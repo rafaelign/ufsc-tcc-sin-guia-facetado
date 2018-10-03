@@ -94,7 +94,7 @@ Exemplo de um exercício de card sorting.
             'Categoria' => 'Cognitiva',
             'Fonte principal' => 'Especialista',
             'Tipo de técnica' => 'Indireta',
-            'Tipo de dado' => 'Quantitativa',
+            'Tipo de dado' => 'Quantitativo',
             'Comunicação' => 'Bidirecional',
             'Treinamento na técnica de elicitação' => 'Alto',
             'Experiência do elicitor' => 'Médio',
