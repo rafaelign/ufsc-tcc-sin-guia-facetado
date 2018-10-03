@@ -93,7 +93,7 @@ Através de uma análise de protocolo, informações sobre o processo são docum
 
         $this->values($interview->id, [
             'Experiência com técnicas de elicitação' => 'Alto',
-            'Familiaridade com o domínio' => 'Médio',
+            'Familiaridade com o domínio' => 'Baixo',
             'Tipo de informação a elicitar' => 'Tática',
         ]);
 
