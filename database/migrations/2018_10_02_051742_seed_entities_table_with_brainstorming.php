@@ -101,7 +101,7 @@ Um exemplo de uma sessão de Brainstorming seria a seguinte:
             'Pessoas por sessão' => 'Em massa',
             'Interesse do stakeholder' => 'Alto',
             'Especialidade' => 'Iniciante',
-            'Articulação' => 'Medio',
+            'Articulação' => 'Médio',
             'Disponibilidade de tempo' => 'Alto',
             'Local/Acessibilidade' => 'Perto',
             'Tipo de informação a elicitar' => 'Tática',
@@ -118,7 +118,7 @@ Um exemplo de uma sessão de Brainstorming seria a seguinte:
             'Especialidade' => 'Bem informado',
             'Articulação' => 'Alto',
             'Tipo de informação a elicitar' => 'Estratégica',
-            'Nível de informação disponível' => 'Baixo',
+            'Nível de informação disponível' => 'Inferior',
         ]);
 
         $this->values($interview->id, [
