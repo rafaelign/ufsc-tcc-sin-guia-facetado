@@ -16,6 +16,7 @@ class CreateEntitiesReferencesTable extends Migration
         Schema::create('entities_references', function (Blueprint $table) {
             $table->unsignedInteger('entity_id');
             $table->unsignedInteger('reference_id');
+            $table->unsignedInteger('code');
             $table->timestamps();
 
             $table->foreign('entity_id')
