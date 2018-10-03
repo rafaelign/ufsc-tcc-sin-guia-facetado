@@ -74,7 +74,7 @@ Também é possível explorar outras formas de questões, tudo vai depender do p
         DB::table('entities')->insert([
             'title'             => 'Questionários',
             'slug'              => str_slug($RETechniqueClassification->title . ' Questionários'),
-            'short_description' => 'Os questionários são usados principalmente como uma ferramenta simples, que contém perguntas abertas e/ou fechadas durante a fase inicial da elicitação de requisitos. Servem para coletar o máximo de requisitos de diferentes pessoas que podem estar em lugares distintos.',
+            'short_description' => 'São usados principalmente como uma ferramenta simples, com perguntas abertas ou fechadas durante a fase inicial da elicitação de requisitos para coletar o máximo de requisitos de diferentes pessoas que podem estar em lugares distintos.',
             'description'       => $description,
             'pros'              => $pros,
             'cons'              => $cons,
