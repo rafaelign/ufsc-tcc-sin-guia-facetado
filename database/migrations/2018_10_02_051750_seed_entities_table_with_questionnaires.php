@@ -125,7 +125,7 @@ Também é possível explorar outras formas de questões, tudo vai depender do p
             'Articulação' => 'Médio',
             'Disponibilidade de tempo' => 'Alto',
             'Local/Acessibilidade' => 'Longe',
-            'Tipo de informação a elicitar' => 'Tático',
+            'Tipo de informação a elicitar' => 'Tática',
             'Nível de informação disponível' => 'Inferior',
             'Definição do problema' => 'Alto',
             'Restrição de tempo do projeto' => 'Médio',
@@ -138,7 +138,7 @@ Também é possível explorar outras formas de questões, tudo vai depender do p
             'Interesse do stakeholder' => 'Alto',
             'Especialidade' => 'Especialista',
             'Articulação' => 'Alto',
-            'Tipo de informação a elicitar' => 'Estratégico',
+            'Tipo de informação a elicitar' => 'Estratégica',
             'Nível de informação disponível' => 'Superior',
             'Restrição de tempo do projeto' => 'Alto',
         ]);
