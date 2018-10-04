@@ -87,12 +87,12 @@ Estes passos formam níveis de pergunta e respostas, criando uma hierarquia entr
             'updated_at'        => Carbon::now(),
         ]);
 
-        $interview = DB::table('entities')
+        $technique = DB::table('entities')
             ->select(['id'])
             ->where('slug', str_slug($RETechniqueClassification->title . ' Laddering'))
             ->first();
 
-        $this->values($interview->id, [
+        $this->values($technique->id, [
             'Categoria' => 'Cognitiva',
             'Fonte principal' => 'Especialista',
             'Tipo de técnica' => 'Indireta',
@@ -116,7 +116,7 @@ Estes passos formam níveis de pergunta e respostas, criando uma hierarquia entr
             'Tempo de processo' => 'Início',
         ]);
 
-        $this->values($interview->id, [
+        $this->values($technique->id, [
             'Tipo de dado' => 'Qualitativo',
             'Comunicação' => 'Unidirecional',
             'Experiência do elicitor' => 'Alto',
@@ -130,11 +130,38 @@ Estes passos formam níveis de pergunta e respostas, criando uma hierarquia entr
             'Tempo de processo' => 'Meio',
         ]);
 
-        $this->values($interview->id, [
+        $this->values($technique->id, [
             'Especialidade' => 'Especialista',
             'Articulação' => 'Alto',
             'Nível de informação disponível' => 'Superior',
             'Restrição de tempo do projeto' => 'Alto',
+        ]);
+
+        $this->references($technique->id, [
+            [
+                'description' => 'MRAYAT, O. I. A.; NORWAWI,',
+                'code' => 1
+            ],
+            [
+                'description' => 'YOUSUF, M.; ASGER, M. Comparison',
+                'code' => 2
+            ],
+            [
+                'description' => 'SHARMA, S.; PANDEY, S. Revisiting',
+                'code' => 3
+            ],
+            [
+                'description' => 'REHMAN, T. ur; KHAN, M. N. A.; RIAZ',
+                'code' => 4
+            ],
+            [
+                'description' => 'ARIF, Q. K. Shams-ul; GAHYYUR, S. Requirements',
+                'code' => 5
+            ],
+            [
+                'description' => 'HAWLEY, Michael. Laddering: A Research',
+                'code' => 6
+            ],
         ]);
     }
 
@@ -145,6 +172,7 @@ Estes passos formam níveis de pergunta e respostas, criando uma hierarquia entr
      */
     public function down()
     {
+        DB::delete('DELETE FROM entities_references WHERE entity_id IN (SELECT id FROM entities WHERE slug LIKE ?)', [str_slug('Técnicas de Elicitação de Requisitos Laddering')]);
         DB::delete('DELETE FROM entities_values WHERE entity_id IN (SELECT id FROM entities WHERE slug LIKE ?)', [str_slug('Técnicas de Elicitação de Requisitos Laddering')]);
         DB::delete('DELETE FROM entities WHERE slug LIKE ?', [str_slug('Técnicas de Elicitação de Requisitos Laddering')]);
     }
@@ -160,6 +188,22 @@ Estes passos formam níveis de pergunta e respostas, criando uma hierarquia entr
             DB::table('entities_values')->insert([
                 'entity_id' => $interviewId,
                 'value_id' => $facetValues->id,
+            ]);
+        }
+    }
+
+    private function references(int $interviewId, array $referencesWithValues)
+    {
+        foreach ($referencesWithValues as $reference) {
+            $getReference = DB::table('references')
+                ->select(['id'])
+                ->where('description', 'like', trim($reference['description'] . '%'))
+                ->first();
+
+            DB::table('entities_references')->insert([
+                'entity_id' => $interviewId,
+                'reference_id' => $getReference->id,
+                'code' => (int) $reference['code'],
             ]);
         }
     }

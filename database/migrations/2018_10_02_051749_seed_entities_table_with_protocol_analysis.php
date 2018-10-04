@@ -65,12 +65,12 @@ Através de uma análise de protocolo, informações sobre o processo são docum
             'updated_at'        => Carbon::now(),
         ]);
 
-        $interview = DB::table('entities')
+        $technique = DB::table('entities')
             ->select(['id'])
             ->where('slug', str_slug($RETechniqueClassification->title . ' Análise de protocolo'))
             ->first();
 
-        $this->values($interview->id, [
+        $this->values($technique->id, [
             'Categoria' => 'Cognitiva',
             'Fonte principal' => 'Observador',
             'Treinamento na técnica de elicitação' => 'Alto',
@@ -91,19 +91,46 @@ Através de uma análise de protocolo, informações sobre o processo são docum
             'Tempo de processo' => 'Meio',
         ]);
 
-        $this->values($interview->id, [
+        $this->values($technique->id, [
             'Experiência com técnicas de elicitação' => 'Alto',
             'Familiaridade com o domínio' => 'Baixo',
             'Tipo de informação a elicitar' => 'Tática',
         ]);
 
-        $this->values($interview->id, [
+        $this->values($technique->id, [
             'Familiaridade com o domínio' => 'Alto',
             'Especialidade' => 'Especialista',
             'Articulação' => 'Alto',
             'Nível de informação disponível' => 'Superior',
             'Restrição de tempo do projeto' => 'Alto',
             'Tipo de informação a elicitar' => 'Estratégica',
+        ]);
+
+        $this->references($technique->id, [
+            [
+                'description' => 'MRAYAT, O. I. A.; NORWAWI,',
+                'code' => 1
+            ],
+            [
+                'description' => 'WRIGHT, G., and AYTON, P. "Eliciting and',
+                'code' => 2
+            ],
+            [
+                'description' => 'YOUSUF, M.; ASGER, M. Comparison',
+                'code' => 3
+            ],
+            [
+                'description' => 'SHARMA, S.; PANDEY, S. Revisiting',
+                'code' => 4
+            ],
+            [
+                'description' => 'REHMAN, T. ur; KHAN, M. N. A.; RIAZ',
+                'code' => 5
+            ],
+            [
+                'description' => 'OWEN, Stephen; BUDGEN, David; BRERETON',
+                'code' => 6
+            ],
         ]);
     }
 
@@ -114,6 +141,7 @@ Através de uma análise de protocolo, informações sobre o processo são docum
      */
     public function down()
     {
+        DB::delete('DELETE FROM entities_references WHERE entity_id IN (SELECT id FROM entities WHERE slug LIKE ?)', [str_slug('Técnicas de Elicitação de Requisitos Análise de protocolo')]);
         DB::delete('DELETE FROM entities_values WHERE entity_id IN (SELECT id FROM entities WHERE slug LIKE ?)', [str_slug('Técnicas de Elicitação de Requisitos Análise de protocolo')]);
         DB::delete('DELETE FROM entities WHERE slug LIKE ?', [str_slug('Técnicas de Elicitação de Requisitos Análise de protocolo')]);
     }
@@ -129,6 +157,22 @@ Através de uma análise de protocolo, informações sobre o processo são docum
             DB::table('entities_values')->insert([
                 'entity_id' => $interviewId,
                 'value_id' => $facetValues->id,
+            ]);
+        }
+    }
+
+    private function references(int $interviewId, array $referencesWithValues)
+    {
+        foreach ($referencesWithValues as $reference) {
+            $getReference = DB::table('references')
+                ->select(['id'])
+                ->where('description', 'like', trim($reference['description'] . '%'))
+                ->first();
+
+            DB::table('entities_references')->insert([
+                'entity_id' => $interviewId,
+                'reference_id' => $getReference->id,
+                'code' => (int) $reference['code'],
             ]);
         }
     }

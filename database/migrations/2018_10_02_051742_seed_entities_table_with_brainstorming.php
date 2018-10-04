@@ -83,12 +83,12 @@ Um exemplo de uma sessão de Brainstorming seria a seguinte:
             'updated_at'        => Carbon::now(),
         ]);
 
-        $interview = DB::table('entities')
+        $technique = DB::table('entities')
             ->select(['id'])
             ->where('slug', str_slug($RETechniqueClassification->title . ' Brainstorming'))
             ->first();
 
-        $this->values($interview->id, [
+        $this->values($technique->id, [
             'Categoria' => 'Grupo',
             'Fonte principal' => 'Facilitador externo',
             'Tipo de técnica' => 'Direta',
@@ -111,7 +111,7 @@ Um exemplo de uma sessão de Brainstorming seria a seguinte:
             'Tempo de processo' => 'Início',
         ]);
 
-        $this->values($interview->id, [
+        $this->values($technique->id, [
             'Treinamento na técnica de elicitação' => 'Alto',
             'Experiência com técnicas de elicitação' => 'Alto',
             'Familiaridade com o domínio' => 'Baixo',
@@ -121,9 +121,40 @@ Um exemplo de uma sessão de Brainstorming seria a seguinte:
             'Nível de informação disponível' => 'Inferior',
         ]);
 
-        $this->values($interview->id, [
+        $this->values($technique->id, [
             'Familiaridade com o domínio' => 'Alto',
             'Especialidade' => 'Especialista',
+        ]);
+
+        $this->references($technique->id, [
+            [
+                'description' => 'ABBASI, M. A. et al. Assessment',
+                'code' => 1
+            ],
+            [
+                'description' => 'POHL, Klaus. Requirements engineering',
+                'code' => 2
+            ],
+            [
+                'description' => 'YOUSUF, M.; ASGER, M. Comparison',
+                'code' => 3
+            ],
+            [
+                'description' => 'ARIF, Q. K. Shams-ul; GAHYYUR, S',
+                'code' => 4
+            ],
+            [
+                'description' => 'MULLA, N. Comparison of various',
+                'code' => 5
+            ],
+            [
+                'description' => 'TIWARI, SAURABH, RATHORE, Santosh',
+                'code' => 6
+            ],
+            [
+                'description' => 'SOUZA, A. F. et al.Design Thinking Assistant',
+                'code' => 7
+            ],
         ]);
     }
 
@@ -134,6 +165,7 @@ Um exemplo de uma sessão de Brainstorming seria a seguinte:
      */
     public function down()
     {
+        DB::delete('DELETE FROM entities_references WHERE entity_id IN (SELECT id FROM entities WHERE slug LIKE ?)', [str_slug('Técnicas de Elicitação de Requisitos Brainstorming')]);
         DB::delete('DELETE FROM entities_values WHERE entity_id IN (SELECT id FROM entities WHERE slug LIKE ?)', [str_slug('Técnicas de Elicitação de Requisitos Brainstorming')]);
         DB::delete('DELETE FROM entities WHERE slug LIKE ?', [str_slug('Técnicas de Elicitação de Requisitos Brainstorming')]);
     }
@@ -149,6 +181,21 @@ Um exemplo de uma sessão de Brainstorming seria a seguinte:
             DB::table('entities_values')->insert([
                 'entity_id' => $interviewId,
                 'value_id' => $facetValues->id,
+            ]);
+        }
+    }
+    private function references(int $interviewId, array $referencesWithValues)
+    {
+        foreach ($referencesWithValues as $reference) {
+            $getReference = DB::table('references')
+                ->select(['id'])
+                ->where('description', 'like', trim($reference['description'] . '%'))
+                ->first();
+
+            DB::table('entities_references')->insert([
+                'entity_id' => $interviewId,
+                'reference_id' => $getReference->id,
+                'code' => (int) $reference['code'],
             ]);
         }
     }

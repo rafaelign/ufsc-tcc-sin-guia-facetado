@@ -126,12 +126,12 @@ Através desta sessão a equipe define determinados requisitos que são relevant
             'updated_at'        => Carbon::now(),
         ]);
 
-        $interview = DB::table('entities')
+        $technique = DB::table('entities')
             ->select(['id'])
             ->where('slug', str_slug($RETechniqueClassification->title . ' JAD'))
             ->first();
 
-        $this->values($interview->id, [
+        $this->values($technique->id, [
             'Categoria' => 'Grupo',
             'Fonte principal' => 'Analistas e Stakeholders',
             'Tipo de técnica' => 'Direta',
@@ -154,7 +154,7 @@ Através desta sessão a equipe define determinados requisitos que são relevant
             'Tempo de processo' => 'Início',
         ]);
 
-        $this->values($interview->id, [
+        $this->values($technique->id, [
             'Experiência com técnicas de elicitação' => 'Alto',
             'Familiaridade com o domínio' => 'Alto',
             'Especialidade' => 'Bem informado',
@@ -162,8 +162,43 @@ Através desta sessão a equipe define determinados requisitos que são relevant
             'Tipo de informação a elicitar' => 'Estratégica',
         ]);
 
-        $this->values($interview->id, [
+        $this->values($technique->id, [
             'Especialidade' => 'Especialista',
+        ]);
+
+        $this->references($technique->id, [
+            [
+                'description' => 'YOUSEF, R.; ALMARABEH, T',
+                'code' => 1
+            ],
+            [
+                'description' => 'YOUSUF, M.; ASGER, M. Comparison',
+                'code' => 2
+            ],
+            [
+                'description' => 'SHARMA, S.; PANDEY, S. Revisiting requirements',
+                'code' => 3
+            ],
+            [
+                'description' => 'ARIF, Q. K. Shams-ul; GAHYYUR, S. Requirements',
+                'code' => 4
+            ],
+            [
+                'description' => 'SADIQ, M.; GHAFIR, S.; SHAHID, M. An',
+                'code' => 5
+            ],
+            [
+                'description' => 'MULLA, N. Comparison of various elicitation',
+                'code' => 6
+            ],
+            [
+                'description' => 'MEAD, Nancy. Requirements Elicitation Case',
+                'code' => 7
+            ],
+            [
+                'description' => 'DUGGAN, E.W. & THACHENKARY, C.S. Information',
+                'code' => 8
+            ],
         ]);
     }
 
@@ -174,6 +209,7 @@ Através desta sessão a equipe define determinados requisitos que são relevant
      */
     public function down()
     {
+        DB::delete('DELETE FROM entities_references WHERE entity_id IN (SELECT id FROM entities WHERE slug LIKE ?)', [str_slug('Técnicas de Elicitação de Requisitos JAD')]);
         DB::delete('DELETE FROM entities_values WHERE entity_id IN (SELECT id FROM entities WHERE slug LIKE ?)', [str_slug('Técnicas de Elicitação de Requisitos JAD')]);
         DB::delete('DELETE FROM entities WHERE slug LIKE ?', [str_slug('Técnicas de Elicitação de Requisitos JAD')]);
     }
@@ -189,6 +225,22 @@ Através desta sessão a equipe define determinados requisitos que são relevant
             DB::table('entities_values')->insert([
                 'entity_id' => $interviewId,
                 'value_id' => $facetValues->id,
+            ]);
+        }
+    }
+
+    private function references(int $interviewId, array $referencesWithValues)
+    {
+        foreach ($referencesWithValues as $reference) {
+            $getReference = DB::table('references')
+                ->select(['id'])
+                ->where('description', 'like', trim($reference['description'] . '%'))
+                ->first();
+
+            DB::table('entities_references')->insert([
+                'entity_id' => $interviewId,
+                'reference_id' => $getReference->id,
+                'code' => (int) $reference['code'],
             ]);
         }
     }

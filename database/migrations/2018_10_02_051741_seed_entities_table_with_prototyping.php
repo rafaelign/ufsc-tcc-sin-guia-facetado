@@ -85,12 +85,12 @@ Quanto aos tipos de protótipos, para elicitação de requisitos podemos citar:
             'updated_at'        => Carbon::now(),
         ]);
 
-        $interview = DB::table('entities')
+        $technique = DB::table('entities')
             ->select(['id'])
             ->where('slug', str_slug($RETechniqueClassification->title . ' Prototipação'))
             ->first();
 
-        $this->values($interview->id, [
+        $this->values($technique->id, [
             'Categoria' => 'Grupo',
             'Fonte principal' => 'Analistas e Stakeholders',
             'Tipo de técnica' => 'Direta',
@@ -114,9 +114,72 @@ Quanto aos tipos de protótipos, para elicitação de requisitos podemos citar:
             'Tempo de processo' => 'Meio',
         ]);
 
-        $this->values($interview->id, [
+        $this->values($technique->id, [
             'Tipo de informação a elicitar' => 'Tática',
             'Nível de informação disponível' => 'Superior',
+        ]);
+
+        $this->references($technique->id, [
+            [
+                'description' => 'HANSEN, S.; BERENTE,',
+                'code' => 1
+            ],
+            [
+                'description' => 'YOUSEF, R.; ALMARABEH, T.',
+                'code' => 2
+            ],
+            [
+                'description' => 'ZOWGHI, D.; COULIN,',
+                'code' => 3
+            ],
+            [
+                'description' => 'KHAN, K. et al. Requirement',
+                'code' => 4
+            ],
+            [
+                'description' => 'ABBASI, M. A. et al. Assessment',
+                'code' => 5
+            ],
+            [
+                'description' => 'YOUSUF, M.; ASGER, M. Comparison',
+                'code' => 6
+            ],
+            [
+                'description' => 'SHARMA, S.; PANDEY, S. Revisiting',
+                'code' => 7
+            ],
+            [
+                'description' => 'INAYAT, I. et al. A systematic literature',
+                'code' => 8
+            ],
+            [
+                'description' => 'TOMAYKO, J. E. (2002). Engineering',
+                'code' => 9
+            ],
+            [
+                'description' => 'DAVIS, A. Article in an edited book',
+                'code' => 10
+            ],
+            [
+                'description' => 'LAUESEN, S. , Article in an',
+                'code' => 11
+            ],
+            [
+                'description' => 'KHAN, S.; DULLOO, A. B.; VERMA',
+                'code' => 12
+            ],
+            [
+                'description' => 'GUNDA, Sai Ganesh. "Requirements',
+                'code' => 13
+            ],
+            [
+                'description' => 'VIANNA, Mauricio; VIANNA, Ysmar',
+                'code' => 14
+            ],
+            [
+                'description' => 'SOUZA, A. F. et al.Design Thinking',
+                'code' => 15
+            ],
         ]);
     }
 
@@ -127,6 +190,7 @@ Quanto aos tipos de protótipos, para elicitação de requisitos podemos citar:
      */
     public function down()
     {
+        DB::delete('DELETE FROM entities_references WHERE entity_id IN (SELECT id FROM entities WHERE slug LIKE ?)', [str_slug('Técnicas de Elicitação de Requisitos Prototipação')]);
         DB::delete('DELETE FROM entities_values WHERE entity_id IN (SELECT id FROM entities WHERE slug LIKE ?)', [str_slug('Técnicas de Elicitação de Requisitos Prototipação')]);
         DB::delete('DELETE FROM entities WHERE slug LIKE ?', [str_slug('Técnicas de Elicitação de Requisitos Prototipação')]);
     }
@@ -142,6 +206,22 @@ Quanto aos tipos de protótipos, para elicitação de requisitos podemos citar:
             DB::table('entities_values')->insert([
                 'entity_id' => $interviewId,
                 'value_id' => $facetValues->id,
+            ]);
+        }
+    }
+
+    private function references(int $interviewId, array $referencesWithValues)
+    {
+        foreach ($referencesWithValues as $reference) {
+            $getReference = DB::table('references')
+                ->select(['id'])
+                ->where('description', 'like', trim($reference['description'] . '%'))
+                ->first();
+
+            DB::table('entities_references')->insert([
+                'entity_id' => $interviewId,
+                'reference_id' => $getReference->id,
+                'code' => (int) $reference['code'],
             ]);
         }
     }

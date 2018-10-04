@@ -85,12 +85,12 @@ Exemplo da análise estatística PCA.
             'updated_at'        => Carbon::now(),
         ]);
 
-        $interview = DB::table('entities')
+        $technique = DB::table('entities')
             ->select(['id'])
             ->where('slug', str_slug($RETechniqueClassification->title . ' Repertory grids'))
             ->first();
 
-        $this->values($interview->id, [
+        $this->values($technique->id, [
             'Categoria' => 'Cognitiva',
             'Tipo de técnica' => 'Indireta',
             'Tipo de dado' => 'Quantitativo',
@@ -113,7 +113,7 @@ Exemplo da análise estatística PCA.
             'Tempo de processo' => 'Meio',
         ]);
 
-        $this->values($interview->id, [
+        $this->values($technique->id, [
             'Tipo de dado' => 'Qualitativo',
             'Comunicação' => 'Unidirecional',
             'Experiência do elicitor' => 'Alto',
@@ -129,12 +129,31 @@ Exemplo da análise estatística PCA.
             'Restrição de tempo do projeto' => 'Médio',
         ]);
 
-        $this->values($interview->id, [
+        $this->values($technique->id, [
             'Pessoas por sessão' => 'Em massa',
             'Interesse do stakeholder' => 'Alto',
             'Especialidade' => 'Especialista',
             'Articulação' => 'Alto',
             'Restrição de tempo do projeto' => 'Alto',
+        ]);
+
+        $this->references($technique->id, [
+            [
+                'description' => 'YOUSUF, M.; ASGER, M. Comparison',
+                'code' => 1
+            ],
+            [
+                'description' => 'REHMAN, T. ur; KHAN, M. N. A.; RIAZ, N',
+                'code' => 2
+            ],
+            [
+                'description' => 'ARIF, Q. K. Shams-ul; GAHYYUR, S. Requirements',
+                'code' => 3
+            ],
+            [
+                'description' => 'CURTIS, Aaron Mosiah et al. An overview and',
+                'code' => 4
+            ],
         ]);
     }
 
@@ -145,6 +164,7 @@ Exemplo da análise estatística PCA.
      */
     public function down()
     {
+        DB::delete('DELETE FROM entities_references WHERE entity_id IN (SELECT id FROM entities WHERE slug LIKE ?)', [str_slug('Técnicas de Elicitação de Requisitos Repertory grids')]);
         DB::delete('DELETE FROM entities_values WHERE entity_id IN (SELECT id FROM entities WHERE slug LIKE ?)', [str_slug('Técnicas de Elicitação de Requisitos Repertory grids')]);
         DB::delete('DELETE FROM entities WHERE slug LIKE ?', [str_slug('Técnicas de Elicitação de Requisitos Repertory grids')]);
     }
@@ -160,6 +180,22 @@ Exemplo da análise estatística PCA.
             DB::table('entities_values')->insert([
                 'entity_id' => $interviewId,
                 'value_id' => $facetValues->id,
+            ]);
+        }
+    }
+
+    private function references(int $interviewId, array $referencesWithValues)
+    {
+        foreach ($referencesWithValues as $reference) {
+            $getReference = DB::table('references')
+                ->select(['id'])
+                ->where('description', 'like', trim($reference['description'] . '%'))
+                ->first();
+
+            DB::table('entities_references')->insert([
+                'entity_id' => $interviewId,
+                'reference_id' => $getReference->id,
+                'code' => (int) $reference['code'],
             ]);
         }
     }

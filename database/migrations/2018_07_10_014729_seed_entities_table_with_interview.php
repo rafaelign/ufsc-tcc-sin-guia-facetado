@@ -108,12 +108,12 @@ Ao final é interessante validar as respostas dadas pelo stakeholder.
             'updated_at'        => Carbon::now(),
         ]);
 
-        $interview = DB::table('entities')
+        $technique = DB::table('entities')
             ->select(['id'])
             ->where('slug', str_slug($RETechniqueClassification->title . ' Entrevista'))
             ->first();
 
-        $this->values($interview->id, [
+        $this->values($technique->id, [
             'Categoria' => 'Tradicional',
             'Fonte principal' => 'Analista com conhecimento no domínio',
             'Tipo de técnica' => 'Direta',
@@ -137,14 +137,14 @@ Ao final é interessante validar as respostas dadas pelo stakeholder.
             'Tempo de processo' => 'Meio',
         ]);
 
-        $this->values($interview->id, [
+        $this->values($technique->id, [
             'Tipo de dado' => 'Quantitativo',
             'Especialidade' => 'Bem informado',
             'Tipo de informação a elicitar' => 'Tática',
             'Nível de informação disponível' => 'Superior',
         ]);
 
-        $this->references($interview->id, [
+        $this->references($technique->id, [
             [
                 'description' => 'HANSEN, S.; BERENTE,',
                 'code' => 1

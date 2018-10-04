@@ -70,12 +70,12 @@ A equipe decide nomear um grupo de oito pessoas que representam seu mercado-alvo
             'updated_at'        => Carbon::now(),
         ]);
 
-        $interview = DB::table('entities')
+        $technique = DB::table('entities')
             ->select(['id'])
             ->where('slug', str_slug($RETechniqueClassification->title . ' Entrevista em grupo'))
             ->first();
 
-        $this->values($interview->id, [
+        $this->values($technique->id, [
             'Categoria' => 'Tradicional',
             'Fonte principal' => 'Facilitador externo',
             'Treinamento na técnica de elicitação' => 'Alto',
@@ -96,7 +96,7 @@ A equipe decide nomear um grupo de oito pessoas que representam seu mercado-alvo
             'Tempo de processo' => 'Início',
         ]);
 
-        $this->values($interview->id, [
+        $this->values($technique->id, [
             'Experiência do elicitor' => 'Alto',
             'Experiência com técnicas de elicitação' => 'Alto',
             'Familiaridade com o domínio' => 'Alto',
@@ -110,8 +110,23 @@ A equipe decide nomear um grupo de oito pessoas que representam seu mercado-alvo
             'Tempo de processo' => 'Meio',
         ]);
 
-        $this->values($interview->id, [
+        $this->values($technique->id, [
             'Especialidade' => 'Especialista',
+        ]);
+
+        $this->references($technique->id, [
+            [
+                'description' => 'HANSEN, S.; BERENTE,',
+                'code' => 1
+            ],
+            [
+                'description' => 'YOUSEF, R.; ALMARABEH, T',
+                'code' => 2
+            ],
+            [
+                'description' => 'YOUSUF, M.; ASGER, M. Comparison',
+                'code' => 3
+            ],
         ]);
     }
 
@@ -122,6 +137,7 @@ A equipe decide nomear um grupo de oito pessoas que representam seu mercado-alvo
      */
     public function down()
     {
+        DB::delete('DELETE FROM entities_references WHERE entity_id IN (SELECT id FROM entities WHERE slug LIKE ?)', [str_slug('Técnicas de Elicitação de Requisitos Entrevista em grupo')]);
         DB::delete('DELETE FROM entities_values WHERE entity_id IN (SELECT id FROM entities WHERE slug LIKE ?)', [str_slug('Técnicas de Elicitação de Requisitos Entrevista em grupo')]);
         DB::delete('DELETE FROM entities WHERE slug LIKE ?', [str_slug('Técnicas de Elicitação de Requisitos Entrevista em grupo')]);
     }
@@ -137,6 +153,22 @@ A equipe decide nomear um grupo de oito pessoas que representam seu mercado-alvo
             DB::table('entities_values')->insert([
                 'entity_id' => $interviewId,
                 'value_id' => $facetValues->id,
+            ]);
+        }
+    }
+
+    private function references(int $interviewId, array $referencesWithValues)
+    {
+        foreach ($referencesWithValues as $reference) {
+            $getReference = DB::table('references')
+                ->select(['id'])
+                ->where('description', 'like', trim($reference['description'] . '%'))
+                ->first();
+
+            DB::table('entities_references')->insert([
+                'entity_id' => $interviewId,
+                'reference_id' => $getReference->id,
+                'code' => (int) $reference['code'],
             ]);
         }
     }

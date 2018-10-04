@@ -70,12 +70,12 @@ Como exemplo de um cenário de texto simples, considere como o cenário a seguir
             'updated_at'        => Carbon::now(),
         ]);
 
-        $interview = DB::table('entities')
+        $technique = DB::table('entities')
             ->select(['id'])
             ->where('slug', str_slug($RETechniqueClassification->title . ' Cenários'))
             ->first();
 
-        $this->values($interview->id, [
+        $this->values($technique->id, [
             'Categoria' => 'Grupo',
             'Fonte principal' => 'Analistas e Stakeholders',
             'Treinamento na técnica de elicitação' => 'Alto',
@@ -95,7 +95,7 @@ Como exemplo de um cenário de texto simples, considere como o cenário a seguir
             'Tempo de processo' => 'Meio',
         ]);
 
-        $this->values($interview->id, [
+        $this->values($technique->id, [
             'Experiência do elicitor' => 'Alto',
             'Experiência com técnicas de elicitação' => 'Alto',
             'Interesse do stakeholder' => 'Alto',
@@ -105,10 +105,29 @@ Como exemplo de um cenário de texto simples, considere como o cenário a seguir
             'Restrição de tempo do projeto' => 'Médio',
         ]);
 
-        $this->values($interview->id, [
+        $this->values($technique->id, [
             'Especialidade' => 'Especialista',
             'Nível de informação disponível' => 'Superior',
             'Restrição de tempo do projeto' => 'Alto',
+        ]);
+
+        $this->references($technique->id, [
+            [
+                'description' => 'YOUSUF, M.; ASGER, M. Comparison',
+                'code' => 1
+            ],
+            [
+                'description' => 'REHMAN, T. ur; KHAN, M. N. A.; RIAZ, N',
+                'code' => 2
+            ],
+            [
+                'description' => 'ARIF, Q. K. Shams-ul; GAHYYUR, S. Requirements',
+                'code' => 3
+            ],
+            [
+                'description' => 'SOMMERVILLE, I.Engenharia de software',
+                'code' => 4
+            ],
         ]);
     }
 
@@ -119,6 +138,7 @@ Como exemplo de um cenário de texto simples, considere como o cenário a seguir
      */
     public function down()
     {
+        DB::delete('DELETE FROM entities_references WHERE entity_id IN (SELECT id FROM entities WHERE slug LIKE ?)', [str_slug('Técnicas de Elicitação de Requisitos Cenários')]);
         DB::delete('DELETE FROM entities_values WHERE entity_id IN (SELECT id FROM entities WHERE slug LIKE ?)', [str_slug('Técnicas de Elicitação de Requisitos Cenários')]);
         DB::delete('DELETE FROM entities WHERE slug LIKE ?', [str_slug('Técnicas de Elicitação de Requisitos Cenários')]);
     }
@@ -134,6 +154,22 @@ Como exemplo de um cenário de texto simples, considere como o cenário a seguir
             DB::table('entities_values')->insert([
                 'entity_id' => $interviewId,
                 'value_id' => $facetValues->id,
+            ]);
+        }
+    }
+
+    private function references(int $interviewId, array $referencesWithValues)
+    {
+        foreach ($referencesWithValues as $reference) {
+            $getReference = DB::table('references')
+                ->select(['id'])
+                ->where('description', 'like', trim($reference['description'] . '%'))
+                ->first();
+
+            DB::table('entities_references')->insert([
+                'entity_id' => $interviewId,
+                'reference_id' => $getReference->id,
+                'code' => (int) $reference['code'],
             ]);
         }
     }

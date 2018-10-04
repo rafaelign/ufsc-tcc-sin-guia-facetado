@@ -85,12 +85,12 @@ Exemplo de um exercício de card sorting.
             'updated_at'        => Carbon::now(),
         ]);
 
-        $interview = DB::table('entities')
+        $technique = DB::table('entities')
             ->select(['id'])
             ->where('slug', str_slug($RETechniqueClassification->title . ' Card sorting'))
             ->first();
 
-        $this->values($interview->id, [
+        $this->values($technique->id, [
             'Categoria' => 'Cognitiva',
             'Fonte principal' => 'Especialista',
             'Tipo de técnica' => 'Indireta',
@@ -114,7 +114,7 @@ Exemplo de um exercício de card sorting.
             'Tempo de processo' => 'Início',
         ]);
 
-        $this->values($interview->id, [
+        $this->values($technique->id, [
             'Comunicação' => 'Unidirecional',
             'Experiência do elicitor' => 'Alto',
             'Experiência com técnicas de elicitação' => 'Alto',
@@ -127,11 +127,34 @@ Exemplo de um exercício de card sorting.
             'Tempo de processo' => 'Meio',
         ]);
 
-        $this->values($interview->id, [
+        $this->values($technique->id, [
             'Especialidade' => 'Especialista',
             'Articulação' => 'Alto',
             'Nível de informação disponível' => 'Superior',
             'Restrição de tempo do projeto' => 'Alto',
+        ]);
+
+        $this->references($technique->id, [
+            [
+                'description' => 'MRAYAT, O. I. A.; NORWAWI, N',
+                'code' => 1
+            ],
+            [
+                'description' => 'ABBASI, M. A. et al. Assessment',
+                'code' => 2
+            ],
+            [
+                'description' => 'YOUSUF, M.; ASGER, M. Comparison',
+                'code' => 3
+            ],
+            [
+                'description' => 'ARIF, Q. K. Shams-ul; GAHYYUR, S. Requirements',
+                'code' => 4
+            ],
+            [
+                'description' => 'SPENCER, Donna; WARFEL, Todd. Card',
+                'code' => 5
+            ],
         ]);
     }
 
@@ -142,6 +165,7 @@ Exemplo de um exercício de card sorting.
      */
     public function down()
     {
+        DB::delete('DELETE FROM entities_references WHERE entity_id IN (SELECT id FROM entities WHERE slug LIKE ?)', [str_slug('Técnicas de Elicitação de Requisitos Card sorting')]);
         DB::delete('DELETE FROM entities_values WHERE entity_id IN (SELECT id FROM entities WHERE slug LIKE ?)', [str_slug('Técnicas de Elicitação de Requisitos Card sorting')]);
         DB::delete('DELETE FROM entities WHERE slug LIKE ?', [str_slug('Técnicas de Elicitação de Requisitos Card sorting')]);
     }
@@ -157,6 +181,22 @@ Exemplo de um exercício de card sorting.
             DB::table('entities_values')->insert([
                 'entity_id' => $interviewId,
                 'value_id' => $facetValues->id,
+            ]);
+        }
+    }
+
+    private function references(int $interviewId, array $referencesWithValues)
+    {
+        foreach ($referencesWithValues as $reference) {
+            $getReference = DB::table('references')
+                ->select(['id'])
+                ->where('description', 'like', trim($reference['description'] . '%'))
+                ->first();
+
+            DB::table('entities_references')->insert([
+                'entity_id' => $interviewId,
+                'reference_id' => $getReference->id,
+                'code' => (int) $reference['code'],
             ]);
         }
     }

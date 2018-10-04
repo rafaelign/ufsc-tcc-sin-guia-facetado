@@ -85,12 +85,12 @@ Também é possível explorar outras formas de questões, tudo vai depender do p
             'updated_at'        => Carbon::now(),
         ]);
 
-        $interview = DB::table('entities')
+        $technique = DB::table('entities')
             ->select(['id'])
             ->where('slug', str_slug($RETechniqueClassification->title . ' Questionários'))
             ->first();
 
-        $this->values($interview->id, [
+        $this->values($technique->id, [
             'Categoria' => 'Tradicional',
             'Tipo de técnica' => 'Indireta',
             'Tipo de dado' => 'Quantitativo',
@@ -113,7 +113,7 @@ Também é possível explorar outras formas de questões, tudo vai depender do p
             'Tempo de processo' => 'Meio',
         ]);
 
-        $this->values($interview->id, [
+        $this->values($technique->id, [
             'Treinamento na técnica de elicitação' => 'Alto',
             'Experiência do elicitor' => 'Alto',
             'Experiência com técnicas de elicitação' => 'Baixo',
@@ -132,7 +132,7 @@ Também é possível explorar outras formas de questões, tudo vai depender do p
             'Tempo de processo' => 'Fim',
         ]);
 
-        $this->values($interview->id, [
+        $this->values($technique->id, [
             'Experiência com técnicas de elicitação' => 'Alto',
             'Pessoas por sessão' => 'Em massa',
             'Interesse do stakeholder' => 'Alto',
@@ -141,6 +141,41 @@ Também é possível explorar outras formas de questões, tudo vai depender do p
             'Tipo de informação a elicitar' => 'Estratégica',
             'Nível de informação disponível' => 'Superior',
             'Restrição de tempo do projeto' => 'Alto',
+        ]);
+
+        $this->references($technique->id, [
+            [
+                'description' => 'REHMAN, T. U., KHAN, M. N. A., and',
+                'code' => 1
+            ],
+            [
+                'description' => 'DRISCOLL, L. “Introduction to Primary Research',
+                'code' => 2
+            ],
+            [
+                'description' => 'YOUSUF, M.; ASGER, M. Comparison',
+                'code' => 3
+            ],
+            [
+                'description' => 'SHARMA, S.; PANDEY, S. Revisiting',
+                'code' => 4
+            ],
+            [
+                'description' => 'GUNDA, Sai Ganesh. "Requirements',
+                'code' => 5
+            ],
+            [
+                'description' => 'SOUZA, A. F. et al.Design Thinking',
+                'code' => 6
+            ],
+            [
+                'description' => 'HANINGTON, B., & MARTIN, B. (2012). Universal',
+                'code' => 7
+            ],
+            [
+                'description' => 'BARBOSA, S., & SILVA, B. (2010). Interação humano',
+                'code' => 8
+            ],
         ]);
     }
 
@@ -151,6 +186,7 @@ Também é possível explorar outras formas de questões, tudo vai depender do p
      */
     public function down()
     {
+        DB::delete('DELETE FROM entities_references WHERE entity_id IN (SELECT id FROM entities WHERE slug LIKE ?)', [str_slug('Técnicas de Elicitação de Requisitos Questionários')]);
         DB::delete('DELETE FROM entities_values WHERE entity_id IN (SELECT id FROM entities WHERE slug LIKE ?)', [str_slug('Técnicas de Elicitação de Requisitos Questionários')]);
         DB::delete('DELETE FROM entities WHERE slug LIKE ?', [str_slug('Técnicas de Elicitação de Requisitos Questionários')]);
     }
@@ -166,6 +202,22 @@ Também é possível explorar outras formas de questões, tudo vai depender do p
             DB::table('entities_values')->insert([
                 'entity_id' => $interviewId,
                 'value_id' => $facetValues->id,
+            ]);
+        }
+    }
+
+    private function references(int $interviewId, array $referencesWithValues)
+    {
+        foreach ($referencesWithValues as $reference) {
+            $getReference = DB::table('references')
+                ->select(['id'])
+                ->where('description', 'like', trim($reference['description'] . '%'))
+                ->first();
+
+            DB::table('entities_references')->insert([
+                'entity_id' => $interviewId,
+                'reference_id' => $getReference->id,
+                'code' => (int) $reference['code'],
             ]);
         }
     }

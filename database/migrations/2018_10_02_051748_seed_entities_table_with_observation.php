@@ -70,12 +70,12 @@ Este exemplo foi utilizado pelo autor para retratar uma técnica chamada etnogra
             'updated_at'        => Carbon::now(),
         ]);
 
-        $interview = DB::table('entities')
+        $technique = DB::table('entities')
             ->select(['id'])
             ->where('slug', str_slug($RETechniqueClassification->title . ' Observação direta'))
             ->first();
 
-        $this->values($interview->id, [
+        $this->values($technique->id, [
             'Categoria' => 'Cognitiva',
             'Fonte principal' => 'Observador',
             'Treinamento na técnica de elicitação' => 'Baixo',
@@ -95,15 +95,46 @@ Este exemplo foi utilizado pelo autor para retratar uma técnica chamada etnogra
             'Tempo de processo' => 'Início',
         ]);
 
-        $this->values($interview->id, [
+        $this->values($technique->id, [
             'Pessoas por sessão' => 'Grupo',
             'Especialidade' => 'Bem informado',
             'Nível de informação disponível' => 'Inferior',
             'Definição do problema' => 'Alto',
         ]);
 
-        $this->values($interview->id, [
+        $this->values($technique->id, [
             'Nível de informação disponível' => 'Superior',
+        ]);
+
+        $this->references($technique->id, [
+            [
+                'description' => 'YOUSEF, R.; ALMARABEH, T',
+                'code' => 1
+            ],
+            [
+                'description' => 'ABBASI, M. A. et al. Assessment of requirement',
+                'code' => 2
+            ],
+            [
+                'description' => 'YOUSUF, M.; ASGER, M. Comparison',
+                'code' => 3
+            ],
+            [
+                'description' => 'REHMAN, T. ur; KHAN, M. N. A.; RIAZ',
+                'code' => 4
+            ],
+            [
+                'description' => 'SHARMA, S.; PANDEY, S. R',
+                'code' => 5
+            ],
+            [
+                'description' => 'ARIF, Q. K. Shams-ul; GAHYYUR, S. Requirements',
+                'code' => 6
+            ],
+            [
+                'description' => 'SOUZA, A. F. et al.Design Thinking',
+                'code' => 7
+            ],
         ]);
     }
 
@@ -114,6 +145,7 @@ Este exemplo foi utilizado pelo autor para retratar uma técnica chamada etnogra
      */
     public function down()
     {
+        DB::delete('DELETE FROM entities_references WHERE entity_id IN (SELECT id FROM entities WHERE slug LIKE ?)', [str_slug('Técnicas de Elicitação de Requisitos Observação direta')]);
         DB::delete('DELETE FROM entities_values WHERE entity_id IN (SELECT id FROM entities WHERE slug LIKE ?)', [str_slug('Técnicas de Elicitação de Requisitos Observação direta')]);
         DB::delete('DELETE FROM entities WHERE slug LIKE ?', [str_slug('Técnicas de Elicitação de Requisitos Observação direta')]);
     }
@@ -129,6 +161,22 @@ Este exemplo foi utilizado pelo autor para retratar uma técnica chamada etnogra
             DB::table('entities_values')->insert([
                 'entity_id' => $interviewId,
                 'value_id' => $facetValues->id,
+            ]);
+        }
+    }
+
+    private function references(int $interviewId, array $referencesWithValues)
+    {
+        foreach ($referencesWithValues as $reference) {
+            $getReference = DB::table('references')
+                ->select(['id'])
+                ->where('description', 'like', trim($reference['description'] . '%'))
+                ->first();
+
+            DB::table('entities_references')->insert([
+                'entity_id' => $interviewId,
+                'reference_id' => $getReference->id,
+                'code' => (int) $reference['code'],
             ]);
         }
     }
