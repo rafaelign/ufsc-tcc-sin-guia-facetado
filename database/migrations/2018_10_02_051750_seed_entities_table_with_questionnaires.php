@@ -53,14 +53,14 @@ Também é possível explorar outras formas de questões, tudo vai depender do p
 
 ![Exemplo 3](/images/tecnicas-re/questionnaires-03.png)
 
-<sup>[11] [12] [14] [15] [30] [33] [34] [35]</sup>';
+<sup>[1] [2] [3] [4] [5] [6] [7] [8]</sup>';
 
         $pros = '- Grande número de pessoas alcançadas em pouco tempo.
 - Útil quando as mesmas perguntas devem ser feitas para todas pessoas.
 - É uma técnica barata.
 - Fácil de aplicar devido ao modelo das questões envolvidas, exemplo, múltipla escolha, verdadeiro ou falso, texto aberto, etc.
 
-<sup>[14]</sup>';
+<sup>[3]</sup>';
 
         $cons = '- Não é possível adquirir mais informações sobre o problema além do que está exposto no questionário.
 - Podem ser mal interpretados.
@@ -69,7 +69,7 @@ Também é possível explorar outras formas de questões, tudo vai depender do p
 - Perguntas ambíguas podem ser formuladas.
 - É utilizada para software de uso geral.
 
-<sup>[14]</sup>';
+<sup>[3]</sup>';
 
         DB::table('entities')->insert([
             'title'             => 'Questionários',
@@ -145,7 +145,7 @@ Também é possível explorar outras formas de questões, tudo vai depender do p
 
         $this->references($technique->id, [
             [
-                'description' => 'REHMAN, T. U., KHAN, M. N. A., and',
+                'description' => 'REHMAN, T. ur; KHAN, M. N. A.; RIAZ',
                 'code' => 1
             ],
             [

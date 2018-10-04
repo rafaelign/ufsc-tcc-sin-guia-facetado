@@ -37,7 +37,7 @@ Este exemplo foi utilizado pelo autor para retratar uma técnica chamada etnogra
 
 > Sara é analista de sistemas e seu gerente lhe passou um problema de um cliente que tem como objetivo desenvolver um sistema de fila eletrônica de uma clínica médica. Atualmente, o agendamento de consultas é realizado por telefone ou pessoalmente. Essas informações são armazenadas em uma planilha eletrônica. Sara e mais um membro de sua equipe **foram ao local** durante dois dias úteis não seguidos. Um dia era o que, segundo a atendente, era o mais movimentado e o outro dia, menos movimentado. Sara e o membro de sua equipe ficaram por esses dois dias na clínica durante o horário comercial. Eles **registraram informações referentes a, por exemplo, quantidade de pacientes em espera, quais eram pacientes do grupo especial (gestantes, idosos e deficientes) e tempo de consulta para cada atendimento realizado pelos médicos da clínica**. Eventualmente, Sara selecionava alguns pacientes para fazer uma **pequena entrevista** sobre a clínica e o seu atendimento. Passados os dias de **observação em campo**, Sara e o membro de sua equipe **reuniram informações a partir dos dados que eles registraram e das entrevistas realizadas** por Sara para definição dos requisitos do sistema.
 
-<sup>[4] [9] [14] [19] [20] [33]</sup>';
+<sup>[1] [2] [3] [4] [5] [7]</sup>';
 
         $pros = '- Confiável por ser uma levantamento feito pelo próprio analista.
 - Pode ser útil para validar requisitos levantados por outros métodos.
@@ -45,7 +45,7 @@ Este exemplo foi utilizado pelo autor para retratar uma técnica chamada etnogra
 - Dá uma ideia de como os usuários interagem com o sistema.
 - Ajuda a mensurar quão particular as tarefas são para a empresa.
 
-<sup>[14]</sup>';
+<sup>[4]</sup>';
 
         $cons = '- É necessário fazer múltiplas sessões para cobrir todos requisitos.
 - Os usuários podem se comportar com indiferença quando interrompidos para responder perguntas em uma observação direta.
@@ -54,7 +54,7 @@ Este exemplo foi utilizado pelo autor para retratar uma técnica chamada etnogra
 - Difícil de elicitar requisitos se envolver trabalho intelectual ou se for algo difícil de observar.
 - As viagens pode elevar o custo da técnica.
 
-<sup>[4] [14] [21]</sup>';
+<sup>[1] [4] [6]</sup>';
 
         DB::table('entities')->insert([
             'title'             => 'Observação direta',
@@ -116,11 +116,11 @@ Este exemplo foi utilizado pelo autor para retratar uma técnica chamada etnogra
                 'code' => 2
             ],
             [
-                'description' => 'YOUSUF, M.; ASGER, M. Comparison',
+                'description' => 'REHMAN, T. ur; KHAN, M. N. A.; RIAZ',
                 'code' => 3
             ],
             [
-                'description' => 'REHMAN, T. ur; KHAN, M. N. A.; RIAZ',
+                'description' => 'YOUSUF, M.; ASGER, M. Comparison',
                 'code' => 4
             ],
             [

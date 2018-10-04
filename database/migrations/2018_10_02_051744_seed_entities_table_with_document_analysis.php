@@ -26,7 +26,7 @@ class SeedEntitiesTableWithDocumentAnalysis extends Migration
 
         $description = 'Método comum que consiste em ler e estudar a documentação disponível para o conteúdo que é relevante e útil nas tarefas de levantamento de requisitos. Ela pode ser usada no início do processo de elicitação de requisitos. A informação coletada pode variar conforme a quantidade de documentos disponíveis ou de interações com as pessoas envolvidas. Esta técnica é adequada para sistemas que serão substituídos ou melhorados.
 
-<sup>[3] [14]</sup>';
+<sup>[1] [2]</sup>';
 
         $pros = '- Útil quando os stakeholders o usuários não estão disponíveis.
 - Ajuda o analista a obter uma compreensão da organização antes de atender os stakeholders.
@@ -35,13 +35,13 @@ class SeedEntitiesTableWithDocumentAnalysis extends Migration
 - Pode ser usada para reutilização de requisitos.
 - É uma técnica de baixo custo.
 
-<sup>[14]</sup>';
+<sup>[2]</sup>';
 
         $cons = '- Demora para encontrar informações se a quantidade de documentações é alta.
 - Às vezes os documentos podem estar desatualizados ou incompletas, muitas vezes invalidando a informação.
 - A atualização periódica dos documentos é obrigatória.
 
-<sup>[14]</sup>';
+<sup>[2]</sup>';
 
         DB::table('entities')->insert([
             'title'             => 'Análise de documentos',

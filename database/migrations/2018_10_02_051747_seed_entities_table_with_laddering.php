@@ -57,21 +57,21 @@ Estes passos formam níveis de pergunta e respostas, criando uma hierarquia entr
 
 ![Formação da escada de requisitos](/images/tecnicas-re/laddering-01.png)
 
-<sup>[3] [14] [15] [19] [40]</sup>';
+<sup>[1] [2] [3] [4] [6]</sup>';
 
         $pros = '- Fácil de entender os requisitos devido a natureza hierárquica.
 - O reuso de requisitos diminui o tempo e o custo.
 - Não é muito adequada para o desenvolvimento de novos sistemas.
 - Esta técnica fornece o contato próximo com os stakeholders, possibilitando a identificação das prioridades.
 
-<sup>[14] [21]</sup>';
+<sup>[3] [5]</sup>';
 
         $cons = '- A estrutura hierárquica torna difícil a tarefa de inclusão ou exclusão de requisitos de usuários.
 - A técnica se torna complexa a medida que o número de requisitos aumenta.
 - Requer uma opinião de especialista ou dados iniciais para elicitar os requisitos.
 - É uma técnica muito longa e cansativa.
 
-<sup>[14]</sup>';
+<sup>[3]</sup>';
 
         DB::table('entities')->insert([
             'title'             => 'Laddering',
@@ -143,15 +143,15 @@ Estes passos formam níveis de pergunta e respostas, criando uma hierarquia entr
                 'code' => 1
             ],
             [
-                'description' => 'YOUSUF, M.; ASGER, M. Comparison',
+                'description' => 'REHMAN, T. ur; KHAN, M. N. A.; RIAZ',
                 'code' => 2
             ],
             [
-                'description' => 'SHARMA, S.; PANDEY, S. Revisiting',
+                'description' => 'YOUSUF, M.; ASGER, M. Comparison',
                 'code' => 3
             ],
             [
-                'description' => 'REHMAN, T. ur; KHAN, M. N. A.; RIAZ',
+                'description' => 'SHARMA, S.; PANDEY, S. Revisiting',
                 'code' => 4
             ],
             [

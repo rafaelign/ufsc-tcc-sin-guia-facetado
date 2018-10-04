@@ -40,21 +40,23 @@ Como exemplo de um cenário de texto simples, considere como o cenário a seguir
 
 ![Exemplo da aplicação da técnica cenário](/images/tecnicas-re/scenarios-01.png)
 
-<sup>[14] [19] [29]</sup>';
+<sup>[1] [2] [4]</sup>';
 
-        $pros = '- Fácil de entender os requisitos devido a natureza hierárquica.
-- O reuso de requisitos diminui o tempo e o custo.
-- Não é muito adequada para o desenvolvimento de novos sistemas.
-- Esta técnica fornece o contato próximo com os stakeholders, possibilitando a identificação das prioridades.
+        $pros = '- Um cenário bem desenvolvido ajuda a organização a serem pró-ativas e trabalharem especificamente para o produto desejado.
+- Fornece um bom entendimento sobre a atividade ou evento no fluxo normal, exceções ou caminhos alternativos.
+- Pessoas sem conhecimento técnico conseguem compreender.
+- Fácil de entender, pois nenhuma linguagem especial é usada para escrever.
+- Garante que o sistema seja desenvolvido corretamente, pois a perspectiva do usuário é considerada desde a elicitação de requisitos.
 
-<sup>[14] [21]</sup>';
 
-        $cons = '- A estrutura hierárquica torna difícil a tarefa de inclusão ou exclusão de requisitos de usuários.
-- A técnica se torna complexa a medida que o número de requisitos aumenta.
-- Requer uma opinião de especialista ou dados iniciais para elicitar os requisitos.
-- É uma técnica muito longa e cansativa.
+<sup>[2]</sup>';
 
-<sup>[14]</sup>';
+        $cons = '- É difícil desenhar cenários úteis.
+- Não é adequado para todos tipos de projetos.
+- Não cobre todos os processos, ou seja, não fornece uma visão completa do futuro do sistema.
+- Se desatualizam rápido. As interfaces dos usuários normalmente sofrem alterações com o tempo, tornando necessária a manutenção dos cenários criados.
+
+<sup>[2] [3]</sup>';
 
         DB::table('entities')->insert([
             'title'             => 'Cenários',
@@ -113,11 +115,11 @@ Como exemplo de um cenário de texto simples, considere como o cenário a seguir
 
         $this->references($technique->id, [
             [
-                'description' => 'YOUSUF, M.; ASGER, M. Comparison',
+                'description' => 'REHMAN, T. ur; KHAN, M. N. A.; RIAZ, N',
                 'code' => 1
             ],
             [
-                'description' => 'REHMAN, T. ur; KHAN, M. N. A.; RIAZ, N',
+                'description' => 'YOUSUF, M.; ASGER, M. Comparison',
                 'code' => 2
             ],
             [

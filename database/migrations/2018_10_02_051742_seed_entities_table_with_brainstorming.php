@@ -50,7 +50,7 @@ Um exemplo de uma sessão de Brainstorming seria a seguinte:
 - As ideias são produzidas em um mapa mental
 - Cada ideia é pontuada e avaliada pelos integrantes da sessão
 
-<sup>[9] [13] [14] [21] [31] [33]</sup>';
+<sup>[1] [4] [7] [2] [6] [5]</sup>';
 
         $pros = '- Os custos são muito baixos e não são necessários muitos recursos.
 - Todo participante é ativo no processo e não precisa ser altamente qualificado.
@@ -59,7 +59,7 @@ Um exemplo de uma sessão de Brainstorming seria a seguinte:
 - Ajuda na resolução de conflitos.
 - Todos participantes têm permissão de falar e compartilhar suas ideias igualmente.
 
-<sup>[14]</sup>';
+<sup>[7]</sup>';
 
         $cons = '- Não é adequado para resolver problemas importantes.
 - Se não for devidamente organizada pode consumir muito tempo.
@@ -67,7 +67,7 @@ Um exemplo de uma sessão de Brainstorming seria a seguinte:
 - Pode levar a repetição de ideias caso os participantes não estiverem prestando a devida atenção.
 - Algumas pessoas podem ter medo de compartilhar suas ideias por causa da natureza extrovertida das discussões ou quando são criticadas.
 
-<sup>[14] [28]</sup>';
+<sup>[7] [3]</sup>';
 
         DB::table('entities')->insert([
             'title'             => 'Brainstorming',
@@ -132,19 +132,19 @@ Um exemplo de uma sessão de Brainstorming seria a seguinte:
                 'code' => 1
             ],
             [
-                'description' => 'POHL, Klaus. Requirements engineering',
+                'description' => 'ARIF, Q. K. Shams-ul; GAHYYUR, S',
                 'code' => 2
             ],
             [
-                'description' => 'YOUSUF, M.; ASGER, M. Comparison',
+                'description' => 'MULLA, N. Comparison of various',
                 'code' => 3
             ],
             [
-                'description' => 'ARIF, Q. K. Shams-ul; GAHYYUR, S',
+                'description' => 'POHL, Klaus. Requirements engineering',
                 'code' => 4
             ],
             [
-                'description' => 'MULLA, N. Comparison of various',
+                'description' => 'SOUZA, A. F. et al.Design Thinking Assistant',
                 'code' => 5
             ],
             [
@@ -152,7 +152,7 @@ Um exemplo de uma sessão de Brainstorming seria a seguinte:
                 'code' => 6
             ],
             [
-                'description' => 'SOUZA, A. F. et al.Design Thinking Assistant',
+                'description' => 'YOUSUF, M.; ASGER, M. Comparison',
                 'code' => 7
             ],
         ]);

@@ -54,7 +54,7 @@ Exemplo da análise estatística PCA.
 
 ![Exemplo de análise PCA](/images/tecnicas-re/repertory-grids-03.png)
 
-<sup>[14] [41]</sup>';
+<sup>[2] [3]</sup>';
 
         $pros = '- Separa as diferenças e semelhanças entre elementos que não eram conhecidos pelos especialistas.
 - Minimiza o viés do especialista enquanto ele desenvolve compreensão do domínio a partir da perspectiva do usuário.
@@ -63,13 +63,13 @@ Exemplo da análise estatística PCA.
 - Facilita a análise quantitativa e qualitativa.
 - Fácil de administrar.
 
-<sup>[14] [19] [21] [41]</sup>';
+<sup>[1] [2] [3] [4]</sup>';
 
         $cons = '- É necessário muito esforço por parte dos analistas e especialistas.
 - É uma técnica demorada e sua execução pode ser monótona.
 - São um pouco limitadas em sua capacidade de expressar características específicas de requisitos complexos.
 
-<sup>[14] [21] [41]</sup>';
+<sup>[2] [3] [4]</sup>';
 
         DB::table('entities')->insert([
             'title'             => 'Repertory grids',
@@ -139,11 +139,11 @@ Exemplo da análise estatística PCA.
 
         $this->references($technique->id, [
             [
-                'description' => 'YOUSUF, M.; ASGER, M. Comparison',
+                'description' => 'REHMAN, T. ur; KHAN, M. N. A.; RIAZ',
                 'code' => 1
             ],
             [
-                'description' => 'REHMAN, T. ur; KHAN, M. N. A.; RIAZ, N',
+                'description' => 'YOUSUF, M.; ASGER, M. Comparison',
                 'code' => 2
             ],
             [

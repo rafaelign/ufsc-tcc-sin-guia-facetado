@@ -67,7 +67,8 @@ Para a modalidade de entrevista fechada, a preparação contempla a criação de
 - Como você poderia resolvê-lo?
 
 Ao final é interessante validar as respostas dadas pelo stakeholder.
-<sup>[1] [4] [5] [14] [15] [16]</sup>';
+
+<sup>[1] [4] [5] [8] [9] [10]</sup>';
 
         $pros = '- Fácil extrair os detalhes fazendo perguntas de acompanhamento.
 - Identifica sentimentos e objetivos de diferentes indivíduos.
@@ -79,7 +80,8 @@ Ao final é interessante validar as respostas dadas pelo stakeholder.
 - Fornece uma visão geral de todo o sistema.
 - Coleta de informações que podem formar uma pesquisa ou outra atividade.
 - Mais eficaz do que as outras técnicas na maioria dos casos, mesmo não sendo sempre a mais eficiente.
-<sup>[3] [14] [21] [25]</sup>';
+
+<sup>[3] [8] [11] [12]</sup>';
 
         $cons = '- Podem dar a falsa impressão de coleta de informação dos stakeholders dependendo da abordagem feita pelo analista ao fazer os questionamentos. Esta característica está relacionada com as limitações impostas pela linha de questionamento do entrevistador.
 - Podem captar somente parte das práticas de trabalho que foram expostas pelos stakeholders.
@@ -92,7 +94,8 @@ Ao final é interessante validar as respostas dadas pelo stakeholder.
 - As informações não podem ser coletadas de muitas pessoas geralmente, pois aumenta o custo do processo.
 - São trabalhosas e demoradas.
 - Algumas vezes é necessário esclarecer alguma informação e os participantes podem não lembrar das informações coletadas anteriormente.
-<sup>[1] [2] [3] [6] [7] [14]</sup>';
+
+<sup>[1] [2] [3] [6] [7] [8]</sup>';
 
         DB::table('entities')->insert([
             'title'             => 'Entrevista',

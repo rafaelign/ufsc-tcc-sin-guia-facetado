@@ -48,7 +48,7 @@ Na **análise dos resultados** as definições dos participantes são combinadas
 
 Exemplo de um exercício de card sorting.
 
-<sup>[3] [9] [14] [19] [36]</sup>';
+<sup>[1] [2] [4] [3] [6]</sup>';
 
         $pros = '- É uma técnica rápida e barata.
 - É acessível para participantes que estão distante através da internet.
@@ -58,7 +58,7 @@ Exemplo de um exercício de card sorting.
 - Envolve dados reais inseridos pelos usuários.
 - Cria informações estruturadas para alimentar o processo.
 
-<sup>[14]</sup>';
+<sup>[4]</sup>';
 
         $cons = '- Não é adaptada para arquiteturas complexas, grandes e heterogêneas.
 - Envolve resultados variados.
@@ -69,7 +69,7 @@ Exemplo de um exercício de card sorting.
 - O trabalho em grupo é muito eficaz do que o card sorting, pois não precisa de um conhecimento tão profundo sobre o domínio.
 - Cartões complexos podem confundir um stakeholder iniciante.
 
-<sup>[14] [21]</sup>';
+<sup>[4] [5]</sup>';
 
         DB::table('entities')->insert([
             'title'             => 'Card sorting',
@@ -144,16 +144,20 @@ Exemplo de um exercício de card sorting.
                 'code' => 2
             ],
             [
-                'description' => 'YOUSUF, M.; ASGER, M. Comparison',
+                'description' => 'REHMAN, T. ur; KHAN, M. N. A.; RIAZ',
                 'code' => 3
             ],
             [
-                'description' => 'ARIF, Q. K. Shams-ul; GAHYYUR, S. Requirements',
+                'description' => 'YOUSUF, M.; ASGER, M. Comparison',
                 'code' => 4
             ],
             [
-                'description' => 'SPENCER, Donna; WARFEL, Todd. Card',
+                'description' => 'ARIF, Q. K. Shams-ul; GAHYYUR, S. Requirements',
                 'code' => 5
+            ],
+            [
+                'description' => 'SPENCER, Donna; WARFEL, Todd. Card',
+                'code' => 6
             ],
         ]);
     }

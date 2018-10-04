@@ -32,7 +32,7 @@ Através de uma análise de protocolo, informações sobre o processo são docum
 
 ![Exemplo de uma coleta de informações em um processo de análise de protocolo](/images/tecnicas-re/protocol-analysis-01.png)
 
-<sup>[3] [10] [14] [39]</sup>';
+<sup>[1] [2] [4] [6]</sup>';
 
         $pros = '- Fácil de implementar.
 - Baixo custo, não é necessário ter um equipamento especial.
@@ -41,7 +41,7 @@ Através de uma análise de protocolo, informações sobre o processo são docum
 - Fornece uma ideia sobre como os usuários percebem a solução e o problema, ou seja, como o sistema deve funcionar na vida real.
 - Verbalização direta das atividades inseridas em um determinado contexto de trabalho.
 
-<sup>[14] [15]</sup>';
+<sup>[4] [5]</sup>';
 
         $cons = '- Não é adaptado para projetos que possuem cronograma apertado, pois é um processo demorado.
 - Tem que acionar o usuário a todo tempo para esclarecer sobre suas ações, decisões e para manter ele falando.
@@ -49,7 +49,7 @@ Através de uma análise de protocolo, informações sobre o processo são docum
 - Não é muito confiável, pois a interpretação depende da introspecção do usuário.
 - Incapaz de representar completamente os processos reais.
 
-<sup>[14] [15] [19]</sup>';
+<sup>[3] [4] [5]</sup>';
 
         DB::table('entities')->insert([
             'title'             => 'Análise de protocolo',
@@ -116,15 +116,15 @@ Através de uma análise de protocolo, informações sobre o processo são docum
                 'code' => 2
             ],
             [
-                'description' => 'YOUSUF, M.; ASGER, M. Comparison',
+                'description' => 'REHMAN, T. ur; KHAN, M. N. A.; RIAZ',
                 'code' => 3
             ],
             [
-                'description' => 'SHARMA, S.; PANDEY, S. Revisiting',
+                'description' => 'YOUSUF, M.; ASGER, M. Comparison',
                 'code' => 4
             ],
             [
-                'description' => 'REHMAN, T. ur; KHAN, M. N. A.; RIAZ',
+                'description' => 'SHARMA, S.; PANDEY, S. Revisiting',
                 'code' => 5
             ],
             [

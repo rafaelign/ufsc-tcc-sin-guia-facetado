@@ -89,7 +89,7 @@ Através desta sessão a equipe define determinados requisitos que são relevant
 
 ![Exemplo JAD](/images/tecnicas-re/jad-01.png)
 
-<sup>[8] [14] [15] [26] [28] [37] [38]</sup>';
+<sup>[2] [3] [4] [6] [7] [8] [9]</sup>';
 
         $pros = '- Diminui o tempo e o custo do processo de elicitação de requisitos.
 - Acelera o projeto do sistema.
@@ -101,7 +101,7 @@ Através desta sessão a equipe define determinados requisitos que são relevant
 - Fornece uma abordagem estruturada bem formatada.
 - Promove mudanças rápidas nos requisitos.
 
-<sup>[14] [21]</sup>';
+<sup>[3] [5]</sup>';
 
         $cons = '- Se não for devidamente planejada ou se muitos stakeholders estiverem envolvidos, pode resultar em um desperdício de tempo e recursos.
 - Requer facilitadores treinados.
@@ -110,7 +110,7 @@ Através desta sessão a equipe define determinados requisitos que são relevant
 - Requer uma equipe com enorme experiência e especialização no domínio do problema.
 - Se a quantidade de sessões é alta, os usuários tendem a inferir que o desenvolvedor está transferindo a responsabilidade do projeto para eles.
 
-<sup>[4] [14] [21] [26]</sup>';
+<sup>[1] [3] [5] [6]</sup>';
 
         DB::table('entities')->insert([
             'title'             => 'JAD',
@@ -172,32 +172,36 @@ Através desta sessão a equipe define determinados requisitos que são relevant
                 'code' => 1
             ],
             [
-                'description' => 'YOUSUF, M.; ASGER, M. Comparison',
+                'description' => 'KHAN, K. et al. Requirement development',
                 'code' => 2
             ],
             [
-                'description' => 'SHARMA, S.; PANDEY, S. Revisiting requirements',
+                'description' => 'YOUSUF, M.; ASGER, M. Comparison',
                 'code' => 3
             ],
             [
-                'description' => 'ARIF, Q. K. Shams-ul; GAHYYUR, S. Requirements',
+                'description' => 'SHARMA, S.; PANDEY, S. Revisiting requirements',
                 'code' => 4
             ],
             [
-                'description' => 'SADIQ, M.; GHAFIR, S.; SHAHID, M. An',
+                'description' => 'ARIF, Q. K. Shams-ul; GAHYYUR, S. Requirements',
                 'code' => 5
             ],
             [
-                'description' => 'MULLA, N. Comparison of various elicitation',
+                'description' => 'SADIQ, M.; GHAFIR, S.; SHAHID, M. An',
                 'code' => 6
             ],
             [
-                'description' => 'MEAD, Nancy. Requirements Elicitation Case',
+                'description' => 'MULLA, N. Comparison of various elicitation',
                 'code' => 7
             ],
             [
-                'description' => 'DUGGAN, E.W. & THACHENKARY, C.S. Information',
+                'description' => 'MEAD, Nancy. Requirements Elicitation Case',
                 'code' => 8
+            ],
+            [
+                'description' => 'DUGGAN, E.W. & THACHENKARY, C.S. Information',
+                'code' => 9
             ],
         ]);
     }

@@ -51,7 +51,7 @@ Quanto aos tipos de protótipos, para elicitação de requisitos podemos citar:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/wEw7zaLCi8s" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-<sup>[9] [5] [8] [4] [14] [15] [22] [23] [32] [33]</sup>';
+<sup>[2] [3] [4] [5] [6] [7] [10] [11] [14] [15]</sup>';
 
         $pros = '- Envolvimento do usuário durante o processo de desenvolvimento.
 - Permite o feedback antecipado do usuário para o refinamento de requisitos.
@@ -61,7 +61,8 @@ Quanto aos tipos de protótipos, para elicitação de requisitos podemos citar:
 - Podem demonstrar o progresso desde o estágio inicial de desenvolvimento.
 - Acrescenta qualidade e comunicação entre os analistas e usuários.
 - Resulta em um alto nível de satisfação de usuário.
-<sup>[14] [18] [24] [30]</sup>';
+
+<sup>[6] [9] [12] [13]</sup>';
 
         $cons = '- Pode elevar a expectativa dos usuários, influenciando negativamente na recepção do produto final, criando uma resistência às mudanças efetuadas até a versão final.
 - Quando um protótipo não é descartado, ou seja, é usado para dar segmento ao desenvolvimento do produto, ele pode acabar gerando um software que dificulta a manutenção.
@@ -69,7 +70,8 @@ Quanto aos tipos de protótipos, para elicitação de requisitos podemos citar:
 - Pode ser demorado para sistemas complexos.
 - O desenvolvimento de múltiplos protótipos de alta fidelidade pode se tornar caro.
 - Às vezes leva a documentação incompleta.
-<sup>[1] [14] [17] [24]</sup>';
+
+<sup>[1] [6] [8] [12]</sup>';
 
         DB::table('entities')->insert([
             'title'             => 'Prototipação',

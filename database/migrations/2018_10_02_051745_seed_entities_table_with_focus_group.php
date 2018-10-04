@@ -39,7 +39,7 @@ A equipe de marketing de uma organização que lida com laptops aspira a entende
 
 A equipe decide nomear um grupo de oito pessoas que representam seu mercado-alvo para se reunir para uma discussão construtiva. Eles também recebem um facilitador experiente a bordo para esse processo, que supervisionará toda a conversa e estabelecerá inferências concretas. São feitas perguntas sobre as preferências dos participantes, vantagens do laptop sobre os concorrentes de mercado, faixa de preço projetada e outros aspectos cruciais.
 
-<sup>[1] [4]</sup>';
+<sup>[1] [2]</sup>';
 
         $pros = '- Ao afastar dos foco individuais, as entrevistas em grupo exploram os problemas de maneira mais ampla e promovem o surgimento de novas questões.
 - Tende a dar mais suporte ao modo natural de interação entre os participantes.
@@ -47,14 +47,14 @@ A equipe decide nomear um grupo de oito pessoas que representam seu mercado-alvo
 - Economiza custo em comparação à realização de entrevistas com o mesmo número de pessoas.
 - Eficaz para entender o comportamento, experiências e desejos das pessoas.
 
-<sup>[1] [14]</sup>';
+<sup>[1] [3]</sup>';
 
         $cons = '- É preciso muito esforço para reunir todos stakeholders ao mesmo tempo, devido à agenda ocupada e aos aspectos políticos.
 - Os participantes podem ter problemas relacionados à confiança e hesitar ao discutir assuntos críticos ou sensíveis.
 - Os membros podem ser influenciados por pessoas mais dominantes na reunião, levando a resultados tendenciosos.
 - Se o grupo selecionado for muito parecido pode não representar completamente os requisitos.
 
-<sup>[4] [14]</sup>';
+<sup>[2] [3]</sup>';
 
         DB::table('entities')->insert([
             'title'             => 'Entrevista em grupo',
