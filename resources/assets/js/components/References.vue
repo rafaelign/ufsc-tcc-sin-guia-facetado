@@ -24,3 +24,7 @@
         </ul>
     </section>
 </template>
+
+<style type="text/css">
+    ul li { list-style: none; }
+</style>

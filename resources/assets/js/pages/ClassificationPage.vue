@@ -65,7 +65,7 @@
 
                 <div class="row content">
                     <div class="columns is-multiline">
-                        <div class="column is-4 is-6-tablet is-12-mobile" v-for="entity in entities">
+                        <div class="column is-4 is-6-tablet is-12-mobile" v-for="entity in entities.slice(0, 4)">
                             <card :title="entity.title"
                                   :content="entity.short_description"
                                   :action="'/app/classificacoes/' + $route.params.classification + '/entidades/' + entity.slug"></card>
