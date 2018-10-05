@@ -38,7 +38,7 @@ class SeedEntitiesTableWithDocumentAnalysis extends Migration
 <sup>[2]</sup>';
 
         $cons = '- Demora para encontrar informações se a quantidade de documentações é alta.
-- Às vezes os documentos podem estar desatualizados ou incompletas, muitas vezes invalidando a informação.
+- Às vezes os documentos podem estar desatualizados ou incompletos, com chances de invalidar a informação.
 - A atualização periódica dos documentos é obrigatória.
 
 <sup>[2]</sup>';

@@ -24,7 +24,7 @@ class SeedEntitiesTableWithQuestionnaires extends Migration
             ->where('slug', str_slug('Técnicas de Elicitação de Requisitos'))
             ->first();
 
-        $description = 'Os questionários são usados principalmente como uma ferramenta simples, que contém perguntas abertas e/ou fechadas durante a fase inicial da elicitação de requisitos. Servem para coletar o máximo de requisitos de diferentes pessoas que podem estar em lugares distintos. São baratas e tem o objetivo de coletar informações de uma grande população. Em situações onde entrevistas não são possíveis, seja presencialmente ou online, o questionário é utilizado. É necessário planejar com a devida atenção aos detalhes para garantir o sucesso da execução. É muito importante mencionar o prazo em que o questionário deve ser devolvido. Para manter a neutralidade das questões e ao mesmo que se obtém uma indicação da força das respostas às questões da escala de Likert são recomendadas.
+        $description = 'Os questionários são usados principalmente como uma ferramenta simples, que contém perguntas abertas e/ou fechadas durante a fase inicial da elicitação de requisitos. Servem para coletar o máximo de requisitos possíveis de diferentes pessoas que podem estar em lugares distintos. São baratas e tem o objetivo de coletar informações de uma grande população. Em situações onde entrevistas não são possíveis, seja presencialmente ou online, o questionário é utilizado. É necessário planejar com a devida atenção aos detalhes para garantir o sucesso da execução. É muito importante mencionar o prazo em que o questionário deve ser devolvido. Para manter a neutralidade das questões e diferenciar os pesos das respostas é recomendado o uso da escala Likert.
 
 Os passos para o planejamento de um questionário são os seguintes:
 
@@ -33,11 +33,11 @@ Os passos para o planejamento de um questionário são os seguintes:
 - Preparação e desenvolvimento do questionário.
 - Coletar e analisar os resultados.
 
-Para a execução, geralmente são encontrados:
+Quanto aos passos de preparação do questionário:
 
-- As questões deve ser bem organizadas.
+- As questões devem ser bem organizadas.
 - As questões devem ser ordenadas do domínio conhecido para o desconhecido.
-- Tenta usar as questões fechadas no início.
+- Se possível, utilizar as questões fechadas no início.
 - As questões relevantes devem ser priorizadas e devem estar no início do questionário.
 - Evitar que perguntas pessoais ou íntimas ocorram no início.
 

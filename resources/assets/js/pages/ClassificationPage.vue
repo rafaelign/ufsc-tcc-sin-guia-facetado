@@ -75,7 +75,7 @@
 
                 <div class="row content has-text-centered" v-if="entities.length > 3">
                     <router-link :to="{ path: '/app/classificacoes/' + $route.params.classification + '/entidades' }" class="is-medium">
-                        <b-icon icon="link" size="is-small"></b-icon> <span>Ver todos</span>
+                        <b-icon icon="plus" size="is-small"></b-icon> <span>Visualizar {{ this.classification.classification_type }}</span>
                     </router-link>
                 </div>
             </div>

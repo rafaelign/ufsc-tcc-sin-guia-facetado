@@ -18,7 +18,7 @@ class ClassificationController extends Controller
     {
         if ($request->ajax()) {
             return response()->json(Classification::where('published', 1)
-                ->get(['title', 'slug'])
+                ->get(['title', 'slug', 'classification_type', 'main_menu'])
             );
         }
 

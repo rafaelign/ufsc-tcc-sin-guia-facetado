@@ -18,9 +18,11 @@ class Entity extends Model
         'description',
         'pros',
         'cons',
-        'additional_data',
+        'images',
         'published',
     ];
+
+    protected $appends = ['images_array'];
 
     public function values()
     {
@@ -40,5 +42,13 @@ class Entity extends Model
     public function references()
     {
         return $this->belongsToMany(Reference::class, 'entities_references', 'entity_id');
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getImagesArrayAttribute()
+    {
+        return !is_null($this->images) ? json_decode($this->images) : null;
     }
 }

@@ -8,6 +8,7 @@ import VueMarkdown from 'vue-markdown'
 import VueLoading from 'vue-loading-overlay'
 import Sidebar from './components/Sidebar'
 import Buefy from 'buefy'
+import Lightbox from 'vue-pure-lightbox'
 
 import { routes } from './utils/routes';
 
@@ -16,6 +17,7 @@ Vue.use(VueRouter);
 Vue.use(Buefy);
 Vue.use(VueMarkdown);
 Vue.use(VueLoading);
+Vue.use(Lightbox);
 
 const router = new VueRouter({
     mode: 'history',

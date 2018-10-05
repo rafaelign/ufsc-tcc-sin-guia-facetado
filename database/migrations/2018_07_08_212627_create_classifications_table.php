@@ -18,6 +18,8 @@ class CreateClassificationsTable extends Migration
             $table->string('title', 50);
             $table->string('slug', 50)->unique();
             $table->longText('description');
+            $table->string('classification_type');
+            $table->string('main_menu');
             $table->tinyInteger('published')->default(0);
             $table->timestamps();
         });

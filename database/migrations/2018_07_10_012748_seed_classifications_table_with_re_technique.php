@@ -17,7 +17,9 @@ class SeedClassificationsTableWithReTechnique extends Migration
         DB::table('classifications')->insert([
             'title' => 'Técnicas de Elicitação de Requisitos',
             'slug' => str_slug('Técnicas de Elicitação de Requisitos'),
-            'description' => 'Conteúdo da página associada a coleção de técnicas de elicitação de requisitos.',
+            'description' => 'São técnicas utilizadas para elicitar requisitos de um produto ou serviço de software. Em outras palavras, são maneiras de extrair as necessidades do cliente para resolução de determinado problema por meio do software. Alguns exemplos são:',
+            'classification_type' => 'Técnicas',
+            'main_menu' => 'Técnicas',
             'published' => 1,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),

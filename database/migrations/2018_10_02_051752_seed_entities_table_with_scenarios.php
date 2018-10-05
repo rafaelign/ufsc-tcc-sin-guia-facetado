@@ -36,9 +36,7 @@ Em sua forma mais geral, um cenário pode incluir:
 
 ## Exemplo
 
-Como exemplo de um cenário de texto simples, considere como o cenário a seguir onde retrata a situação em que um sistema pode ser usado para introduzir dados de um novo paciente.
-
-![Exemplo da aplicação da técnica cenário](/images/tecnicas-re/scenarios-01.png)
+Como exemplo de um cenário de texto simples apresentado na **figura 1**, ele retrata a situação em que um sistema pode ser usado para introduzir dados de um novo paciente.
 
 <sup>[1] [2] [4]</sup>';
 
@@ -65,6 +63,7 @@ Como exemplo de um cenário de texto simples, considere como o cenário a seguir
             'description'       => $description,
             'pros'              => $pros,
             'cons'              => $cons,
+            'images'            => '[{"src": "/images/tecnicas-re/scenarios-01.png", "title": "Figura 1 - Exemplo de aplicação da técnica Cenários"}]',
             'classification_id' => $RETechniqueClassification->id,
             'user_id'           => $user->id,
             'published'         => 1,

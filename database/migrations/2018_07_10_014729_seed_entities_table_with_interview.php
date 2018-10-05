@@ -27,8 +27,8 @@ class SeedEntitiesTableWithInterview extends Migration
         $description = 'É conhecida por ser a mais comum das técnicas de elicitação de requisitos. As entrevistas geralmente envolvem discussões individuais de um representante da equipe com o stakeholder do novo sistema. Devido à capacidade desta técnica para obter conhecimento profundo, é considerada como técnica importante para obter e validar os requisitos de software. É um método verbal, considerado fácil e efetivo para compartilhar ideias e expressar necessidades entre os analistas e os stakeholders. Através de uma conversa, são feitas perguntas e são documentados os fatores que podem estar associados aos requisitos. 
 
 As principais características dos Analistas são:
-- Estar abertos a novas ideias, evitam ideias preconcebidas sobre os requisitos e estão dispostos a ouvir os stakeholders, mesmo que o stakeholder apresente requisitos-surpresa, eles estão dispostos a mudar de ideia sobre o sistema.
-- Eles estimulam o entrevistado a participar de discussões com uma questão-trampolim, uma proposta de requisitos ou trabalhando em conjunto em um protótipo do sistema. É improvável que dizer às pessoas "diga-me o que quiser" resulte em informações úteis. É muito mais fácil falar em um contexto definido do que em termos gerais.
+- Estar abertos a novas ideias, evitar ideias preconcebidas sobre os requisitos e estar dispostos a ouvir os stakeholders, mesmo que o stakeholder apresente requisitos-surpresa, eles estão dispostos a mudar de ideia sobre o sistema.
+- Estimular o entrevistado a participar de discussões com uma questão-trampolim, uma proposta de requisitos ou trabalhando em conjunto em um protótipo do sistema. É improvável que dizer às pessoas "diga-me o que quiser" resulte em informações úteis. É muito mais fácil falar em um contexto definido do que em termos gerais.
 
 Geralmente as entrevistas são separadas em:
 

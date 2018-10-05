@@ -24,7 +24,7 @@ class SeedEntitiesTableWithBrainstorming extends Migration
             ->where('slug', str_slug('Técnicas de Elicitação de Requisitos'))
             ->first();
 
-        $description = 'É uma discussão informal onde cada participante pode expressar suas ideias livremente para que um novo sistema seja desenvolvido. Os participantes devem ser de diferentes áreas e cada um possui um tempo para compartilhar suas ideias. Esta técnica tem foco na resolução de um problema particular. Nesta técnica cada membro expressa sua ideia sobre o produto, é comumente utilizada para definir o principal valor a ser entregue. Permite que os stakeholders pensem “fora da caixa” acerca do problema a ser resolvido, aumentando o potencial criativo das ideias. Não são permitidas críticas severas, pois podem causar uma tendência associada às respostas dadas.  As ideias geradas são gravadas, as inapropriadas são descartadas e as apropriadas são priorizadas.
+        $description = 'É uma discussão informal onde cada participante pode expressar suas ideias livremente para que um novo sistema seja desenvolvido. Os participantes devem ser de diferentes áreas e cada um possui um tempo para compartilhar suas ideias. Esta técnica tem foco na resolução de um problema particular. É comumente utilizada para definir o principal valor a ser entregue. Permite que os stakeholders pensem “fora da caixa” acerca do problema a ser resolvido, aumentando o potencial criativo das ideias. Não são permitidas críticas severas, pois podem causar uma tendência associada às respostas dadas.  As ideias geradas são gravadas, as inapropriadas são descartadas e as apropriadas são priorizadas.
 
 A aplicação da técnica é dividida em duas fases: 
 
@@ -43,12 +43,12 @@ Um exemplo de uma sessão de Brainstorming seria a seguinte:
 - A sessão deve ser planejada. Defina o espaço e o horário.
 - Os empregados na loja são convidados a participar. Todavia, o supervisor e o dono não tomarão parte da sessão.
 - A sessão terá lugar longe da loja e num ambiente relaxado.
-- O moderador deverá ser um bom comunicador e irá tentar quebrar o gelo e preparar o grupo com um jogo de associação de palavras
-- O moderador levanta a questão:  Como podemos atrair mais clientes? E escreve a questão num quadro
+- O moderador deverá ser um bom comunicador e irá tentar quebrar o gelo e preparar o grupo com um jogo de associação de palavras.
+- O moderador levanta a questão:  Como podemos atrair mais clientes? E escreve a questão num quadro.
 - O moderador explica as regras da sessão - 20 minutos, todos os participantes devem apresentar ideias e respeitar as dos colegas. **CRITICAR É PROIBIDO!**
-- O moderador pede que sejam avançadas ideias
-- As ideias são produzidas em um mapa mental
-- Cada ideia é pontuada e avaliada pelos integrantes da sessão
+- O moderador pede que sejam avançadas ideias.
+- As ideias são produzidas em um mapa mental.
+- Cada ideia é pontuada e avaliada pelos integrantes da sessão.
 
 <sup>[1] [4] [7] [2] [6] [5]</sup>';
 

@@ -36,7 +36,7 @@ Com relação aos termos:
 
 ## Exemplo
 
-Esta técnica é basicamente um modelo de aplicar entrevistas e documentar os resultados. Desta forma, as mesmas práticas de organização são mantidas. A primeira mudança se encontra no planejamento das questões, pois cada “ladder tem o objetivo de descrever uma funcionalidade.
+Esta técnica é basicamente um modelo de aplicar entrevistas e documentar os resultados. Desta forma, as mesmas práticas de organização são mantidas. A primeira mudança se encontra no planejamento das questões, pois cada “ladder" tem o objetivo de descrever uma funcionalidade.
 	
 No início de um “ladder”, o participante é questionado sobre as características que tornam aquele produto útil e o diferencia dos demais.
 - *Pergunta*: Por que você selecionou estes convites de casamento?

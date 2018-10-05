@@ -17,7 +17,7 @@
 <template>
     <section v-if="items.length">
         <h2 class="subtitle"><b-icon icon="view-list" class="has-text-danger"></b-icon> <span>{{ title }}</span></h2>
-        <ul>
+        <ul class="references-list">
             <li v-for="(reference, index) in items" :key="index">
                 <sup>[{{ index + 1 }}]</sup> {{ reference.description }}
             </li>
@@ -26,5 +26,13 @@
 </template>
 
 <style type="text/css">
-    ul li { list-style: none; }
+    ul.references-list {
+        padding: 0;
+        margin: 0;
+    }
+
+    ul.references-list li {
+        list-style: none;
+        margin-top: 20px;
+    }
 </style>

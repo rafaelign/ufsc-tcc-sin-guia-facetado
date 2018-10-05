@@ -21,7 +21,7 @@ class CreateEntitiesTable extends Migration
             $table->longText('description');
             $table->longText('pros')->nullable();
             $table->longText('cons')->nullable();
-            $table->longText('additional_data')->nullable();
+            $table->longText('images')->nullable();
             $table->tinyInteger('published')->default(0);
             $table->unsignedInteger('page_views')->default(0);
             $table->unsignedInteger('classification_id');

@@ -31,36 +31,10 @@
             {{ label }}
         </li>
         <li>
-            <vue-goodshare-facebook
-                    :page_url="url"
-                    title_social="Facebook"
-                    has_counter
-                    has_icon
-            ></vue-goodshare-facebook>
-        </li>
-        <li>
-            <vue-goodshare-googleplus
-                    :page_url="url"
-                    title_social="Google"
-                    has_counter
-                    has_icon
-            ></vue-goodshare-googleplus>
-        </li>
-        <li>
-            <vue-goodshare-twitter
-                    :page_url="url"
-                    title_social="Twitter"
-                    has_counter
-                    has_icon
-            ></vue-goodshare-twitter>
-        </li>
-        <li>
-            <vue-goodshare-linkedin
-                    :page_url="url"
-                    title_social="Linkedin"
-                    has_counter
-                    has_icon
-            ></vue-goodshare-linkedin>
+            <vue-goodshare-facebook :page_url="url" has_icon></vue-goodshare-facebook>
+            <vue-goodshare-googleplus :page_url="url" has_icon></vue-goodshare-googleplus>
+            <vue-goodshare-twitter :page_url="url" has_icon></vue-goodshare-twitter>
+            <vue-goodshare-linkedin :page_url="url" has_icon></vue-goodshare-linkedin>
         </li>
     </ul>
 </template>

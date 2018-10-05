@@ -58,9 +58,9 @@
         <section class="hero">
             <div class="hero-body">
                 <breadcrumb :items="[
-                        { url: '#', title: 'Guia Facetado de Engenharia de Requisitos' },
-                        { url: '/app/colecoes/' + classification.slug, title: classification.title },
-                        { url: '/app/elicitacao-requisitos/entidades', title: 'Técnicas Mapeadas' },
+                        { url: '/app', title: 'Guia Facetado de Engenharia de Requisitos' },
+                        { url: '/app/classificacoes/' + classification.slug, title: classification.title },
+                        { url: '/app/classificacoes/' + classification.slug + '/entidades', title: 'Técnicas Mapeadas' },
                         { url: '#', title: entity.title, active: true }
                     ]"></breadcrumb>
 
@@ -69,6 +69,21 @@
 
                     <div class="text-2-columns has-text-justified">
                         <vue-markdown :source="entity.description"></vue-markdown>
+
+                        <template v-if="entity.images_array.length">
+                            <h2>Figuras</h2>
+                            <div v-for="image in entity.images_array">
+                                <lightbox
+                                        style="width: 40em"
+                                        :thumbnail="image.src"
+                                        :images="[image.src]"
+                                >
+                                    <lightbox-default-loader slot="loader"/>
+                                </lightbox>
+                                <small>{{ image.title }}</small>
+                                <br><br>
+                            </div>
+                        </template>
                     </div>
                 </div>
 

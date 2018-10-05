@@ -44,8 +44,8 @@
             <section class="hero">
                 <div class="hero-body">
                     <breadcrumb :items="[
-                            { url: '#', title: 'Guia Facetado de Engenharia de Requisitos' },
-                            { url: '/app/colecoes/' + classification.slug, title: classification.title },
+                            { url: '/app', title: 'Guia Facetado de Engenharia de Requisitos' },
+                            { url: '/app/classificacoes/' + classification.slug, title: classification.title },
                             { url: '#', title: 'Facetas de Classificação', active: true }
                         ]"></breadcrumb>
 

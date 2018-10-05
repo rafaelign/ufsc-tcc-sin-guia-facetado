@@ -24,7 +24,7 @@ class SeedEntitiesTableWithCardSorting extends Migration
             ->where('slug', str_slug('Técnicas de Elicitação de Requisitos'))
             ->first();
 
-        $description = 'O especialista classifica um conjunto de cartões em grupos, cada um com o nome de alguma entidade de domínio escrita ou representada nele. Esta técnica mostra quanto conhecimento o cliente tem sobre o domínio, explicando o modo como os usuários costumam usar para agrupar, classificar e rotular atribuições e conteúdo em sua própria mente. Ajuda no agrupamento, associação e priorização dos requisitos. Para tornar esta técnica mais eficaz, é importante que todas as entidades essenciais incluídas no processo e é necessário que o analista e os participantes tenham conhecimento suficiente sobre o domínio, caso contrário serão produzidos resultados errados.
+        $description = 'O especialista classifica um conjunto de cartões em grupos, cada um com o nome de alguma entidade de domínio escrita ou representada nele. Esta técnica mostra quanto conhecimento o cliente tem sobre o domínio, explicando o modo como os usuários costumam usar para agrupar, classificar e rotular atribuições e conteúdo em sua própria mente. Ajuda no agrupamento, associação e priorização dos requisitos. Para tornar esta técnica mais eficaz, é importante que todas as entidades essenciais sejam incluídas no processo e é necessário que o analista e os participantes tenham conhecimento suficiente sobre o domínio, caso contrário serão produzidos resultados errados.
 
 Esta técnica possui duas formas de aplicação:
 
@@ -66,7 +66,7 @@ Exemplo de um exercício de card sorting.
 - Inclui somente características superficiais.
 - Não é muito eficaz, pois fornece muitas informações sobre o conteúdo envolvido.
 - Interações limitadas e explicações detalhadas reduzem o valor da técnica.
-- O trabalho em grupo é muito eficaz do que o card sorting, pois não precisa de um conhecimento tão profundo sobre o domínio.
+- A técnica entrevista em grupo é mais eficaz do que a técnica card sorting, pois não precisa de um conhecimento tão profundo sobre o domínio.
 - Cartões complexos podem confundir um stakeholder iniciante.
 
 <sup>[4] [5]</sup>';

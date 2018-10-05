@@ -24,7 +24,7 @@ class SeedEntitiesTableWithFocusGroup extends Migration
             ->where('slug', str_slug('Técnicas de Elicitação de Requisitos'))
             ->first();
 
-        $description = 'Nesta técnica um grupo de stakeholders é convidado para uma consulta coletiva onde são abordados assuntos do estado atual das práticas executadas e do que se espera ser executado no projeto. Esta técnica é uma simples adaptação da técnica de entrevistas, mas com um direcionamento para um grupo de stakeholders. Assim como ocorre na técnica de entrevista, o uso de perguntas dirigidas e o papel de facilitador dos analistas tendem a limitar a conversa com os temas previamente estabelecida pela equipe de design. Pode ocorrer da forma tradicional, com todos fisicamente em uma sala ou com os membros alocados remotamente enquanto participam. Para conduzir uma entrevista em grupo, é importante que:
+        $description = 'Nesta técnica um grupo de stakeholders é convidado para uma consulta coletiva onde são abordados assuntos do estado atual das práticas executadas e do que se espera ser executado no projeto. Esta técnica é uma simples adaptação da técnica de entrevistas, mas com um direcionamento para um grupo de stakeholders. Assim como ocorre na técnica de entrevista, o uso de perguntas dirigidas e o papel de facilitador dos analistas tendem a limitar a conversa com os temas previamente estabelecidos no planejamento. Pode ocorrer da forma tradicional, com todos fisicamente em uma sala ou com os membros alocados remotamente. Para conduzir uma entrevista em grupo, é importante:
 
 - Selecionar os participantes.
 - Definir um facilitador responsável por manter a discussão organizada.
