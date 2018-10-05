@@ -1,8 +1,11 @@
 <script>
     import Breadcrumb from '../components/Breadcrumb'
+    import References from '../components/References'
+
     export default {
         components: {
-            Breadcrumb
+            Breadcrumb,
+            References
         },
         data () {
             return {}
@@ -18,13 +21,24 @@
                 ]"></breadcrumb>
 
                 <section class="content">
-                    <h1 class="title">
-                        Sobre este guia
-                    </h1>
+                    <h1 class="title"><b-icon icon="information"></b-icon> Sobre este guia</h1>
+                    <p class="has-text-justified">Este guia é parte de um trabalho de conclusão de curso intitulado “Guia facetado de técnicas de elicitação de requisitos”. Seu objetivo consiste em coletar técnicas e suas respectivas características, classificar as técnicas coletadas e apresentar neste guia. LALALA, tornando um guia que centraliza essas informações muito útil. Desta forma, a partir de um determinado contexto, os usuários podem filtrar as várias facetas de uma técnica e chegar nos casos que se adequa  sua situação.</p>
 
-                    <p class="has-text-justified">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce porttitor, felis nec vestibulum efficitur, nulla eros lacinia enim, non dictum augue leo eu ex. Aliquam efficitur tempus mauris id ornare. Proin mollis feugiat quam quis tincidunt. Curabitur iaculis dolor ut consequat interdum. Mauris vestibulum mollis nisl, in tempor mauris fermentum vel. Aenean sed est dui. Nullam in blandit mauris.</p>
-                    <p class="has-text-justified">Morbi blandit sed nisi vitae gravida. Duis eget lacus quis orci rhoncus aliquet. Aenean enim ex, vestibulum eu enim vel, euismod consectetur ligula. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc sit amet ante euismod, iaculis odio quis, egestas augue. Nullam vestibulum faucibus tristique. Morbi a ultrices mi. Morbi sit amet tortor hendrerit purus egestas dapibus pharetra eu tellus. Integer id eros porta, ultrices metus eu, ullamcorper nibh. Maecenas rutrum, ligula ac commodo dignissim, diam odio tincidunt metus, vitae tincidunt sem lacus eget neque. Suspendisse aliquam accumsan turpis sit amet venenatis. Mauris sed tincidunt diam, eu varius ex. Duis pellentesque quis purus quis vehicula. Nam sed augue quis nibh laoreet consequat. Phasellus orci tellus, volutpat porttitor leo a, molestie ultricies justo.</p>
-                    <p class="has-text-justified">Integer vitae felis efficitur, efficitur ligula a, finibus erat. Aliquam pellentesque fringilla dolor, non porttitor lectus malesuada a. Sed dignissim malesuada porttitor. Integer et nibh ut justo luctus imperdiet ac ac elit. Cras a interdum mauris. Quisque ante turpis, finibus ut augue sit amet, rhoncus dignissim orci. Etiam rutrum in lectus ut molestie. Morbi velit felis, venenatis in erat sed, pulvinar tincidunt purus.</p>
+                    <h2 class="subtitle"><b-icon icon="target"></b-icon> Público alvo</h2>
+                    <div class="columns">
+                        <div class="column">
+                            Pessoas em geral que procuram informações sobre as técnicas e como elas podem ser aplicadas no contexto de elicitação.
+                        </div>
+                        <div class="column">
+                            Profissionais da área que buscam técnicas para resolver situações enfrentadas durante a elicitação de requisito para um determinado contexto.
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row content">
+                        <references title="Referências" :items="['TCC', 'Outras fontes']"></references>
+                    </div>
                 </section>
             </div>
         </section>

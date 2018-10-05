@@ -54,13 +54,13 @@
                 ]"></breadcrumb>
 
                 <div class="row content">
-                    <h1 class="title">{{ this.classification.title }}</h1>
+                    <h1 class="title"><b-icon icon="bookmark"></b-icon> {{ this.classification.title }}</h1>
                     <vue-markdown :source="classification.description"></vue-markdown>
                 </div>
 
                 <div class="row content">
-                    <h2 class="subtitle" v-if="entities.length > 0">Exemplos encontrados nesta seção do guia</h2>
-                    <h2 class="subtitle" v-else>Nenhum exemplo encontrado para esta classificação</h2>
+                    <h2 class="subtitle" v-if="entities.length > 0"><b-icon icon="adjust"></b-icon> Exemplos encontrados nesta seção do guia</h2>
+                    <h2 class="subtitle" v-else><b-icon icon="close"></b-icon> Nenhum exemplo encontrado para esta classificação</h2>
                 </div>
 
                 <div class="row content">

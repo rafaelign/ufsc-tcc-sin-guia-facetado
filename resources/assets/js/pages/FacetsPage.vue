@@ -50,7 +50,7 @@
                         ]"></breadcrumb>
 
                     <section class="row content">
-                        <h1 class="title">Facetas de classificação</h1>
+                        <h1 class="title"><b-icon icon="bookmark"></b-icon> Facetas de classificação</h1>
                         <p class="has-text-justified">Nesta página são apresentadas as facetas que determinam a classificação desta seção.</p>
                     </section>
 

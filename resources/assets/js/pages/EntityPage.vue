@@ -65,12 +65,12 @@
                     ]"></breadcrumb>
 
                 <div class="row content">
-                    <h1 class="title">{{ entity.title }}</h1>
+                    <h1 class="title"><b-icon icon="bookmark-outline"></b-icon> {{ entity.title }}</h1>
 
                     <div class="text-2-columns has-text-justified">
                         <vue-markdown :source="entity.description"></vue-markdown>
 
-                        <template v-if="entity.images_array.length">
+                        <template v-if="entity.images_array && entity.images_array.length">
                             <h2>Figuras</h2>
                             <div v-for="image in entity.images_array">
                                 <lightbox

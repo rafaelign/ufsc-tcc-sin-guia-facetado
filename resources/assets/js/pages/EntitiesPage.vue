@@ -93,7 +93,7 @@
                             </p>
                         </div>
 
-                        {{ classification.title }}
+                        <b-icon icon="bookmark"></b-icon> {{ classification.title }}
                     </h1>
 
                     <p class="has-text-justified">Nesta página são apresentados os elementos que compõe a classificação acessada.</p>
@@ -102,7 +102,7 @@
                 <div class="row content"  v-if="filteredEntities.length">
                     <div class="columns is-multiline">
                         <div class="column is-12">
-                            <h2 class="subtitle">Registros encontrados</h2>
+                            <h2 class="subtitle"><b-icon icon="format-list-bulleted"></b-icon> Registros encontrados</h2>
                         </div>
                         <div class="column is-4 is-6-tablet is-12-mobile" v-for="entity in filteredEntities">
                             <card :title="entity.title"
