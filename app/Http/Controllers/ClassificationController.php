@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Classification;
+use App\Models\FacetsReferences;
+use App\Models\Reference;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -139,10 +141,30 @@ class ClassificationController extends Controller
         $facets = $collection ? $collection
             ->facets()
             ->with('values')
-            ->with('references')
             ->get() : [];
 
         return response()->json($facets);
+    }
+
+    public function getFacetsReferencesByClassificationSlug(string $slug)
+    {
+        $collection = Classification::where('slug', '=', $slug)
+            ->where('published', 1)
+            ->first();
+
+        $facets = $collection ? $collection
+            ->facets()
+            ->get(['id']) : [];
+
+        $references = Reference::join('facets_references', 'facets_references.reference_id', 'references.id')
+            ->where(function ($query) use ($facets) {
+                $query->whereIn('id', FacetsReferences::whereIn('facet_id', $facets)
+                    ->get(['reference_id']));
+            })->orderBy('facets_references.code', 'ASC')
+            ->groupBy('description', 'facets_references.code')
+            ->get(['description', 'facets_references.code']);
+
+        return response()->json($references);
     }
 
     /**

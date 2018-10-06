@@ -30,8 +30,6 @@
         "font-awesome": "^4.7.0",
         "nprogress": "^0.2.0",
         "simplelightbox": "^1.14.0",
-        "v-viewer": "^1.2.1",
-        "viewerjs": "^1.2.0",
         "vue-goodshare": "^0.9.3",
         "vue-loading-overlay": "^2.1.0",
         "vue-markdown": "^2.2.4",

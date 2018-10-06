@@ -21,4 +21,9 @@ class Reference extends Model
     {
         return $this->belongsToMany(Facet::class);
     }
+
+    public function facets_references()
+    {
+        return $this->hasMany(FacetsReferences::class);
+    }
 }

@@ -197,7 +197,7 @@ Quanto aos tipos de protótipos, para elicitação de requisitos podemos citar:
         DB::delete('DELETE FROM entities WHERE slug LIKE ?', [str_slug('Técnicas de Elicitação de Requisitos Prototipação')]);
     }
 
-    private function values(int $interviewId, array $facetsWithValues)
+    private function values(int $id, array $facetsWithValues)
     {
         foreach ($facetsWithValues as $facet => $value) {
             $facetValues = DB::table('values')
@@ -206,13 +206,13 @@ Quanto aos tipos de protótipos, para elicitação de requisitos podemos citar:
                 ->first();
 
             DB::table('entities_values')->insert([
-                'entity_id' => $interviewId,
+                'entity_id' => $id,
                 'value_id' => $facetValues->id,
             ]);
         }
     }
 
-    private function references(int $interviewId, array $referencesWithValues)
+    private function references(int $id, array $referencesWithValues)
     {
         foreach ($referencesWithValues as $reference) {
             $getReference = DB::table('references')
@@ -221,7 +221,7 @@ Quanto aos tipos de protótipos, para elicitação de requisitos podemos citar:
                 ->first();
 
             DB::table('entities_references')->insert([
-                'entity_id' => $interviewId,
+                'entity_id' => $id,
                 'reference_id' => $getReference->id,
                 'code' => (int) $reference['code'],
             ]);

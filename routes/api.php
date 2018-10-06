@@ -27,6 +27,8 @@ Route::post('classifications/{slug}/entities', 'EntityController@getByClassifica
 
 Route::get('classifications/{slug}/facets', 'ClassificationController@getFacetsByClassificationSlug');
 
+Route::get('classifications/{slug}/facets/references', 'ClassificationController@getFacetsReferencesByClassificationSlug');
+
 Route::get('entities/{slug}', 'EntityController@getBySlug');
 
 Route::get('entities/{slug}/values', 'EntityController@getValuesByEntitySlug');

@@ -19,7 +19,7 @@
         <h2 class="subtitle"><b-icon icon="view-list" class="has-text-danger"></b-icon> <span>{{ title }}</span></h2>
         <ul class="references-list">
             <li v-for="(reference, index) in items" :key="index">
-                <sup>[{{ index + 1 }}]</sup> {{ reference.description }}
+                <sup>[{{ reference.code }}]</sup> {{ reference.description }}
             </li>
         </ul>
     </section>

@@ -54,6 +54,7 @@ class SeedReferencesTableWithReReferences extends Migration
             ['description' => 'OWEN, Stephen; BUDGEN, David; BRERETON, Pearl. Protocol Analysis: A neglected Practice. Communications of the ACM. February 2006/Vol.49. No. 2. pages 117-122.'],
             ['description' => 'HAWLEY, Michael. Laddering: A Research Interview Technique for Uncovering Core Values. Publicado em 7 de julho de 2009 no endereço https://www.uxmatters.com/mt/archives/2009/07/laddering-a-research-interview-technique-for-uncovering-core-values.php, acessado em 28 de novembro de 2018.'],
             ['description' => 'CURTIS, Aaron Mosiah et al. An overview and tutorial of the repertory grid technique in information systems research. 2008.'],
+            ['description' => 'CARRIZO, D.; DIESTE, O.; JURISTO, N. Systematizing requirements elicitation technique selection. Information and Software Technology, Elsevier, v. 56, n. 6, p.644–669, 2014. ISSN 0950-5849.'],
         ]);
     }
 

@@ -12,6 +12,7 @@
             return {
                 classification: {},
                 facets: [],
+                references: [],
                 errors: []
             }
         },
@@ -22,10 +23,12 @@
 
             Promise.all([
                 axios.get('/api/classifications/' + slug),
-                axios.get('/api/classifications/' + slug + '/facets')
-            ]).then(([responseClassification, responseFacets]) => {
+                axios.get('/api/classifications/' + slug + '/facets'),
+                axios.get('/api/classifications/' + slug + '/facets/references')
+            ]).then(([responseClassification, responseFacets, responseFacetsReferences]) => {
                 this.classification = responseClassification.data
                 this.facets = responseFacets.data
+                this.references = responseFacetsReferences.data
 
                 this.loaded()
             }).catch((error) => this.errors = error.response.data.errors)
@@ -99,7 +102,7 @@
                     </section>
 
                     <section class="row content">
-                        <references title="Referências" :items="[]"></references>
+                        <references title="Referências" :items="references"></references>
                     </section>
                 </div>
             </section>

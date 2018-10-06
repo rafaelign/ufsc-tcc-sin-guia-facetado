@@ -16,6 +16,7 @@ class CreateFacetsReferencesTable extends Migration
         Schema::create('facets_references', function (Blueprint $table) {
             $table->unsignedInteger('facet_id');
             $table->unsignedInteger('reference_id');
+            $table->unsignedInteger('code');
             $table->timestamps();
 
             $table->foreign('facet_id')
