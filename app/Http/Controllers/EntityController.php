@@ -39,6 +39,12 @@ class EntityController extends Controller
         if ($request->isMethod('post')) {
             $filters = json_decode(file_get_contents('php://input'));
 
+            foreach ($filters as $key => $filter) {
+                if (isset($filter->value) && !$filter->value) {
+                    unset($filters[$key]);
+                }
+            }
+
             if (!empty($filters)) {
                 $entities->whereIn('entities.id', function ($query) use ($filters) {
                     $query->select('entity_id')
