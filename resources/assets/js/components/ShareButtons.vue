@@ -32,7 +32,6 @@
         </li>
         <li>
             <vue-goodshare-facebook :page_url="url" has_icon></vue-goodshare-facebook>
-            <vue-goodshare-googleplus :page_url="url" has_icon></vue-goodshare-googleplus>
             <vue-goodshare-twitter :page_url="url" has_icon></vue-goodshare-twitter>
             <vue-goodshare-linkedin :page_url="url" has_icon></vue-goodshare-linkedin>
         </li>
