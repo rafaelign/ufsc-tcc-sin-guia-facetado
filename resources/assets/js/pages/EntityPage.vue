@@ -17,6 +17,7 @@
                 classification: {},
                 entity: {},
                 values: [],
+                references: [],
                 facets: [],
                 errors: []
             }
@@ -31,11 +32,13 @@
                 axios.get('/api/classifications/' + classificationSlug),
                 axios.get('/api/entities/' + entitySlug),
                 axios.get('/api/entities/' + entitySlug + '/values'),
+                axios.get('/api/entities/' + entitySlug + '/references'),
                 axios.get('/api/facet_groups/' + classificationSlug)
-            ]).then(([responseClassification, responseEntities, responseEntityValues, responseFacets]) => {
+            ]).then(([responseClassification, responseEntities, responseEntityValues, responseEntityReferences, responseFacets]) => {
                 this.classification = responseClassification.data
                 this.entity = responseEntities.data
                 this.values = responseEntityValues.data
+                this.references = responseEntityReferences.data
                 this.facets = responseFacets.data
 
                 axios.put('/api/entities/page_views/' + this.entity.id)
@@ -113,7 +116,7 @@
                 <hr>
 
                 <div class="row content">
-                    <references title="Referências" :items="entity.references"></references>
+                    <references title="Referências" :items="references"></references>
                 </div>
             </div>
         </section>

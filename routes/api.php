@@ -31,6 +31,8 @@ Route::get('classifications/{slug}/facets/references', 'ClassificationController
 
 Route::get('entities/{slug}', 'EntityController@getBySlug');
 
+Route::get('entities/{slug}/references', 'EntityController@getReferencesByEntitySlug');
+
 Route::get('entities/{slug}/values', 'EntityController@getValuesByEntitySlug');
 
 Route::put('entities/page_views/{id}', 'EntityController@addPageView');

@@ -49,6 +49,9 @@
             <p class="modal-card-title">{{ title }}</p>
         </header>
         <section class="modal-card-body">
+            <div class="has-text-right">
+                <span class="has-background-warning"><b-icon icon="asterisk"></b-icon> Para que uma técnica seja filtrada ela precisa ter <b>TODOS</b> os filtros selecionados</span>
+            </div>
             <form action="">
                 <div class="tile is-ancestor">
                     <div class="tile is-vertical is-12">

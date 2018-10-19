@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\EntitiesReferences;
 use App\Models\Entity;
 use App\Models\FacetGroup;
+use App\Models\Reference;
 use App\Models\Value;
 use Illuminate\Http\Request;
 
@@ -23,6 +25,21 @@ class EntityController extends Controller
                 ->with('references')
                 ->first()
         );
+    }
+
+    public function getReferencesByEntitySlug(string $slug)
+    {
+        $entity = Entity::where('slug', '=', $slug)
+            ->where('published', 1)
+            ->first();
+
+        $references = Reference::join('entities_references', 'entities_references.reference_id', 'references.id')
+            ->where('entities_references.entity_id', $entity->id)
+            ->orderBy('entities_references.code', 'ASC')
+            ->groupBy('description', 'entities_references.code')
+            ->get(['description', 'entities_references.code']);
+
+        return response()->json($references);
     }
 
     /**
@@ -46,20 +63,33 @@ class EntityController extends Controller
             }
 
             if (!empty($filters)) {
-                $entities->whereIn('entities.id', function ($query) use ($filters) {
-                    $query->select('entity_id')
-                        ->from('entities_values');
-
-                    foreach ($filters as $filter) {
-                        if (is_array($filter->value)) {
-                            $query->whereIn('value_id', $filter->value);
-                        } else {
-                            $query->where('value_id', $filter->value);
+                /**
+                 * Para cada filtro selecionado, uma subquery é adicionada
+                 * TODO: Refatorar consulta para melhorar performance
+                 */
+                $values = [];
+                foreach ($filters as $filter) {
+                    if (is_array($filter->value)) {
+                        foreach ($filter->value as $value) {
+                            if (!in_array($value, $values)) {
+                                $values[] = $value;
+                            }
+                        }
+                    } else {
+                        if (!in_array($filter->value, $values)) {
+                            $values[] = $filter->value;
                         }
                     }
+                }
 
-                    $query->groupBy('entity_id')->get();
-                });
+                foreach ($values as $value) {
+                    $entities->whereIn('entities.id', function ($query) use ($value) {
+                        $query->select('entity_id')
+                            ->from('entities_values')
+                            ->where('value_id', $value)
+                            ->groupBy('entity_id')->get();
+                    });
+                }
             }
         }
 
