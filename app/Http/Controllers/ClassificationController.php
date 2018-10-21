@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Classification;
-use App\Models\FacetsReferences;
+use App\Models\FacetReference;
 use App\Models\Reference;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -158,7 +158,7 @@ class ClassificationController extends Controller
 
         $references = Reference::join('facets_references', 'facets_references.reference_id', 'references.id')
             ->where(function ($query) use ($facets) {
-                $query->whereIn('id', FacetsReferences::whereIn('facet_id', $facets)
+                $query->whereIn('id', FacetReference::whereIn('facet_id', $facets)
                     ->get(['reference_id']));
             })->orderBy('facets_references.code', 'ASC')
             ->groupBy('description', 'facets_references.code')

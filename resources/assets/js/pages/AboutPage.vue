@@ -22,7 +22,14 @@
 
                 <section class="content">
                     <h1 class="title"><b-icon icon="information"></b-icon> Sobre este guia</h1>
-                    <p class="has-text-justified">Este guia é parte de um trabalho de conclusão de curso intitulado “Guia facetado de técnicas de elicitação de requisitos”. Seu objetivo consiste em coletar técnicas e suas respectivas características, classificar as técnicas coletadas e apresentar neste guia. O trabalho demonstrou que existe uma gama de técnicas que são utilizadas, cada qual com suas características, prós e contras. Outra constatação é que o processo de elicitação de requisitos de um projeto não se restringe a apenas uma técnica. Estes fatores justificam a criação de um guia que centraliza essas informações relacionadas a estas técnicas. Desta forma, a partir de um determinado contexto, os usuários podem filtrar as várias facetas de uma técnica e chegar nos casos que se adequa  sua situação.</p>
+                    <p class="has-text-justified">
+                        Este guia procura apresentar técnicas de elicitação de requisitos e suas respectivas informações de uma maneira didática e simples.
+                        O processo de pesquisa acerca das técnicas demonstrou que existe uma grande variedade de métodos que utilizados nesse processo.
+                        Outra constatação é que o processo de elicitação de requisitos de um projeto não se restringe a utilização de apenas uma técnica, mas sim de uma combinação entre elas.
+                        Estes fatores justificam a criação de um guia que agrupa e classifica essas informações.
+                        A classificação facetada nos permite realizar determinados filtros conforme as características mapeadas.
+                        Desta forma, a partir de um determinado cenário, os usuários podem definir as características associadas ao seu contexto e obter as técnicas mais adequadas para sua configuração.
+                    </p>
 
                     <h2 class="subtitle"><b-icon icon="target"></b-icon> Público alvo</h2>
                     <div class="columns">
@@ -55,21 +62,21 @@
                                 <img src="/images/g-tecnicas-frequencia.png" alt="Gráfico de técnicas de elicitação de requisitos por frequência.">
                             </figure>
 
-                            Estas são as técnicas mais encontradas nos trabalhos coletados.
+                            Estas são as técnicas mais encontradas nos trabalhos coletados. <sup>[1]</sup>
                         </div>
                         <div class="column">
                             <figure class="image">
                                 <img src="/images/np-tecnicas-frequentes.png" alt="Nuvem de palavras de técnicas de elicitação de requisitos.">
                             </figure>
 
-                            Esta núvem de palavras contém todas técnicas encontradas e seu tamanho é proporcional ao número de artigos que às citam.
+                            Esta núvem de palavras contém todas técnicas encontradas e seu tamanho é proporcional ao número de artigos que às citam. <sup>[1]</sup>
                         </div>
                     </div>
 
                     <hr>
 
                     <div class="row content">
-                        <references title="Referências" :items="[{code: 1, description: 'Referenciar o TCC'}]"></references>
+                        <references title="Referências" :items="[{code: 1, description: 'IGNACIO, Rafael C. Guia Facetado de Técnicas de Elicitação de Requisitos. Santa Catarina. 2018'}]"></references>
                     </div>
                 </section>
             </div>

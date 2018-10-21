@@ -3,12 +3,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class EntitiesReferences extends Model
+class FacetReference extends Model
 {
-    protected $table = 'entities_references';
+    protected $table = 'facets_references';
 
     protected $fillable = [
-        'entity_id',
+        'facet_id',
         'reference_id',
         'code',
     ];

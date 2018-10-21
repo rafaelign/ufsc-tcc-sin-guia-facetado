@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\EntitiesReferences;
 use App\Models\Entity;
-use App\Models\FacetGroup;
 use App\Models\Reference;
 use App\Models\Value;
 use Illuminate\Http\Request;
@@ -43,6 +41,7 @@ class EntityController extends Controller
     }
 
     /**
+     * @param Request $request
      * @param string $slug
      * @return \Illuminate\Http\JsonResponse
      */
