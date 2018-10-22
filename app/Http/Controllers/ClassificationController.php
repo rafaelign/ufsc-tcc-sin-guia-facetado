@@ -48,6 +48,8 @@ class ClassificationController extends Controller
         $validator = Validator::make($request->all(), [
             'title' => 'required|max:50',
             'slug' => 'required|unique:classifications|max:50',
+            'classification_type' => 'required|max:150',
+            'main_menu' => 'required|max:150',
         ]);
 
         if ($validator->fails()) {
@@ -62,6 +64,8 @@ class ClassificationController extends Controller
         $classification->title = $request->title;
         $classification->slug = $request->slug;
         $classification->description = $request->description;
+        $classification->classification_type = $request->classification_type;
+        $classification->main_menu = $request->main_menu;
 
         if ($classification->save()) {
             return redirect()
@@ -86,7 +90,9 @@ class ClassificationController extends Controller
                 'required',
                 'max:50',
                 Rule::unique('classifications')->ignore($id, 'id')
-            ]
+            ],
+            'classification_type' => 'required|max:150',
+            'main_menu' => 'required|max:150',
         ]);
 
         if ($validator->fails()) {
@@ -101,6 +107,8 @@ class ClassificationController extends Controller
         $classification->title = $request->title;
         $classification->slug = $request->slug;
         $classification->description = $request->description;
+        $classification->classification_type = $request->classification_type;
+        $classification->main_menu = $request->main_menu;
 
         if ($classification->save()) {
             return redirect()
@@ -181,14 +189,14 @@ class ClassificationController extends Controller
             if ($classification->save()) {
                 return response()->json([
                     'error' => false,
-                    'message' => 'Classification updated successful',
+                    'message' => 'Classificação atualizada com sucesso!',
                 ]);
             }
         }
 
         return response()->json([
             'error' => true,
-            'message' => 'Classification update error',
+            'message' => 'Erro ao atualizar classificação',
         ]);
     }
 }

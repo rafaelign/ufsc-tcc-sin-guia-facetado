@@ -16,19 +16,19 @@
                     {{ __('Dashboard') }}
                 </a>
                 <a class="navbar-item" href="{{ route('classifications') }}">
-                    {{ __('Classifications') }}
+                    {{ __('Classificações') }}
                 </a>
                 <a class="navbar-item" href="{{ route('users') }}">
-                    {{ __('Users') }}
+                    {{ __('Usuários') }}
                 </a>
                 <a class="navbar-item" href="/app" target="_blank">
-                    {{ __('Go to aplication') }}
+                    {{ __('Ir para o guia') }}
                 </a>
             </div>
             <div class="navbar-end">
                 <a class="navbar-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
+                    {{ __('Sair') }}
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf

@@ -4,8 +4,8 @@
     <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
             <li><a href="{{ route('home') }}" aria-current="page">{{ __('Dashboard') }}</a></li>
-            <li><a href="{{ route('classifications') }}" aria-current="page">{{ __('Classifications') }}</a></li>
-            <li class="is-active"><a href="#" aria-current="page">{{ (int) $id > 0 ? __('Edit classification') : __('New classification') }}</a></li>
+            <li><a href="{{ route('classifications') }}" aria-current="page">{{ __('Classificações') }}</a></li>
+            <li class="is-active"><a href="#" aria-current="page">{{ (int) $id > 0 ? __('Editar classificação') : __('Nova classificação') }}</a></li>
         </ul>
     </nav>
 @endsection
@@ -21,29 +21,43 @@
                 @csrf
 
                 <div class="field">
-                    <label class="label">{{ __('Title') }}</label>
+                    <label class="label">{{ __('Título') }}</label>
                     <div class="control">
-                        <input name="title" class="input is-medium" type="text" placeholder="{{ __('Input title') }}" value="{{ $classification ? $classification->title : null }}">
+                        <input name="title" class="input is-medium" type="text" placeholder="{{ __('Informe o title') }}" value="{{ $classification ? $classification->title : null }}">
                     </div>
                 </div>
 
                 <div class="field">
                     <label class="label">{{ __('Slug') }}</label>
                     <div class="control">
-                        <input name="slug" class="input is-medium" type="text" placeholder="{{ __('Input slug') }}" value="{{ $classification ? $classification->slug : null }}">
+                        <input name="slug" class="input is-medium" type="text" placeholder="{{ __('Informe o slug') }}" value="{{ $classification ? $classification->slug : null }}">
                     </div>
                 </div>
 
                 <div class="field">
-                    <label class="label">{{ __('Description') }}</label>
+                    <label class="label">{{ __('Descrição') }}</label>
                     <div class="control">
                         <textarea name="description" class="textarea" placeholder="Textarea">{{ $classification ? $classification->description : null }}</textarea>
                     </div>
                 </div>
 
+                <div class="field">
+                    <label class="label">{{ __('Tipo de classificação') }}</label>
+                    <div class="control">
+                        <input name="classification_type" class="input is-medium" type="text" placeholder="{{ __('Informe o tipo da classificação') }}" value="{{ $classification ? $classification->classification_type : null }}">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">{{ __('Título no menu') }}</label>
+                    <div class="control">
+                        <input name="main_menu" class="input is-medium" type="text" placeholder="{{ __('Informe o título do menu') }}" value="{{ $classification ? $classification->main_menu : null }}">
+                    </div>
+                </div>
+
                 <div class="field is-grouped">
                     <div class="control">
-                        <button class="button is-link">{{ __('Submit') }}</button>
+                        <button class="button is-link">{{ (int) $id > 0 ? __('Alterar') : __('Cadastrar ') }}</button>
                     </div>
                     <div class="control">
                         <button class="button is-text">{{ __('Cancel') }}</button>

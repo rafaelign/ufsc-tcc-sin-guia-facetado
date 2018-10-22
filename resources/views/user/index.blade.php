@@ -4,7 +4,7 @@
     <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
             <li><a href="{{ route('home') }}" aria-current="page">{{ __('Dashboard') }}</a></li>
-            <li class="is-active"><a href="#" aria-current="page">{{ __('Users') }}</a></li>
+            <li class="is-active"><a href="#" aria-current="page">{{ __('Usuários') }}</a></li>
         </ul>
     </nav>
 @endsection
@@ -12,17 +12,17 @@
 @section('content')
     <h1 class="subtitle">
         <a href="{{ route('users.edit', ['id' => 0]) }}" class="button is-medium is-pulled-right">
-            <span class="icon"><span class="mdi mdi-check"></span></span> <span>{{ __('New') }}</span>
+            <span class="icon"><span class="mdi mdi-check"></span></span> <span>{{ __('Novo usuário') }}</span>
         </a>
-        {{ __('Users') }}
+        {{ __('Usuários') }}
     </h1>
     <table class="table is-fullwidth is-striped is-hoverable is-bordered">
         <thead>
             <tr>
                 <th><abbr title="{{ __('Id') }}">#</abbr></th>
-                <th>{{ __('Name') }}</th>
+                <th>{{ __('Nome') }}</th>
                 <th>{{ __('E-mail') }}</th>
-                <th class="has-text-centered">{{ __('Actions') }}</th>
+                <th class="has-text-centered">{{ __('Ações') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -60,11 +60,11 @@
                 <button class="delete modal-cancel-x" aria-label="close"></button>
             </header>
             <section class="modal-card-body">
-                {{ __('Are you sure?') }}
+                {{ __('Você tem certeza?') }}
             </section>
             <footer class="modal-card-foot">
-                <button class="button is-danger modal-confirm" data-id="" @click="attemptDeleteUser()">{{ __('Delete') }}</button>
-                <button class="button modal-cancel">Cancel</button>
+                <button class="button is-danger modal-confirm" data-id="" @click="attemptDeleteUser()">{{ __('Remover') }}</button>
+                <button class="button modal-cancel">Cancelar</button>
             </footer>
         </div>
     </div>
