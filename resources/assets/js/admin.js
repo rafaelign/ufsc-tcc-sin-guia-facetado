@@ -11,7 +11,9 @@ const app = new Vue({
     components: {},
     data() {
         return {
-            loading: false
+            loading: false,
+            tecnicastab: 'default',
+            facetastab: 'default'
         }
     },
     methods: {

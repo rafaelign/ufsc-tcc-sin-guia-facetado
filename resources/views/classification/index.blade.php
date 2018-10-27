@@ -32,10 +32,10 @@
                     <a href="{{ route('classifications.edit', ['id' => $classification->id]) }}" class="card-footer-item">
                         <span class="icon"><span class="mdi mdi-pencil"></span></span> {{ __('Editar') }}
                     </a>
-                    <a href="#" class="card-footer-item">
+                    <a href="{{ route('classifications.entities', ['classificationId' => $classification->id]) }}" class="card-footer-item">
                         <span class="icon"><span class="mdi mdi-application"></span></span> <span class="badge is-badge-info" data-badge="{{ count($classification->entities) }}">{{ __('Técnicas') }}</span>
                     </a>
-                    <a href="#" class="card-footer-item">
+                    <a href="{{ route('classifications.facets', ['classificationId' => $classification->id]) }}" class="card-footer-item">
                         <span class="icon"><span class="mdi mdi-adjust"></span></span> <span class="badge is-badge-info" data-badge="{{ count($classification->facets) }}">{{ __('Facetas') }}</span>
                     </a>
                     <a href="#" @click="updatePublish({{ $classification->id }})" class="card-footer-item">

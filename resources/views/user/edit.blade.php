@@ -11,7 +11,7 @@
 @endsection
 
 @section('content')
-    <div class="coluns">
+    <div class="columns has-background-white">
         <div class="column is-8">
             <form id="form" action="{{ (int) $id > 0 ? route('users.update', ['id' => (int) $id]) : route('users.store') }}" method="POST">
                 @if ((int) $id > 0)

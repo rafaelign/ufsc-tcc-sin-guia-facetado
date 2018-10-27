@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Entity;
 use App\Models\Reference;
 use App\Models\Value;
+use App\Models\Classification;
 use Illuminate\Http\Request;
 
 class EntityController extends Controller
@@ -92,12 +93,14 @@ class EntityController extends Controller
             }
         }
 
-        return response()->json($entities->get([
+        return response()->json(
+            $entities->get([
                 'entities.id',
                 'entities.title',
                 'entities.slug',
                 'entities.short_description',
-            ]));
+            ])
+        );
     }
 
     /**
@@ -143,14 +146,28 @@ class EntityController extends Controller
 
     /**
      * @param int $classificationId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(int $classificationId)
-    {}
+    {
+        return view('entity.index', [
+            'classification' => Classification::find($classificationId),
+            'entities' => Entity::where('classification_id', $classificationId)
+                ->paginate(5)
+        ]);
+    }
 
     /**
      * @param int $classificationId
      * @param int $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(int $classificationId, int $id)
-    {}
+    {
+        return view('entity.edit', [
+            'classification' => Classification::find($classificationId),
+            'entity' => Entity::find($id),
+            'id' => $id,
+        ]);
+    }
 }

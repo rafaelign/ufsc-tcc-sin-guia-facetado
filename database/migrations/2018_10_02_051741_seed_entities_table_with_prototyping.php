@@ -47,7 +47,7 @@ Quanto aos tipos de protótipos, para elicitação de requisitos podemos citar:
 
 <iframe src="https://giphy.com/embed/6gtH7ijWMdqak" width="480" height="352" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 
-- Exemplo de protótipo desenvlvido no Balsamiq.
+- Exemplo de protótipo desenvolvido no Balsamiq.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/wEw7zaLCi8s" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 

@@ -11,7 +11,7 @@
 @endsection
 
 @section('content')
-    <div class="coluns">
+    <div class="columns has-background-white">
         <div class="column is-8">
             <form id="form" action="{{ (int) $id > 0 ? route('classifications.update', ['id' => (int) $id]) : route('classifications.store') }}" method="POST">
                 @if ((int) $id > 0)
@@ -60,7 +60,7 @@
                         <button class="button is-link">{{ (int) $id > 0 ? __('Alterar') : __('Cadastrar ') }}</button>
                     </div>
                     <div class="control">
-                        <button class="button is-text">{{ __('Cancel') }}</button>
+                        <button class="button is-text">{{ __('Cancelar') }}</button>
                     </div>
                 </div>
             </form>
