@@ -23,3 +23,5 @@ Homestead.json
 /.idea
 /.vscode
 /.vagrant
+
+*.bak_*
