@@ -10,7 +10,12 @@ mix
         'node_modules/bulma-modal-fx/dist/css/modal-fx.css'
     ], 'public/css/vendor.css')
     .copy('resources/assets/images', 'public/images')
-    .copy('node_modules/bulma-modal-fx/dist/css/modal-fx.css.min.map', 'public/css/modal-fx.css.min.map');
+    .copy('node_modules/bulma-modal-fx/dist/css/modal-fx.css.min.map', 'public/css/modal-fx.css.min.map')
+    .options({
+        fileLoaderDirs: {
+            fonts: 'guia/fonts'
+        }
+    });
 
 mix
     .js('resources/assets/js/admin.js', 'public/js')
