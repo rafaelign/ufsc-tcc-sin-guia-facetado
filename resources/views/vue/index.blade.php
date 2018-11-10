@@ -12,8 +12,7 @@
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/vendor.css') }}">
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons"
-          rel="stylesheet">
+    <link rel="stylesheet" href="http://cdn.materialdesignicons.com/2.8.94/css/materialdesignicons.min.css">
 </head>
 <body>
     <div id="app">

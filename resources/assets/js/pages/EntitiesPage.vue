@@ -23,14 +23,15 @@
         },
         created () {
             const slug = this.$route.params.classification;
+            const url = this.$store.getters.getUrl
 
             this.loading()
             // localforage
 
             Promise.all([
-                axios.get('/api/classifications/' + slug),
-                axios.get('/api/classifications/' + slug + '/entities'),
-                axios.get('/api/facet_groups/' + slug)
+                axios.get(url + '/api/classifications/' + slug),
+                axios.get(url + '/api/classifications/' + slug + '/entities'),
+                axios.get(url + '/api/facet_groups/' + slug)
             ]).then(([responseClassification, responseEntities, responseFacetGroups]) => {
                 this.classification = responseClassification.data;
                 this.entities = responseEntities.data;
