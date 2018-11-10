@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <base href="{{ config('app.base') }}">
-    <title>REtraining - Guia facetado de Elicitação de Requisitos</title>
+    <title>REtraining - Guia facetado de Técnicas de Elicitação de Requisitos</title>
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/vendor.css') }}">
