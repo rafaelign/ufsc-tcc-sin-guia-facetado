@@ -48,10 +48,11 @@
             ]),
             filter: function () {
                 const slug = this.$route.params.classification
+                const url = this.$store.getters.getUrl
 
                 this.loading()
 
-                axios.post('/api/classifications/' + slug + '/entities', this.$store.getters.getFilters, {
+                axios.post(url + '/api/classifications/' + slug + '/entities', this.$store.getters.getFilters, {
                     'Content-Type': 'application/json'
                 }).then((responseEntities) => {
                     this.filteredEntities = responseEntities.data

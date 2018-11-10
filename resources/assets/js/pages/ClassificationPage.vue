@@ -15,19 +15,18 @@
                 classification: {},
                 entities: [],
                 errors: [],
-                breadcrumb: [
-
-                ]
+                breadcrumb: []
             };
         },
         created () {
             const slug = this.$route.params.classification
+            const url = this.$store.getters.getUrl
 
             this.loading()
 
             Promise.all([
-                axios.get('/api/classifications/' + slug),
-                axios.get('/api/classifications/' + slug + '/entities')
+                axios.get(url + '/api/classifications/' + slug),
+                axios.get(url + '/api/classifications/' + slug + '/entities')
             ]).then(([responseClassification, responseEntities]) => {
                 this.classification = responseClassification.data
                 this.entities = responseEntities.data

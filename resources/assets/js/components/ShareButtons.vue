@@ -12,9 +12,7 @@
             VueGoodshareLinkedin
         },
         data () {
-            return {
-                url: 'https://tcc-ufsc-guia-facetado.herokuapp.com/',
-            }
+            return {}
         },
         props: {
             label: {
@@ -31,9 +29,9 @@
             {{ label }}
         </li>
         <li>
-            <vue-goodshare-facebook :page_url="url" has_icon></vue-goodshare-facebook>
-            <vue-goodshare-twitter :page_url="url" has_icon></vue-goodshare-twitter>
-            <vue-goodshare-linkedin :page_url="url" has_icon></vue-goodshare-linkedin>
+            <vue-goodshare-facebook :page_url="$root.url" has_icon></vue-goodshare-facebook>
+            <vue-goodshare-twitter :page_url="$root.url" has_icon></vue-goodshare-twitter>
+            <vue-goodshare-linkedin :page_url="$root.url" has_icon></vue-goodshare-linkedin>
         </li>
     </ul>
 </template>

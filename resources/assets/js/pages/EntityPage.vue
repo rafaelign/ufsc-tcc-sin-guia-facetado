@@ -25,15 +25,16 @@
         created() {
             const classificationSlug = this.$route.params.classification
             const entitySlug = this.$route.params.entity
+            const url = this.$store.getters.getUrl
 
             this.loading()
 
             Promise.all([
-                axios.get('/api/classifications/' + classificationSlug),
-                axios.get('/api/entities/' + entitySlug),
-                axios.get('/api/entities/' + entitySlug + '/values'),
-                axios.get('/api/entities/' + entitySlug + '/references'),
-                axios.get('/api/facet_groups/' + classificationSlug)
+                axios.get(url + '/api/classifications/' + classificationSlug),
+                axios.get(url + '/api/entities/' + entitySlug),
+                axios.get(url + '/api/entities/' + entitySlug + '/values'),
+                axios.get(url + '/api/entities/' + entitySlug + '/references'),
+                axios.get(url + '/api/facet_groups/' + classificationSlug)
             ]).then(([responseClassification, responseEntities, responseEntityValues, responseEntityReferences, responseFacets]) => {
                 this.classification = responseClassification.data
                 this.entity = responseEntities.data
@@ -41,7 +42,7 @@
                 this.references = responseEntityReferences.data
                 this.facets = responseFacets.data
 
-                axios.put('/api/entities/page_views/' + this.entity.id)
+                axios.put(url + '/api/entities/page_views/' + this.entity.id)
                     .catch((error) => this.errors = error.response.data.errors)
 
                 this.loaded()

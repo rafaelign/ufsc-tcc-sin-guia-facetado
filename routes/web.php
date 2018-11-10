@@ -4,9 +4,7 @@ Route::get('/', function () {
     return redirect('/app');
 });
 
-Route::get('/app/{vue_capture?}', function () {
-    return view('vue.index');
-})->where('vue_capture', '[\/\w\.-]*');
+Route::get('/app/{vue_capture?}', 'VueController@index')->where('vue_capture', '[\/\w\.-]*');
 
 //Route::get('/{name}', function () {
 //    return redirect('/');

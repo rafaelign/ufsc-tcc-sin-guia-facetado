@@ -37,7 +37,7 @@
                             <p>Pessoas em geral que procuram informações sobre as técnicas e como elas podem ser aplicadas no contexto de elicitação.</p>
 
                             <figure class="image">
-                                <img src="/images/anybody.png" alt="Fluxo de consulta geral">
+                                <img :src=" $root.url + '/images/anybody.png'" alt="Fluxo de consulta geral">
                             </figure>
 
                             <p>O guia também é útil para as pessoas que tem o objetivo de se informas sobre o assunto. Neste grupo estão inclusos estudantes, profissionais da área, entre outras pessoas.</p>
@@ -46,7 +46,7 @@
                             <p>Profissionais da área que buscam técnicas para resolver situações enfrentadas durante a elicitação de requisito para um determinado contexto.</p>
 
                             <figure class="image">
-                                <img src="/images/professional.png" alt="Fluxo de consulta para profissionais">
+                                <img :src=" $root.url + '/images/professional.png'" alt="Fluxo de consulta para profissionais">
                             </figure>
 
                             <p>Com informações sobre o contexto em mãos, é possível utilizar a classificação para encontrar as técnicas mais adequadas e obter informações detalhadas sobre as mesmas.</p>
@@ -59,14 +59,14 @@
 
                         <div class="column">
                             <figure class="image">
-                                <img src="/images/g-tecnicas-frequencia.png" alt="Gráfico de técnicas de elicitação de requisitos por frequência.">
+                                <img :src="$root.url + '/images/g-tecnicas-frequencia.png'" alt="Gráfico de técnicas de elicitação de requisitos por frequência.">
                             </figure>
 
                             Estas são as técnicas mais encontradas nos trabalhos coletados. <sup>[1]</sup>
                         </div>
                         <div class="column">
                             <figure class="image">
-                                <img src="/images/np-tecnicas-frequentes.png" alt="Nuvem de palavras de técnicas de elicitação de requisitos.">
+                                <img :src="$root.url + '/images/np-tecnicas-frequentes.png'" alt="Nuvem de palavras de técnicas de elicitação de requisitos.">
                             </figure>
 
                             Esta núvem de palavras contém todas técnicas encontradas e seu tamanho é proporcional ao número de artigos que às citam. <sup>[1]</sup>

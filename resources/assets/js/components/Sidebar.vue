@@ -9,7 +9,6 @@
         },
         data: function () {
             return {
-                url: 'https://tcc-ufsc-guia-facetado.herokuapp.com/',
                 entities: [],
                 errors: [],
                 isLoadingMenu: false
@@ -18,7 +17,7 @@
         created () {
             this.isLoadingMenu = true;
 
-            axios.get('/api/classifications')
+            axios.get(this.$store.getters.getUrl + '/api/classifications')
                 .then((response) => {
                     this.entities = response.data
                     this.isLoadingMenu = false
@@ -32,7 +31,7 @@
     <aside class="column is-4 is-4-tablet is-3-desktop is-3-widescreen is-2-fullhd is-fullheight is-narrow-mobile">
         <div class="has-text-centered-mobile">
             <figure class="image">
-                <img src="/images/logo.png" alt="Logo" style="max-width: 300px;">
+                <img :src="$root.url + '/images/logo.png'" alt="Logo" style="max-width: 300px;">
             </figure>
         </div>
         <ul class="menu-list">

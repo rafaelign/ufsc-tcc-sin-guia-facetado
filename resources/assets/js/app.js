@@ -9,6 +9,7 @@ import VueLoading from 'vue-loading-overlay'
 import Sidebar from './components/Sidebar'
 import Buefy from 'buefy'
 import Lightbox from 'vue-pure-lightbox'
+import { APP_URL } from './utils/config'
 
 import { routes } from './utils/routes';
 
@@ -83,6 +84,9 @@ const store = new Vuex.Store({
         },
         isLoaded: (state) => {
             return ! state.isLoading
+        },
+        getUrl: () => {
+            return APP_URL
         }
     }
 });
@@ -94,6 +98,11 @@ const app = new Vue({
     components: {
         Sidebar,
         Loading: VueLoading
+    },
+    computed: {
+        url () {
+            return this.$store.getters.getUrl
+        }
     },
     data() {
         return {}

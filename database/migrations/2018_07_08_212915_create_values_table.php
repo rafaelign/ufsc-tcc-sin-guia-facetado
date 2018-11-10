@@ -16,7 +16,7 @@ class CreateValuesTable extends Migration
         Schema::create('values', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title', 100);
-            $table->string('slug', 250)->unique();
+            $table->string('slug')->unique();
             $table->string('value', 200);
             $table->string('description', 250)->nullable();
             $table->unsignedInteger('facet_id');

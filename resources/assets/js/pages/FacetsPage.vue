@@ -18,13 +18,14 @@
         },
         created() {
             const slug = this.$route.params.classification
+            const url = this.$store.getters.getUrl
 
             this.loading()
 
             Promise.all([
-                axios.get('/api/classifications/' + slug),
-                axios.get('/api/classifications/' + slug + '/facets'),
-                axios.get('/api/classifications/' + slug + '/facets/references')
+                axios.get(url + '/api/classifications/' + slug),
+                axios.get(url + '/api/classifications/' + slug + '/facets'),
+                axios.get(url + '/api/classifications/' + slug + '/facets/references')
             ]).then(([responseClassification, responseFacets, responseFacetsReferences]) => {
                 this.classification = responseClassification.data
                 this.facets = responseFacets.data
