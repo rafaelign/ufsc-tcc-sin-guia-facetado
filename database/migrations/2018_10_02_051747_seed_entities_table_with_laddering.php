@@ -55,7 +55,7 @@ Por fim, é necessário coletar os motivos individuais que fazem o participante 
 	
 Estes passos formam níveis de pergunta e respostas, criando uma hierarquia entre as informações coletadas.
 
-![Formação da escada de requisitos](/images/tecnicas-re/laddering-01.png)
+![Formação da escada de requisitos](/guia/images/tecnicas-re/laddering-01.png)
 
 <sup>[1] [2] [3] [4] [6]</sup>';
 

@@ -45,13 +45,13 @@ Quanto aos passos de preparação do questionário:
 
 Exemplos de tipos de perguntas que podem ser incluídas nos questionários que utilizam a escala Likert:
 
-![Exemplo 1](/images/tecnicas-re/questionnaires-01.png)
+![Exemplo 1](/guia/images/tecnicas-re/questionnaires-01.png)
 
-![Exemplo 2](/images/tecnicas-re/questionnaires-02.png)
+![Exemplo 2](/guia/images/tecnicas-re/questionnaires-02.png)
 
 Também é possível explorar outras formas de questões, tudo vai depender do projeto em questão:
 
-![Exemplo 3](/images/tecnicas-re/questionnaires-03.png)
+![Exemplo 3](/guia/images/tecnicas-re/questionnaires-03.png)
 
 <sup>[1] [2] [3] [4] [5] [6] [7] [8]</sup>';
 

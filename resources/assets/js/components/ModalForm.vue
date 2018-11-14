@@ -1,4 +1,5 @@
 <script>
+    import { mapMutations } from 'vuex'
     import DynamicField from './DynamicField'
     import Popover from './Popover'
 
@@ -27,10 +28,14 @@
         },
         data: function () {
             return {
-                selectedFilters: []
+                selectedFilters: [],
+                mode: 'restrict'
             }
         },
         methods: {
+            ...mapMutations([
+                'updateMode'
+            ]),
             filter: function () {
                 this.$emit('filter')
                 this.$parent.close()
@@ -39,6 +44,15 @@
                 this.$emit('reset')
                 this.$parent.close()
             },
+            setMode: function () {
+                this.updateMode(this.mode)
+            },
+            getMode: function () {
+                return this.$store.getters.getMode
+            }
+        },
+        created () {
+            this.mode = this.getMode()
         }
     }
 </script>
@@ -50,7 +64,17 @@
         </header>
         <section class="modal-card-body">
             <div class="has-text-right">
-                <span class="has-background-warning"><b-icon icon="asterisk"></b-icon> Para que uma técnica seja filtrada ela precisa ter <b>TODOS</b> os filtros selecionados</span>
+                <span class="has-background-warning" v-if="mode === 'restrict'" style="max-width: 610px;display: inline-block;margin-bottom: 10px;"><b-icon icon="asterisk"></b-icon> Neste modo de busca, para que uma técnica seja apresentada, ela precisa estar associada com <b>todas</b> as características <b>selecionadas</b> de cada faceta <b>utilizada</b>. <br> <small>Somente as facetas utilizadas são consideradas, não é necessário utilizar todas disponíveis.</small></span>
+                <span class="has-background-success" v-else  style="max-width: 644px;display: inline-block;margin-bottom: 10px;"><b-icon icon="asterisk"></b-icon> Com o modo restrito desativado, para que uma técnica seja apresentada, basta que <b>uma das características</b> selecionadas estejam associadas a ela para cada faceta <b>utilizada</b>.  <br> <small>Somente as facetas utilizadas são consideradas, não é necessário utilizar todas disponíveis.</small></span>
+                <br>
+                <b-switch
+                        v-model="mode"
+                        :true-value="'restrict'"
+                        :false-value="'open'"
+                        size="is-medium"
+                        @input="setMode">
+                    Modo restrito
+                </b-switch>
             </div>
             <form action="">
                 <div class="tile is-ancestor">

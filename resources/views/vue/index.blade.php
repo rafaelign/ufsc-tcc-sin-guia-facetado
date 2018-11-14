@@ -7,6 +7,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <meta property="og:title" content="Guia facetado de técnicas elicitação de requisitos"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:description" content="Obtenha informações sobre técnicas de elicitação de requisitos!" />
+    <meta property="og:image" content="http://retraining.inf.ufsc.br/guia/images/logo.png" />
+    <meta property="og:url" content="http://retraining.inf.ufsc.br/guia"/>
+    <meta property="og:site_name" content="REtraining - Guia facetado de Técnicas de Elicitação de Requisitos" />
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="http://retraining.inf.ufsc.br/guia">
+    <meta name="twitter:title" content="Guia facetado de técnicas elicitação de requisitos">
+    <meta name="twitter:description" content="Obtenha informações sobre técnicas de elicitação de requisitos!">
+    <meta name="twitter:image" content="http://retraining.inf.ufsc.br/guia/images/logo.png">
+
     <base href="{{ config('app.base') }}">
     <title>REtraining - Guia facetado de Técnicas de Elicitação de Requisitos</title>
 

@@ -27,19 +27,25 @@ const router = new VueRouter({
 
 const store = new Vuex.Store({
     state: {
-        filters: [],
+        filters: {
+            mode: 'restrict',
+            values: []
+        },
         defaultValues: [],
         isLoading: false
     },
     mutations: {
+        updateMode (state, mode) {
+            state.filters.mode = mode
+        },
         addFilter (state, filter) {
-            state.filters.forEach((item, index) => {
+            state.filters.values.forEach((item, index) => {
                 if (item.name === filter.name) {
-                    state.filters.splice(index, 1)
+                    state.filters.values.splice(index, 1)
                 }
             })
 
-            state.filters.push(filter)
+            state.filters.values.push(filter)
         },
         addDefaultValue (state, filter) {
             state.defaultValues.forEach((item, index) => {
@@ -51,7 +57,10 @@ const store = new Vuex.Store({
             state.defaultValues.push(filter)
         },
         resetFilters (state) {
-            state.filters = []
+            state.filters = {
+                mode: 'restrict',
+                values: []
+            }
         },
         loading (state) {
             state.isLoading = true
@@ -62,7 +71,7 @@ const store = new Vuex.Store({
     },
     getters: {
         getFilterValueByName: (state) => (name) => {
-            let filter = state.filters.filter((item) => {
+            let filter = state.filters.values.filter((item) => {
                 return item.name === name
             })
 
@@ -78,6 +87,12 @@ const store = new Vuex.Store({
         },
         getFilters: (state) => {
             return state.filters || []
+        },
+        getFiltersValues: (state) => {
+            return state.filters.values || []
+        },
+        getMode: (state) => {
+            return state.filters.mode
         },
         isLoading: (state) => {
             return state.isLoading

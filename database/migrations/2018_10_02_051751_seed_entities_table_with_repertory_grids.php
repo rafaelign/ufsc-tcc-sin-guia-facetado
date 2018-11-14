@@ -42,17 +42,17 @@ Este exemplo é um grid para entender as percepções individuais de diferentes 
 
 Exemplos de grids após a execução.
 
-![Exemplo de grid 1](/images/tecnicas-re/repertory-grids-04.png)
+![Exemplo de grid 1](/guia/images/tecnicas-re/repertory-grids-04.png)
 
-![Exemplo de grid 2](/images/tecnicas-re/repertory-grids-01.png)
+![Exemplo de grid 2](/guia/images/tecnicas-re/repertory-grids-01.png)
 
 Exemplo de uma árvore de relação entre elementos e construtos.
 
-![Exemplo de árvore de relação](/images/tecnicas-re/repertory-grids-02.png)
+![Exemplo de árvore de relação](/guia/images/tecnicas-re/repertory-grids-02.png)
 
 Exemplo da análise estatística PCA.
 
-![Exemplo de análise PCA](/images/tecnicas-re/repertory-grids-03.png)
+![Exemplo de análise PCA](/guia/images/tecnicas-re/repertory-grids-03.png)
 
 <sup>[2] [3]</sup>';
 

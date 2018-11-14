@@ -44,7 +44,7 @@ A etapa de **execução** é uma reunião que começa com o facilitador embaralh
 
 Na **análise dos resultados** as definições dos participantes são combinadas e tratadas estatisticamente. O objetivo do analista é identificar padrões de comportamento para elaborar um modelo mental eficiente para os perfis. É interessante que outros membros da equipe de desenvolvimento opinem para aperfeiçoar a interpretação.
 
-![Exemplo de card sorting](/images/tecnicas-re/card-sorting-01.jpg)
+![Exemplo de card sorting](/guia/images/tecnicas-re/card-sorting-01.jpg)
 
 Exemplo de um exercício de card sorting.
 
@@ -100,7 +100,7 @@ Exemplo de um exercício de card sorting.
             'Experiência do elicitor' => 'Médio',
             'Experiência com técnicas de elicitação' => 'Baixo',
             'Familiaridade com o domínio' => 'Baixo',
-            'Pessoas por sessão' => 'Individual',
+            'Pessoas por sessão' => 'Em massa',
             'Consenso entre os stakeholders' => 'Alto',
             'Interesse do stakeholder' => 'Baixo',
             'Especialidade' => 'Iniciante',

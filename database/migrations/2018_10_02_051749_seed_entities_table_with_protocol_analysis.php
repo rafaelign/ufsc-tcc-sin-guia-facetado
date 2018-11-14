@@ -30,7 +30,7 @@ class SeedEntitiesTableWithProtocolAnalysis extends Migration
 
 Através de uma análise de protocolo, informações sobre o processo são documentadas. Este exemplo retrata como as informações podem ser organizadas após uma sessão previamente agendada e autorizada pelo cliente.
 
-![Exemplo de uma coleta de informações em um processo de análise de protocolo](/images/tecnicas-re/protocol-analysis-01.png)
+![Exemplo de uma coleta de informações em um processo de análise de protocolo](/guia/images/tecnicas-re/protocol-analysis-01.png)
 
 <sup>[1] [2] [4] [6]</sup>';
 

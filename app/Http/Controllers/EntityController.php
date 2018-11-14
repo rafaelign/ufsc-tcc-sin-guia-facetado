@@ -54,7 +54,10 @@ class EntityController extends Controller
             ->with('values');
 
         if ($request->isMethod('post')) {
-            $filters = json_decode(file_get_contents('php://input'));
+            $post = json_decode(file_get_contents('php://input'));
+
+            $mode = isset($post->mode) ? str_slug($post->mode) : 'restrict';
+            $filters = isset($post->values) ? $post->values : [];
 
             foreach ($filters as $key => $filter) {
                 if (isset($filter->value) && !$filter->value) {
@@ -70,10 +73,14 @@ class EntityController extends Controller
                 $values = [];
                 foreach ($filters as $filter) {
                     if (is_array($filter->value)) {
-                        foreach ($filter->value as $value) {
-                            if (!in_array($value, $values)) {
-                                $values[] = $value;
+                        if ($mode === 'restrict') {
+                            foreach ($filter->value as $value) {
+                                if (!in_array($value, $values)) {
+                                    $values[] = $value;
+                                }
                             }
+                        } else {
+                            $values[] = $filter->value;
                         }
                     } else {
                         if (!in_array($filter->value, $values)) {
@@ -84,10 +91,17 @@ class EntityController extends Controller
 
                 foreach ($values as $value) {
                     $entities->whereIn('entities.id', function ($query) use ($value) {
-                        $query->select('entity_id')
-                            ->from('entities_values')
-                            ->where('value_id', $value)
-                            ->groupBy('entity_id')->get();
+                        if (is_array($value)) {
+                            $query->select('entity_id')
+                                ->from('entities_values')
+                                ->whereIn('value_id', $value)
+                                ->groupBy('entity_id')->get();
+                        } else {
+                            $query->select('entity_id')
+                                ->from('entities_values')
+                                ->where('value_id', $value)
+                                ->groupBy('entity_id')->get();
+                        }
                     });
                 }
             }

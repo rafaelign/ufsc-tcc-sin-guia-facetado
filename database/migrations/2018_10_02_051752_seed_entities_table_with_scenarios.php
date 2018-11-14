@@ -63,7 +63,7 @@ Como exemplo de um cenário de texto simples apresentado na **figura 1**, ele re
             'description'       => $description,
             'pros'              => $pros,
             'cons'              => $cons,
-            'images'            => '[{"src": "/images/tecnicas-re/scenarios-01.png", "title": "Figura 1 - Exemplo de aplicação da técnica Cenários"}]',
+            'images'            => '[{"src": "/guia/images/tecnicas-re/scenarios-01.png", "title": "Figura 1 - Exemplo de aplicação da técnica Cenários"}]',
             'classification_id' => $RETechniqueClassification->id,
             'user_id'           => $user->id,
             'published'         => 1,

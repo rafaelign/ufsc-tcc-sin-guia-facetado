@@ -87,7 +87,7 @@ Através desta sessão a equipe define determinados requisitos que são relevant
 - O sistema deve garantir a integridade do conteúdo que é fornecido aos usuários usando autenticação, autorização e controle de acesso.
 - O sistema deve habilitar o controle de versão tanto no conteúdo apresentado quanto no desenvolvimento da plataforma.
 
-![Exemplo JAD](/images/tecnicas-re/jad-01.png)
+![Exemplo JAD](/guia/images/tecnicas-re/jad-01.png)
 
 <sup>[2] [3] [4] [6] [7] [8] [9]</sup>';
 

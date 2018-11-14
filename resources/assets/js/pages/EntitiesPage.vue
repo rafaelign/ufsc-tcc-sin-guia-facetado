@@ -115,7 +115,7 @@
                 </div>
 
                 <div class="row content" v-else>
-                    <p v-if="$store.getters.getFilters.length">Nenhum registro encontrado para o filtro informado.</p>
+                    <p v-if="$store.getters.getFiltersValues.length">Nenhum registro encontrado para o filtro informado.</p>
                     <p v-else>Nenhum registro encontrado para esta classificação.</p>
                 </div>
             </div>
