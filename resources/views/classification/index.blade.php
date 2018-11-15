@@ -1,4 +1,4 @@
-    @extends('layouts.general')
+@extends('layouts.general')
 
 @section('breadcrumb')
     <nav class="breadcrumb" aria-label="breadcrumbs">
@@ -38,14 +38,17 @@
                     <a href="{{ route('classifications.facets', ['classificationId' => $classification->id]) }}" class="card-footer-item">
                         <span class="icon"><span class="mdi mdi-adjust"></span></span> <span class="badge is-badge-info" data-badge="{{ count($classification->facets) }}">{{ __('Facetas') }}</span>
                     </a>
-                    <a href="#" @click="updatePublish({{ $classification->id }})" class="card-footer-item">
-                        <span class="icon" v-if="isLoading()"><span class="mdi mdi-spin mdi-loading"></span></span>
-                        @if ($classification->published)
+                    @if ($classification->published)
+                        <a href="#" @click="unpublishClassification({{ $classification->id }})" class="card-footer-item">
+                            <span class="icon" v-if="isLoading()"><span class="mdi mdi-spin mdi-loading"></span></span>
                             <span class="icon" v-if="! isLoading()"><span class="mdi mdi-arrow-expand-down"></span></span> {{ __('Despublicar') }}
-                        @else
+                        </a>
+                    @else
+                        <a href="#" @click="publishClassification({{ $classification->id }})" class="card-footer-item">
+                            <span class="icon" v-if="isLoading()"><span class="mdi mdi-spin mdi-loading"></span></span>
                             <span class="icon" v-if="! isLoading()"><span class="mdi mdi-arrow-expand-up is-success"></span></span> {{ __('Publicar') }}
-                        @endif
-                    </a>
+                        </a>
+                    @endif
                 </footer>
             </div>
         @empty

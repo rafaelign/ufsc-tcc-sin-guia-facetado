@@ -3,6 +3,7 @@ window.Vue = require('vue');
 
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import { APP_URL } from './utils/config'
 
 Vue.use(VueRouter);
 
@@ -20,37 +21,78 @@ const app = new Vue({
         isLoading: function () {
             return this.loading
         },
-        updatePublish: function (classificationId) {
-            console.log(classificationId)
-
+        publishClassification: function (classificationId) {
             if (this.isLoading()) {
                 return
             }
 
             this.loading = true
 
-            axios.put('/admin/classifications/' + classificationId + '/update_publish')
-                .then((response) => {
-                    console.log(response.data);
-                    this.loading = false
+            axios.put(APP_URL + '/admin/classifications/' + classificationId + '/update_publish', {published: 1}, {
+                'Content-Type': 'application/json'
+            }).then((response) => {
+                this.loading = false
 
-                    if (! response.data.error) {
-                        window.location.reload(true)
-                    }
-                })
+                if (! response.data.error) {
+                    window.location.reload(true)
+                }
+            })
+        },
+        unpublishClassification: function (classificationId) {
+            if (this.isLoading()) {
+                return
+            }
+
+            this.loading = true
+
+            axios.put(APP_URL + '/admin/classifications/' + classificationId + '/update_publish', {published: 0}, {
+                'Content-Type': 'application/json'
+            }).then((response) => {
+                this.loading = false
+
+                if (! response.data.error) {
+                    window.location.reload(true)
+                }
+            })
+        },
+        publishEntity: function (classificationId, entityId) {
+            if (this.isLoading()) {
+                return
+            }
+
+            this.loading = true
+
+            axios.put(APP_URL + '/admin/classifications/' + classificationId + '/entities/' + entityId + '/update_publish', {published: 1}, {
+                'Content-Type': 'application/json'
+            }).then((response) => {
+                this.loading = false
+
+                if (! response.data.error) {
+                    window.location.reload(true)
+                }
+            })
+        },
+        unpublishEntity: function (classificationId, entityId) {
+            if (this.isLoading()) {
+                return
+            }
+
+            this.loading = true
+
+            axios.put(APP_URL + '/admin/classifications/' + classificationId + '/entities/' + entityId + '/update_publish', {published: 0}, {
+                'Content-Type': 'application/json'
+            }).then((response) => {
+                this.loading = false
+
+                if (! response.data.error) {
+                    window.location.reload(true)
+                }
+            })
         },
         attemptDeleteUser: function () {
             let id = document.querySelector('.modal-confirm').dataset.id;
 
-            axios.delete('/admin/users/' + id)
-                .then(() => {
-                    window.location.reload(true)
-                })
-        },
-        attemptDeleteEntity: function () {
-            let id = document.querySelector('.modal-confirm').dataset.id;
-
-            axios.delete('/admin/entities/' + id)
+            axios.delete(APP_URL + '/admin/users/' + id)
                 .then(() => {
                     window.location.reload(true)
                 })

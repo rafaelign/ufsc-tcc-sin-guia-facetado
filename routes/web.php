@@ -16,23 +16,21 @@ Route::prefix('admin')->group(function () {
     Route::put('/classifications/{id}', 'ClassificationController@update')->name('classifications.update');
     Route::put('/classifications/{id}/update_publish', 'ClassificationController@updatePublishedStatus')->name('classifications.publish');
 
-    // Classification Entities
-    Route::get('/classifications/{classificationId}/entities', 'EntityController@index')->name('classifications.entities');
-
-    // Classification Facets
-    Route::get('/classifications/{classificationId}/facets', 'FacetController@index')->name('classifications.facets');
-
     // Entities
-    Route::get('/entities/{classificationId}/{id}', 'EntityController@edit')->name('entities.edit');
-    Route::post('/entities', 'EntityController@store')->name('entities.store');
-    Route::put('/entities/{id}', 'EntityController@update')->name('entities.update');
-    Route::put('/entities/{id}/update_publish', 'EntityController@updatePublishedStatus')->name('entities.publish');
+    Route::get('/classifications/{classificationId}/entities/{id}', 'EntityController@edit')->name('entities.edit');
+    Route::get('/classifications/{classificationId}/entities/{id}/classification', 'EntityController@editClassification')->name('entities.classification');
+    Route::get('/classifications/{classificationId}/entities/{id}/references', 'EntityController@editReference')->name('entities.references');
+    Route::get('/classifications/{classificationId}/entities', 'EntityController@index')->name('classifications.entities');
+    Route::post('/classifications/{classificationId}/entities', 'EntityController@store')->name('entities.store');
+    Route::put('/classifications/{classificationId}/entities/{id}', 'EntityController@update')->name('entities.update');
+    Route::put('/classifications/{classificationId}/entities/{id}/update_publish', 'EntityController@updatePublishedStatus')->name('entities.publish');
 
     // Facets
-    Route::get('/facets/{classificationId}/{id}', 'FacetController@edit')->name('facets.edit');
-    Route::post('/facets', 'FacetController@store')->name('facets.store');
-    Route::put('/facets/{id}', 'FacetController@update')->name('facets.update');
-    Route::delete('/facets/{id}', 'FacetController@destroy')->name('users.delete');
+    Route::get('/classifications/{classificationId}/facets/{id}', 'FacetController@edit')->name('facets.edit');
+    Route::get('/classifications/{classificationId}/facets', 'FacetController@index')->name('classifications.facets');
+    Route::post('/classifications/{classificationId}/facets', 'FacetController@store')->name('facets.store');
+    Route::put('/classifications/{classificationId}/facets/{id}', 'FacetController@update')->name('facets.update');
+    Route::delete('/classifications/{classificationId}/facets/{id}', 'FacetController@destroy')->name('users.delete');
 
     // Users
     Route::get('/users', 'UserController@index')->name('users');

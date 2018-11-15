@@ -29,6 +29,10 @@ class ClassificationController extends Controller
         ]);
     }
 
+    /**
+     * @param int $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function edit(int $id)
     {
         $classification = Classification::find($id);
@@ -62,7 +66,7 @@ class ClassificationController extends Controller
         $classification = new Classification;
 
         $classification->title = $request->title;
-        $classification->slug = $request->slug;
+        $classification->slug = str_slug($request->slug);
         $classification->description = $request->description;
         $classification->classification_type = $request->classification_type;
         $classification->main_menu = $request->main_menu;
@@ -154,6 +158,10 @@ class ClassificationController extends Controller
         return response()->json($facets);
     }
 
+    /**
+     * @param string $slug
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getFacetsReferencesByClassificationSlug(string $slug)
     {
         $collection = Classification::where('slug', '=', $slug)
@@ -175,16 +183,29 @@ class ClassificationController extends Controller
         return response()->json($references);
     }
 
+
     /**
+     * @param Request $request
      * @param int $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
-    public function updatePublishedStatus(int $id)
+    public function updatePublishedStatus(Request $request, int $id)
     {
+        $validator = Validator::make($request->all(), [
+            'published' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->route('classifications.edit', ['id' => 0])
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         $classification = Classification::find($id);
 
         if ($classification) {
-            $classification->published = $classification->published ? 0 : 1;
+            $classification->published = (int) $request->published;;
 
             if ($classification->save()) {
                 return response()->json([

@@ -7,6 +7,8 @@ use App\Models\Reference;
 use App\Models\Value;
 use App\Models\Classification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class EntityController extends Controller
 {
@@ -20,7 +22,7 @@ class EntityController extends Controller
     {
         return response()->json(
             Entity::where('slug', '=', $slug)
-                ->where('published', 1)
+                ->where('published', Entity::PUBLISHED)
                 ->with('references')
                 ->first()
         );
@@ -29,7 +31,7 @@ class EntityController extends Controller
     public function getReferencesByEntitySlug(string $slug)
     {
         $entity = Entity::where('slug', '=', $slug)
-            ->where('published', 1)
+            ->where('published', Entity::PUBLISHED)
             ->first();
 
         $references = Reference::join('entities_references', 'entities_references.reference_id', 'references.id')
@@ -50,7 +52,7 @@ class EntityController extends Controller
     {
         $entities = Entity::join('classifications', 'classifications.id', 'entities.classification_id')
             ->where('classifications.slug', '=', $slug)
-            ->where('entities.published', 1)
+            ->where('entities.published', Entity::PUBLISHED)
             ->with('values');
 
         if ($request->isMethod('post')) {
@@ -181,7 +183,131 @@ class EntityController extends Controller
         return view('entity.edit', [
             'classification' => Classification::find($classificationId),
             'entity' => Entity::find($id),
+            'classificationId' => $classificationId,
             'id' => $id,
         ]);
+    }
+
+    /**
+     * @param Request $request
+     * @param int $classificationId
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     */
+    public function updatePublishedStatus(Request $request, int $classificationId, int $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'published' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->route('classifications.entities', ['classificationId' => $classificationId])
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $entity = Entity::find($id);
+
+        if ($entity) {
+            $entity->published = (int) $request->published;;
+
+            if ($entity->save()) {
+                return response()->json([
+                    'error' => false,
+                    'message' => 'Técnica atualizada com sucesso!',
+                ]);
+            }
+        }
+
+        return response()->json([
+            'error' => true,
+            'message' => 'Erro ao atualizar classificação',
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'classification_id' => 'required',
+            'title' => 'required|max:100',
+            'slug' => 'required|unique:entities|max:150',
+            'short_description' => 'required|max:250',
+            'description' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->route('entities.edit', ['classificationId' => (int) $request->classification_id, 'id' => 0])
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $entity = new Entity();
+
+        $entity->classification_id = $request->classification_id;
+        $entity->title = $request->title;
+        $entity->slug = str_slug($request->slug);
+        $entity->short_description = $request->short_description;
+        $entity->description = $request->description;
+        $entity->pros = $request->pros;
+        $entity->cons = $request->cons;
+        $entity->images = $request->images;
+        $entity->published = 0;
+        $entity->page_views = 0;
+        $entity->user_id = \Auth::user()->id;
+
+        if ($entity->save()) {
+            return redirect()
+                ->route('classifications.entities', ['classificationId' => $request->classification_id]);
+        }
+
+        return redirect()
+            ->route('classifications.entities', ['classificationId' => $request->classification_id])
+            ->withInput();
+    }
+
+    public function update(Request $request, int $classificationId, int $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|max:100',
+            'slug' => [
+                'required',
+                'max:150',
+                Rule::unique('entities')->ignore($id, 'id')
+            ],
+            'short_description' => 'required|max:250',
+            'description' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->route('classifications.entities', ['classificationId' => (int) $classificationId])
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $entity = Entity::find($id);
+
+        $entity->title = $request->title;
+        $entity->slug = str_slug($request->slug);
+        $entity->short_description = $request->short_description;
+        $entity->description = $request->description;
+        $entity->pros = $request->pros;
+        $entity->cons = $request->cons;
+        $entity->images = $request->images;
+
+        if ($entity->save()) {
+            return redirect()
+                ->route('classifications.entities', ['classificationId' => $classificationId]);
+        }
+
+        return redirect()
+            ->route('classifications.entities', ['classificationId' => $classificationId])
+            ->withInput();
     }
 }

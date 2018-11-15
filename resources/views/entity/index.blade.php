@@ -44,11 +44,17 @@
                     ]) }}" class="button is-small">
                         <span class="icon"><span class="mdi mdi-pencil"></span></span>
                     </a>
-                    <a class="button is-small delete-button"
-                       data-target="modal" aria-haspopup="true" data-id="{{ $entity->id }}"
-                       onclick="event.preventDefault();">
-                        <span class="icon"><span class="mdi mdi-delete"></span></span>
-                    </a>
+                    @if ($entity->published)
+                        <a href="#" @click="unpublishEntity({{ $entity->classification_id }}, {{ $entity->id }})" class="button is-small">
+                            <span class="icon" v-if="isLoading()"><span class="mdi mdi-spin mdi-loading"></span></span>
+                            <span class="icon" v-if="! isLoading()"><span class="mdi mdi-arrow-expand-down"></span></span>
+                        </a>
+                    @else
+                        <a href="#" @click="publishEntity({{ $entity->classification_id }}, {{ $entity->id }})" class="button is-small">
+                            <span class="icon" v-if="isLoading()"><span class="mdi mdi-spin mdi-loading"></span></span>
+                            <span class="icon" v-if="! isLoading()"><span class="mdi mdi-arrow-expand-up is-success"></span></span>
+                        </a>
+                    @endif
                 </td>
             </tr>
         @endforeach
