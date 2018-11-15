@@ -57,6 +57,10 @@
     }
 </script>
 
+<style type="text/css">
+    .modal-close { background-color: #BBB; }
+</style>
+
 <template>
     <div class="modal-content modal-card">
         <header class="modal-card-head">
@@ -64,9 +68,6 @@
         </header>
         <section class="modal-card-body">
             <div class="has-text-right">
-                <span class="has-background-warning" v-if="mode === 'restrict'" style="max-width: 610px;display: inline-block;margin-bottom: 10px;"><b-icon icon="asterisk"></b-icon> Neste modo de busca, para que uma técnica seja apresentada, ela precisa estar associada com <b>todas</b> as características <b>selecionadas</b> de cada faceta <b>utilizada</b>. <br> <small>Somente as facetas utilizadas são consideradas, não é necessário utilizar todas disponíveis.</small></span>
-                <span class="has-background-success" v-else  style="max-width: 644px;display: inline-block;margin-bottom: 10px;"><b-icon icon="asterisk"></b-icon> Com o modo restrito desativado, para que uma técnica seja apresentada, basta que <b>uma das características</b> selecionadas estejam associadas a ela para cada faceta <b>utilizada</b>.  <br> <small>Somente as facetas utilizadas são consideradas, não é necessário utilizar todas disponíveis.</small></span>
-                <br>
                 <b-switch
                         v-model="mode"
                         :true-value="'restrict'"
@@ -75,6 +76,9 @@
                         @input="setMode">
                     Modo restrito
                 </b-switch>
+                <br>
+                <span class="has-background-grey-lighter" v-if="mode === 'restrict'" style="max-width: 590px;display: inline-block;margin-top: 10px;"><b-icon icon="asterisk"></b-icon> Neste modo de busca, para que uma técnica seja apresentada, ela precisa estar associada com <b>todas</b> as características <b>selecionadas</b> de cada faceta <b>utilizada</b>. <br> <small>Somente as facetas utilizadas são consideradas, não é necessário utilizar todas disponíveis.</small></span>
+                <span class="has-background-grey-lighter" v-else  style="max-width: 655px;display: inline-block;margin-top: 10px;"><b-icon icon="asterisk"></b-icon> Com o modo restrito desativado, para que uma técnica seja apresentada, basta que <b>uma das características</b> selecionadas estejam associadas a ela para cada faceta <b>utilizada</b>.  <br> <small>Somente as facetas utilizadas são consideradas, não é necessário utilizar todas disponíveis.</small></span>
             </div>
             <form action="">
                 <div class="tile is-ancestor">

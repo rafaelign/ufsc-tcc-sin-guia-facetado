@@ -24,7 +24,7 @@
                     <h1 class="title"><b-icon icon="information"></b-icon> Sobre este guia</h1>
                     <p class="has-text-justified">
                         Este guia procura apresentar técnicas de elicitação de requisitos e suas respectivas informações de uma maneira didática e simples.
-                        O processo de pesquisa acerca das técnicas demonstrou que existe uma grande variedade de métodos que utilizados nesse processo.
+                        A execução da pesquisa demonstrou que existem diversos métodos que podem ser utilizados para elicitar requisitos de software.
                         Outra constatação é que o processo de elicitação de requisitos de um projeto não se restringe a utilização de apenas uma técnica, mas sim de uma combinação entre elas.
                         Estes fatores justificam a criação de um guia que agrupa e classifica essas informações.
                         A classificação facetada nos permite realizar determinados filtros conforme as características mapeadas.

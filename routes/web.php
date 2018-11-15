@@ -6,10 +6,6 @@ Route::get('/', function () {
 
 Route::get('/app/{vue_capture?}', 'VueController@index')->where('vue_capture', '[\/\w\.-]*');
 
-//Route::get('/{name}', function () {
-//    return redirect('/');
-//})->where('name', '[A-Za-z\-]*');
-
 Route::prefix('admin')->group(function () {
     Route::get('/', 'HomeController@index')->name('home');
 
