@@ -42,7 +42,7 @@
                 this.references = responseEntityReferences.data
                 this.facets = responseFacets.data
 
-                axios.put(url + '/api/entities/page_views/' + this.entity.id)
+                axios.get(url + '/api/entities/page_views/' + this.entity.id)
                     .catch((error) => this.errors = error.response.data.errors)
 
                 this.loaded()

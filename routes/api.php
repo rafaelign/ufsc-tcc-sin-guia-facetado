@@ -35,6 +35,6 @@ Route::get('entities/{slug}/references', 'EntityController@getReferencesByEntity
 
 Route::get('entities/{slug}/values', 'EntityController@getValuesByEntitySlug');
 
-Route::put('entities/page_views/{id}', 'EntityController@addPageView');
+Route::get('entities/page_views/{id}', 'EntityController@addPageView');
 
 Route::get('facet_groups/{classificationSlug}', 'FacetGroupController@getFacetGroupsByClassificationSlug');
