@@ -20,7 +20,8 @@ class FacetController extends Controller
         return view('facet.index', [
             'classification' => Classification::find($classificationId),
             'facets' => Facet::where('classification_id', $classificationId)
-                ->paginate(5)
+                ->paginate(5),
+            'classificationId' => $classificationId,
         ]);
     }
 
@@ -40,6 +41,10 @@ class FacetController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -78,6 +83,12 @@ class FacetController extends Controller
             ->withInput();
     }
 
+    /**
+     * @param Request $request
+     * @param int $classificationId
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request, int $classificationId, int $id)
     {
         $validator = Validator::make($request->all(), [

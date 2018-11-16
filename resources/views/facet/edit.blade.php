@@ -69,7 +69,7 @@
                         </div>
 
                         <div class="field">
-                            <label class="label">{{ __('Grupo') }}</label>
+                            <label class="label">{{ __('Grupo') }} <a href="{{ route('facets_groups') }}" class="button is-small"><span class="icon"><span class="mdi mdi-pencil"></span></span> <span>Gerenciar</span></a></label>
                             <div class="control">
                                 <div class="select is-info">
                                     <select name="facet_group_id">

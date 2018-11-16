@@ -73,7 +73,7 @@
             </section>
             <footer class="modal-card-foot">
                 <button class="button is-danger modal-confirm" data-id="" data-classification="" @click="attemptDeleteFacet()">{{ __('Remover') }}</button>
-                <a href="{{ route('classifications.facets', ['classificationId' => $classificationId]) }}" class="button is-text">{{ __('Cancelar') }}</a>
+                <button class="button modal-cancel">Cancelar</button>
             </footer>
         </div>
     </div>

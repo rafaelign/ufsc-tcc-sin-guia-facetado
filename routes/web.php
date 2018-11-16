@@ -34,6 +34,12 @@ Route::prefix('admin')->group(function () {
     Route::put('/classifications/{classificationId}/facets/{id}', 'FacetController@update')->name('facets.update');
     Route::delete('/classifications/{classificationId}/facets/{id}', 'FacetController@destroy')->name('users.delete');
 
+    // Facets Groups
+    Route::get('/facets_groups', 'FacetGroupController@index')->name('facets_groups');
+    Route::get('/facets_groups/{id}', 'FacetGroupController@edit')->name('facets_groups.edit');
+    Route::post('/facets_groups', 'FacetGroupController@store')->name('facets_groups.store');
+    Route::put('/facets_groups/{id}', 'FacetGroupController@update')->name('facets_groups.update');
+
     // Users
     Route::get('/users', 'UserController@index')->name('users');
     Route::get('/users/{id}', 'UserController@edit')->name('users.edit');
