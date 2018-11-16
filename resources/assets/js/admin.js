@@ -105,6 +105,14 @@ const app = new Vue({
                 .then(() => {
                     window.location.reload(true)
                 })
+        },
+        attemptDeleteValue: function () {
+            let id = document.querySelector('.modal-confirm').dataset.id;
+
+            axios.delete(APP_URL + '/admin/values/' + id)
+                .then(() => {
+                    window.location.reload(true)
+                })
         }
     }
 });
