@@ -46,7 +46,7 @@
                         <button class="button is-link">{{ (int) $id > 0 ? __('Alterar') : __('Cadastrar') }}</button>
                     </div>
                     <div class="control">
-                        <button class="button is-text">{{ __('Cancelar') }}</button>
+                        <a href="{{ route('users') }}" class="button is-text">{{ __('Cancelar') }}</a>
                     </div>
                 </div>
             </form>

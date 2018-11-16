@@ -36,7 +36,7 @@
                         <span class="icon"><span class="mdi mdi-pencil"></span></span>
                     </a>
                     <a class="button is-small delete-button"
-                       data-target="modal" aria-haspopup="true" data-id="{{ $user->id }}"
+                       data-target="modal" aria-haspopup="true" data-id="{{ $user->id }}" data-classification=""
                        onclick="event.preventDefault();">
                         <span class="icon"><span class="mdi mdi-delete"></span></span>
                     </a>
@@ -56,14 +56,14 @@
         <div class="modal-background"></div>
         <div class="modal-card">
             <header class="modal-card-head">
-                <p class="modal-card-title">{{ __('Delete user') }}</p>
+                <p class="modal-card-title">{{ __('Remover usuário') }}</p>
                 <button class="delete modal-cancel-x" aria-label="close"></button>
             </header>
             <section class="modal-card-body">
                 {{ __('Você tem certeza?') }}
             </section>
             <footer class="modal-card-foot">
-                <button class="button is-danger modal-confirm" data-id="" @click="attemptDeleteUser()">{{ __('Remover') }}</button>
+                <button class="button is-danger modal-confirm" data-id="" data-classification="" @click="attemptDeleteUser()">{{ __('Remover') }}</button>
                 <button class="button modal-cancel">Cancelar</button>
             </footer>
         </div>

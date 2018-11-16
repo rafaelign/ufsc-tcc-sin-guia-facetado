@@ -96,6 +96,15 @@ const app = new Vue({
                 .then(() => {
                     window.location.reload(true)
                 })
+        },
+        attemptDeleteFacet: function () {
+            let id = document.querySelector('.modal-confirm').dataset.id;
+            let classification = document.querySelector('.modal-confirm').dataset.classification;
+
+            axios.delete(APP_URL + '/admin/classifications/' + classification + '/facets/' + id)
+                .then(() => {
+                    window.location.reload(true)
+                })
         }
     }
 });
@@ -113,17 +122,22 @@ const app = new Vue({
 })();
 
 (function () {
-    let deleteButton = document.querySelector('.delete-button');
-    let modal = deleteButton !== null ? document.querySelector('#'+deleteButton.dataset.target) : null;
+    let deleteButton = document.getElementsByClassName("delete-button");
+    let modal = deleteButton !== null ? document.querySelector('#'+deleteButton[0].dataset.target) : null;
     let modalConfirm = document.querySelector('.modal-confirm');
     let modalCancel = document.querySelector('.modal-cancel');
     let modalClose = document.querySelector('.modal-cancel-x');
 
     if (deleteButton && modal) {
-        deleteButton.addEventListener('click', function () {
-            modalConfirm.dataset.id = deleteButton.dataset.id;
-            modal.classList.toggle('is-active');
-        });
+        console.log(deleteButton);
+        for (var i = 0; i < deleteButton.length; i++) {
+            console.log(deleteButton[i]);
+            deleteButton[i].addEventListener('click', function () {
+                modalConfirm.dataset.id = this.dataset.id;
+                modalConfirm.dataset.classification = this.dataset.classification;
+                modal.classList.toggle('is-active');
+            });
+        }
     }
 
     if (modalCancel && modalClose) {

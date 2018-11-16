@@ -45,7 +45,7 @@
                         <span class="icon"><span class="mdi mdi-pencil"></span></span>
                     </a>
                     <a class="button is-small delete-button"
-                       data-target="modal" aria-haspopup="true" data-id="{{ $facet->id }}"
+                       data-target="modal" aria-haspopup="true" data-id="{{ $facet->id }}" data-classification="{{ $facet->classification_id }}"
                        onclick="event.preventDefault();">
                         <span class="icon"><span class="mdi mdi-delete"></span></span>
                     </a>
@@ -61,4 +61,20 @@
         </tr>
         </tfoot>
     </table>
+    <div class="modal" id="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">{{ __('Remover faceta') }}</p>
+                <button class="delete modal-cancel-x" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                {{ __('Você tem certeza?') }}
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button is-danger modal-confirm" data-id="" data-classification="" @click="attemptDeleteFacet()">{{ __('Remover') }}</button>
+                <a href="{{ route('classifications.facets', ['classificationId' => $classificationId]) }}" class="button is-text">{{ __('Cancelar') }}</a>
+            </footer>
+        </div>
+    </div>
 @endsection

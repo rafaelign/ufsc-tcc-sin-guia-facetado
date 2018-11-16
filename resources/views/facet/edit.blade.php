@@ -14,22 +14,34 @@
 @section('content')
     <div class="columns has-background-white">
         <div class="column is-12">
-            <form id="form" action="{{ (int) $id > 0 ? route('facets.update', ['id' => (int) $id]) : route('facets.store') }}" method="POST">
+            <form id="form" action="{{ (int) $id > 0 ?
+                route('facets.update', ['classificationId' => $classificationId, 'id' => (int) $id]) :
+                route('facets.store', ['classificationId' => $classificationId]) }}" method="POST">
                 @if ((int) $id > 0)
                     @method('PUT')
                 @endif @csrf
+                <input type="hidden" name="classification_id" value="{{ $classificationId }}">
+                @if ($facet) <input type="hidden" name="id" value="{{ $id }}"> @endif
 
-                <div class="tabs is-centered is-boxed is-medium">
+                <div class="tabs is-medium">
                     <ul>
                         <li class="is-active">
-                            <a @click="facetastab='default'"><span>Definição</span></a>
+                            <a href="#"><span>Definição</span></a>
                         </li>
-                        <li>
-                            <a @click="facetastab='valores'"><span>Valores possíveis</span></a>
-                        </li>
-                        <li>
-                            <a @click="facetastab='referencias'"><span>Referências</span></a>
-                        </li>
+                        @if ($facet)
+                            <li>
+                                <a href="{{ route('facets.values', [
+                                'classificationId' => $classificationId,
+                                'id' => $id,
+                            ]) }}"><span>Valores possíveis</span></a>
+                            </li>
+                            <li>
+                                <a href="{{ route('facets.references', [
+                                'classificationId' => $classificationId,
+                                'id' => $id,
+                            ]) }}"><span>Referências</span></a>
+                            </li>
+                        @endif
                     </ul>
                 </div>
 
@@ -57,22 +69,30 @@
                         </div>
 
                         <div class="field">
+                            <label class="label">{{ __('Grupo') }}</label>
                             <div class="control">
-                                <input name="slug" class="input is-medium" type="text" placeholder="{{ __('Informe o tipo') }}" value="{{ $facet ? $facet->type : null }}">
+                                <div class="select is-info">
+                                    <select name="facet_group_id">
+                                        <option>{{ __('Selecione um grupo') }}</option>
+                                        @foreach($facet_groups as $groupId => $group)
+                                            <option value="{{ $groupId }}" @if ($facet && $groupId === $facet->facet_group_id) selected @endif>{{ $group }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
                         </div>
-
 
                         <div class="field">
                             <label class="label">{{ __('Tipo') }}</label>
                             <div class="control">
                                 <div class="select is-info">
                                     <select name="type">
-                                        <option>Selecione umtipo</option>
-                                        <option>Switch</option>
-                                        <option>Slider</option>
-                                        <option>Checkbox</option>
-                                        <option>Checkbutton</option>
+                                        <option>Selecione um tipo</option>
+                                        <option @if ($facet && $facet->type === 'select') selected @endif value="select">Lista</option>
+                                        <option @if ($facet && $facet->type === 'switch') selected @endif value="switch">Switch</option>
+                                        <option @if ($facet && $facet->type === 'slider') selected @endif value="slider">Slider</option>
+                                        <option @if ($facet && $facet->type === 'checkbox') selected @endif value="checkbox">Checkbox</option>
+                                        <option @if ($facet && $facet->type === 'checkbutton') selected @endif value="checkbutton">Checkbutton</option>
                                     </select>
                                 </div>
                             </div>
@@ -80,14 +100,12 @@
                     </div>
                 </div>
 
-                {{-- title, slug, description, type, values, references --}}
-
                 <div class="field is-grouped">
                     <div class="control">
                         <button class="button is-link">{{ (int) $id > 0 ? __('Alterar') : __('Cadastrar') }}</button>
                     </div>
                     <div class="control">
-                        <button class="button is-text">{{ __('Cancelar') }}</button>
+                        <a href="{{ route('classifications.facets', ['classificationId' => $classificationId]) }}" class="button is-text">{{ __('Cancelar') }}</a>
                     </div>
                 </div>
             </form>

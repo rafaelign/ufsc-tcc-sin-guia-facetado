@@ -271,6 +271,12 @@ class EntityController extends Controller
             ->withInput();
     }
 
+    /**
+     * @param Request $request
+     * @param int $classificationId
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request, int $classificationId, int $id)
     {
         $validator = Validator::make($request->all(), [
@@ -286,7 +292,7 @@ class EntityController extends Controller
 
         if ($validator->fails()) {
             return redirect()
-                ->route('classifications.entities', ['classificationId' => (int) $classificationId])
+                ->route('entities.edit', ['classificationId' => (int) $classificationId, 'id' => $id])
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -303,7 +309,7 @@ class EntityController extends Controller
 
         if ($entity->save()) {
             return redirect()
-                ->route('classifications.entities', ['classificationId' => $classificationId]);
+                ->route('entities.edit', ['classificationId' => $classificationId, 'id' => $id]);
         }
 
         return redirect()
