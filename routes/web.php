@@ -27,12 +27,18 @@ Route::prefix('admin')->group(function () {
 
     // Facets
     Route::get('/classifications/{classificationId}/facets/{id}', 'FacetController@edit')->name('facets.edit');
-    Route::get('/classifications/{classificationId}/facets/{id}/values', 'FacetController@editValues')->name('facets.values');
     Route::get('/classifications/{classificationId}/facets/{id}/references', 'FacetController@editReferences')->name('facets.references');
     Route::get('/classifications/{classificationId}/facets', 'FacetController@index')->name('classifications.facets');
     Route::post('/classifications/{classificationId}/facets', 'FacetController@store')->name('facets.store');
     Route::put('/classifications/{classificationId}/facets/{id}', 'FacetController@update')->name('facets.update');
     Route::delete('/classifications/{classificationId}/facets/{id}', 'FacetController@destroy')->name('users.delete');
+
+    // Values
+    Route::get('/classifications/{classificationId}/facets/{facetId}/values', 'FacetController@values')->name('facets.values');
+    Route::get('/classifications/{classificationId}/facets/{facetId}/values/{id}', 'FacetController@editValue')->name('facets.edit.values');
+    Route::post('/classifications/{classificationId}/facets/{facetId}/values', 'FacetController@storeValue')->name('facets.store.values');
+    Route::put('/classifications/{classificationId}/facets/{facetId}/values/{id}', 'FacetController@updateValue')->name('facets.update.values');
+    Route::delete('/values/{id}', 'FacetController@destroyValue')->name('facets.destroy.values');
 
     // Facets Groups
     Route::get('/facets_groups', 'FacetGroupController@index')->name('facets_groups');
