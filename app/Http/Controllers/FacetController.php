@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Classification;
 use App\Models\Facet;
 use App\Models\FacetGroup;
+use App\Models\Reference;
 use App\Models\Value;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -38,38 +39,6 @@ class FacetController extends Controller
             'facet' => Facet::find($id),
             'facet_groups' => FacetGroup::orderBy('title')->pluck('title', 'id'),
             'classificationId' => $classificationId,
-            'id' => $id,
-        ]);
-    }
-
-    /**
-     * @param int $classificationId
-     * @param int $facetId
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function values(int $classificationId, int $facetId)
-    {
-        return view('facet.index_values', [
-            'facet' => Facet::find($facetId),
-            'facetValues' => Value::where(['facet_id' => $facetId])->paginate(5),
-            'classificationId' => $classificationId,
-            'facetId' => $facetId,
-        ]);
-    }
-
-    /**
-     * @param int $classificationId
-     * @param int $facetId
-     * @param int $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function editValues(int $classificationId, int $facetId, int $id)
-    {
-        return view('facet.edit_values', [
-            'facet' => Facet::find($facetId),
-            'value' => Value::find($id),
-            'classificationId' => $classificationId,
-            'facetId' => $facetId,
             'id' => $id,
         ]);
     }
@@ -186,6 +155,38 @@ class FacetController extends Controller
     }
 
     /**
+     * @param int $classificationId
+     * @param int $facetId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function values(int $classificationId, int $facetId)
+    {
+        return view('facet.values.index', [
+            'facet' => Facet::find($facetId),
+            'facetValues' => Value::where(['facet_id' => $facetId])->paginate(5),
+            'classificationId' => $classificationId,
+            'facetId' => $facetId,
+        ]);
+    }
+
+    /**
+     * @param int $classificationId
+     * @param int $facetId
+     * @param int $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function editValues(int $classificationId, int $facetId, int $id)
+    {
+        return view('facet.values.edit', [
+            'facet' => Facet::find($facetId),
+            'value' => Value::find($id),
+            'classificationId' => $classificationId,
+            'facetId' => $facetId,
+            'id' => $id,
+        ]);
+    }
+
+    /**
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -291,6 +292,65 @@ class FacetController extends Controller
         return response()->json([
             'error' => true,
             'message' => 'Ocorreu um erro ao remover',
+        ]);
+    }
+
+    public function references(Request $request, int $classificationId, int $facetId)
+    {
+        if ($request->isMethod('post')) {
+            $validator = Validator::make($request->all(), [
+                'facet_id' => 'required',
+                'description' => 'required',
+                'code' => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                return redirect()
+                    ->route('facets.references', ['classificationId' => (int) $classificationId, 'facetId' => $facetId])
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+
+            $facet = Facet::find($facetId);
+
+            if ($facet) {
+                $reference = new Reference();
+                $reference->description = $request->description;
+
+                if ($reference->save()) {
+                    $facet->references()->attach($reference, ['code' => $request->code]);
+                }
+            }
+
+            return redirect()
+                ->route('facets.references', ['classificationId' => $classificationId, 'facetId' => $facetId]);
+        }
+
+        $facet = Facet::with('references')->find($facetId);
+
+        return view('facet.references.index', [
+            'facet' => $facet,
+            'classificationId' => $classificationId,
+            'facetId' => $facetId,
+        ]);
+    }
+
+    public function detachReference(int $facetId, int $id)
+    {
+        $facet = Facet::find($facetId);
+
+        if ($facet) {
+            if ($facet->references()->detach($id)) {
+                return response()->json([
+                    'error' => false,
+                    'message' => 'Referência removida com sucesso!',
+                ]);
+            }
+        }
+
+        return response()->json([
+            'error' => true,
+            'message' => 'Ocorreu um erro ao remover referência',
         ]);
     }
 }

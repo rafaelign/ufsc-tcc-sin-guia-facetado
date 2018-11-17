@@ -41,7 +41,7 @@ class Entity extends Model
 
     public function references()
     {
-        return $this->belongsToMany(Reference::class, 'entities_references', 'entity_id');
+        return $this->belongsToMany(Reference::class, 'entities_references', 'entity_id')->withPivot('code');
     }
 
     /**

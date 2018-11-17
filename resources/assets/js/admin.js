@@ -113,6 +113,24 @@ const app = new Vue({
                 .then(() => {
                     window.location.reload(true)
                 })
+        },
+        attemptDetachFacetReference: function () {
+            let id = document.querySelector('.modal-confirm').dataset.id;
+            let facet = document.querySelector('.modal-confirm').dataset.classification;
+
+            axios.delete(APP_URL + '/admin/facets/' + facet + '/references/' + id)
+                .then(() => {
+                    window.location.reload(true)
+                })
+        },
+        attemptDetachEntityReference: function () {
+            let id = document.querySelector('.modal-confirm').dataset.id;
+            let entity = document.querySelector('.modal-confirm').dataset.classification;
+
+            axios.delete(APP_URL + '/admin/entities/' + entity + '/references/' + id)
+                .then(() => {
+                    window.location.reload(true)
+                })
         }
     }
 });

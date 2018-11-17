@@ -18,27 +18,38 @@ Route::prefix('admin')->group(function () {
 
     // Entities
     Route::get('/classifications/{classificationId}/entities/{id}', 'EntityController@edit')->name('entities.edit');
-    Route::get('/classifications/{classificationId}/entities/{id}/classification', 'EntityController@editClassification')->name('entities.classification');
-    Route::get('/classifications/{classificationId}/entities/{id}/references', 'EntityController@editReferences')->name('entities.references');
     Route::get('/classifications/{classificationId}/entities', 'EntityController@index')->name('classifications.entities');
     Route::post('/classifications/{classificationId}/entities', 'EntityController@store')->name('entities.store');
     Route::put('/classifications/{classificationId}/entities/{id}', 'EntityController@update')->name('entities.update');
     Route::put('/classifications/{classificationId}/entities/{id}/update_publish', 'EntityController@updatePublishedStatus')->name('entities.publish');
 
+    Route::get('/classifications/{classificationId}/entities/{id}/classification', '@editClassification')->name('entities.classification');
+
+    // Facets References
+    Route::get('/classifications/{classificationId}/entities/{entityId}/references', 'EntityController@references')->name('entities.references');
+    Route::post('/classifications/{classificationId}/entities/{entityId}/references', 'EntityController@references')->name('entities.references.post');
+    Route::delete('/entities/{entityId}/references/{id}', 'EntityController@detachReference')->name('entities.detach.reference');
+
     // Facets
     Route::get('/classifications/{classificationId}/facets/{id}', 'FacetController@edit')->name('facets.edit');
-    Route::get('/classifications/{classificationId}/facets/{id}/references', 'FacetController@editReferences')->name('facets.references');
     Route::get('/classifications/{classificationId}/facets', 'FacetController@index')->name('classifications.facets');
     Route::post('/classifications/{classificationId}/facets', 'FacetController@store')->name('facets.store');
     Route::put('/classifications/{classificationId}/facets/{id}', 'FacetController@update')->name('facets.update');
     Route::delete('/classifications/{classificationId}/facets/{id}', 'FacetController@destroy')->name('users.delete');
 
-    // Values
+    // Facets Values
     Route::get('/classifications/{classificationId}/facets/{facetId}/values', 'FacetController@values')->name('facets.values');
     Route::get('/classifications/{classificationId}/facets/{facetId}/values/{id}', 'FacetController@editValue')->name('facets.edit.values');
     Route::post('/classifications/{classificationId}/facets/{facetId}/values', 'FacetController@storeValue')->name('facets.store.values');
     Route::put('/classifications/{classificationId}/facets/{facetId}/values/{id}', 'FacetController@updateValue')->name('facets.update.values');
     Route::delete('/values/{id}', 'FacetController@destroyValue')->name('facets.destroy.values');
+
+    // Facets References
+    Route::get('/classifications/{classificationId}/facets/{facetId}/references', 'FacetController@references')->name('facets.references');
+    Route::post('/classifications/{classificationId}/facets/{facetId}/references', 'FacetController@references')->name('facets.references.post');
+    Route::delete('/facets/{facetId}/references/{id}', 'FacetController@detachReference')->name('facets.detach.reference');
+
+    http://localhost:8080/admin/facets/1/reference/43
 
     // Facets Groups
     Route::get('/facets_groups', 'FacetGroupController@index')->name('facets_groups');

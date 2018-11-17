@@ -316,4 +316,63 @@ class EntityController extends Controller
             ->route('classifications.entities', ['classificationId' => $classificationId])
             ->withInput();
     }
+
+    public function references(Request $request, int $classificationId, int $entityId)
+    {
+        if ($request->isMethod('post')) {
+            $validator = Validator::make($request->all(), [
+                'entity_id' => 'required',
+                'description' => 'required',
+                'code' => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                return redirect()
+                    ->route('entities.references', ['classificationId' => (int) $classificationId, 'entityId' => $entityId])
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+
+            $entity = Entity::find($entityId);
+
+            if ($entity) {
+                $reference = new Reference();
+                $reference->description = $request->description;
+
+                if ($reference->save()) {
+                    $entity->references()->attach($reference, ['code' => $request->code]);
+                }
+            }
+
+            return redirect()
+                ->route('entities.references', ['classificationId' => $classificationId, 'entityId' => $entityId]);
+        }
+
+        $entity = Entity::with('references')->find($entityId);
+
+        return view('entity.references.index', [
+            'entity' => $entity,
+            'classificationId' => $classificationId,
+            'entityId' => $entityId,
+        ]);
+    }
+
+    public function detachReference(int $entityId, int $id)
+    {
+        $entity = Entity::find($entityId);
+
+        if ($entity) {
+            if ($entity->references()->detach($id)) {
+                return response()->json([
+                    'error' => false,
+                    'message' => 'Referência removida com sucesso!',
+                ]);
+            }
+        }
+
+        return response()->json([
+            'error' => true,
+            'message' => 'Ocorreu um erro ao remover referência',
+        ]);
+    }
 }
