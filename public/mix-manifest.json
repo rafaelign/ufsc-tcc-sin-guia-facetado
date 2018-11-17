@@ -5,5 +5,8 @@
     "/js/admin.js": "/js/admin.js",
     "/js/vendor.js": "/js/vendor.js",
     "/css/vendor.css": "/css/vendor.css",
-    "/css/modal-fx.css.min.map": "/css/modal-fx.css.min.map"
+    "/css/modal-fx.css.min.map": "/css/modal-fx.css.min.map",
+    "/js/admin.vendor.js": "/js/admin.vendor.js",
+    "/css/admin.vendor.css": "/css/admin.vendor.css",
+    "/js/toastr.js.map": "/js/toastr.js.map"
 }
