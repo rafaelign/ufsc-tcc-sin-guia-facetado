@@ -57,6 +57,8 @@ class ClassificationController extends Controller
         ]);
 
         if ($validator->fails()) {
+            toastr()->error('Informações inválidas. Verifica as informações fornecidas!');
+
             return redirect()
                 ->route('classifications.edit', ['id' => 0])
                 ->withErrors($validator)
@@ -72,9 +74,13 @@ class ClassificationController extends Controller
         $classification->main_menu = $request->main_menu;
 
         if ($classification->save()) {
+            toastr()->success('Cadastro efetuado com sucesso!');
+
             return redirect()
                 ->route('classifications');
         }
+
+        toastr()->error('Ocorreu um problema ao gravar as informações, tente novamente mais tarde.');
 
         return redirect()
             ->route('classifications.edit', ['id' => 0])
@@ -100,6 +106,8 @@ class ClassificationController extends Controller
         ]);
 
         if ($validator->fails()) {
+            toastr()->error('Informações inválidas. Verifica as informações fornecidas!');
+
             return redirect()
                 ->route('classifications.edit', ['id' => $id])
                 ->withErrors($validator)
@@ -115,9 +123,13 @@ class ClassificationController extends Controller
         $classification->main_menu = $request->main_menu;
 
         if ($classification->save()) {
+            toastr()->success('Atualização efetuada com sucesso!');
+
             return redirect()
                 ->route('classifications');
         }
+
+        toastr()->error('Ocorreu um problema ao gravar as informações, tente novamente mais tarde.');
 
         return redirect()
             ->route('classifications.edit', ['id' => $id])
@@ -196,6 +208,8 @@ class ClassificationController extends Controller
         ]);
 
         if ($validator->fails()) {
+            toastr()->error('Informações inválidas. Verifica as informações fornecidas!');
+
             return redirect()
                 ->route('classifications.edit', ['id' => 0])
                 ->withErrors($validator)
@@ -205,14 +219,26 @@ class ClassificationController extends Controller
         $classification = Classification::find($id);
 
         if ($classification) {
-            $classification->published = (int) $request->published;;
+            $classification->published = (int) $request->published;
 
             if ($classification->save()) {
+                if ((int) $request->published === 1) {
+                    toastr()->success('Classificação publicada com sucesso!');
+                } else {
+                    toastr()->success('Classificação despublicada com sucesso!');
+                }
+
                 return response()->json([
                     'error' => false,
                     'message' => 'Classificação atualizada com sucesso!',
                 ]);
             }
+        }
+
+        if ((int) $request->published === 1) {
+            toastr()->error('Ocorreu um erro ao publicar a classificação, tente novamente mais tarde.');
+        } else {
+            toastr()->error('Ocorreu um erro ao despublicar a classificação, tente novamente mais tarde.');
         }
 
         return response()->json([

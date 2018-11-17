@@ -8,8 +8,9 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
+
     /**
-     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
@@ -42,12 +43,16 @@ class UserController extends Controller
 
         if ($user) {
             if ($user->delete()) {
+                toastr()->success('Registro removido com sucesso!');
+
                 return response()->json([
                     'error' => false,
                     'message' => 'User deleted',
                 ]);
             }
         }
+
+        toastr()->error('Ocorreu um erro ao remover o registro, tente novamente mais tarde.');
 
         return response()->json([
             'error' => true,
@@ -68,6 +73,8 @@ class UserController extends Controller
         ]);
 
         if ($validator->fails()) {
+            toastr()->error('Informações inválidas. Verifica as informações fornecidas!');
+
             return redirect()
                 ->route('users.edit', ['id' => 0])
                 ->withErrors($validator)
@@ -81,9 +88,13 @@ class UserController extends Controller
         $user->password = bcrypt($request->password);
 
         if ($user->save()) {
+            toastr()->success('Cadastro efetuado com sucesso!');
+
             return redirect()
                 ->route('users');
         }
+
+        toastr()->error('Ocorreu um problema ao gravar as informações, tente novamente mais tarde.');
 
         return redirect()
             ->route('users.edit', ['id' => 0])
@@ -103,6 +114,8 @@ class UserController extends Controller
         ]);
 
         if ($validator->fails()) {
+            toastr()->error('Informações inválidas. Verifica as informações fornecidas!');
+
             return redirect()
                 ->route('users.edit', ['id' => $id])
                 ->withErrors($validator)
@@ -115,9 +128,13 @@ class UserController extends Controller
         $user->email = $request->email;
 
         if ($user->save()) {
+            toastr()->success('Atualização efetuada com sucesso!');
+
             return redirect()
                 ->route('users');
         }
+
+        toastr()->error('Ocorreu um problema ao gravar as informações, tente novamente mais tarde.');
 
         return redirect()
             ->route('users.edit', ['id' => $id])

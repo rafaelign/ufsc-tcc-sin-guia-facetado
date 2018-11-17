@@ -19,4 +19,11 @@ mix
 
 mix
     .js('resources/assets/js/admin.js', 'public/js')
-    .sass('resources/assets/sass/admin.scss', 'public/css');
+    .scripts([
+        'node_modules/toastr/build/toastr.min.js'
+    ], 'public/js/admin.vendor.js')
+    .sass('resources/assets/sass/admin.scss', 'public/css')
+    .styles([
+        'node_modules/toastr/build/toastr.min.css'
+    ], 'public/css/admin.vendor.css')
+    .copy('node_modules/toastr/build/toastr.js.map', 'public/js/toastr.js.map');

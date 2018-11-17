@@ -23,7 +23,8 @@ Route::prefix('admin')->group(function () {
     Route::put('/classifications/{classificationId}/entities/{id}', 'EntityController@update')->name('entities.update');
     Route::put('/classifications/{classificationId}/entities/{id}/update_publish', 'EntityController@updatePublishedStatus')->name('entities.publish');
 
-    Route::get('/classifications/{classificationId}/entities/{id}/classification', '@editClassification')->name('entities.classification');
+    Route::get('/classifications/{classificationId}/entities/{entityId}/classification', 'EntityController@classification')->name('entities.classification');
+    Route::post('/classifications/{classificationId}/entities/{entityId}/classification', 'EntityController@classification')->name('entities.classification.post');
 
     // Facets References
     Route::get('/classifications/{classificationId}/entities/{entityId}/references', 'EntityController@references')->name('entities.references');

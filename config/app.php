@@ -152,6 +152,7 @@ return [
          * Package Service Providers...
          */
         Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
+        Yoeunes\Toastr\ToastrServiceProvider::class,
 
         /*
          * Application Service Providers...

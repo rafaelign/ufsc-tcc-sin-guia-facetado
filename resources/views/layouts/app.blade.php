@@ -12,7 +12,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/admin.vendor.css') }}" rel="stylesheet">
     @yield('styles')
+    @toastr_css
 </head>
 <body>
     <div id="app">
@@ -20,6 +22,10 @@
     </div>
     <!-- Scripts -->
     <script src="{{ asset('js/admin.js') }}" defer></script>
+    <script src="{{ asset('js/admin.vendor.js') }}" defer></script>
     @yield('scripts')
+    @jquery
+    @toastr_js
+    @toastr_render
 </body>
 </html>

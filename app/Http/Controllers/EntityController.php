@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Entity;
+use App\Models\Facet;
+use App\Models\FacetGroup;
 use App\Models\Reference;
 use App\Models\Value;
 use App\Models\Classification;
@@ -28,6 +30,10 @@ class EntityController extends Controller
         );
     }
 
+    /**
+     * @param string $slug
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getReferencesByEntitySlug(string $slug)
     {
         $entity = Entity::where('slug', '=', $slug)
@@ -201,6 +207,8 @@ class EntityController extends Controller
         ]);
 
         if ($validator->fails()) {
+            toastr()->error('Informações inválidas. Verifica as informações fornecidas!');
+
             return redirect()
                 ->route('classifications.entities', ['classificationId' => $classificationId])
                 ->withErrors($validator)
@@ -213,11 +221,23 @@ class EntityController extends Controller
             $entity->published = (int) $request->published;;
 
             if ($entity->save()) {
+                if ((int) $request->published === 1) {
+                    toastr()->success('Técnica publicada com sucesso!');
+                } else {
+                    toastr()->success('Técnica despublicada com sucesso!');
+                }
+
                 return response()->json([
                     'error' => false,
                     'message' => 'Técnica atualizada com sucesso!',
                 ]);
             }
+        }
+
+        if ((int) $request->published === 1) {
+            toastr()->error('Ocorreu um erro ao publicar a técnica, tente novamente mais tarde.');
+        } else {
+            toastr()->error('Ocorreu um erro ao despublicar a técnica, tente novamente mais tarde.');
         }
 
         return response()->json([
@@ -241,6 +261,8 @@ class EntityController extends Controller
         ]);
 
         if ($validator->fails()) {
+            toastr()->error('Informações inválidas. Verifica as informações fornecidas!');
+
             return redirect()
                 ->route('entities.edit', ['classificationId' => (int) $request->classification_id, 'id' => 0])
                 ->withErrors($validator)
@@ -262,9 +284,13 @@ class EntityController extends Controller
         $entity->user_id = \Auth::user()->id;
 
         if ($entity->save()) {
+            toastr()->success('Cadastro efetuado com sucesso!');
+
             return redirect()
                 ->route('classifications.entities', ['classificationId' => $request->classification_id]);
         }
+
+        toastr()->error('Ocorreu um problema ao gravar as informações, tente novamente mais tarde.');
 
         return redirect()
             ->route('classifications.entities', ['classificationId' => $request->classification_id])
@@ -291,6 +317,8 @@ class EntityController extends Controller
         ]);
 
         if ($validator->fails()) {
+            toastr()->error('Informações inválidas. Verifica as informações fornecidas!');
+
             return redirect()
                 ->route('entities.edit', ['classificationId' => (int) $classificationId, 'id' => $id])
                 ->withErrors($validator)
@@ -308,15 +336,25 @@ class EntityController extends Controller
         $entity->images = $request->images;
 
         if ($entity->save()) {
+            toastr()->success('Cadastro efetuado com sucesso!');
+
             return redirect()
                 ->route('entities.edit', ['classificationId' => $classificationId, 'id' => $id]);
         }
+
+        toastr()->error('Ocorreu um problema ao gravar as informações, tente novamente mais tarde.');
 
         return redirect()
             ->route('classifications.entities', ['classificationId' => $classificationId])
             ->withInput();
     }
 
+    /**
+     * @param Request $request
+     * @param int $classificationId
+     * @param int $entityId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function references(Request $request, int $classificationId, int $entityId)
     {
         if ($request->isMethod('post')) {
@@ -327,6 +365,8 @@ class EntityController extends Controller
             ]);
 
             if ($validator->fails()) {
+                toastr()->error('Informações inválidas. Verifica as informações fornecidas!');
+
                 return redirect()
                     ->route('entities.references', ['classificationId' => (int) $classificationId, 'entityId' => $entityId])
                     ->withErrors($validator)
@@ -340,9 +380,13 @@ class EntityController extends Controller
                 $reference->description = $request->description;
 
                 if ($reference->save()) {
+                    toastr()->success('Cadastro efetuado com sucesso!');
+
                     $entity->references()->attach($reference, ['code' => $request->code]);
                 }
             }
+
+            toastr()->error('Ocorreu um problema ao gravar as informações, tente novamente mais tarde.');
 
             return redirect()
                 ->route('entities.references', ['classificationId' => $classificationId, 'entityId' => $entityId]);
@@ -357,12 +401,19 @@ class EntityController extends Controller
         ]);
     }
 
+    /**
+     * @param int $entityId
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function detachReference(int $entityId, int $id)
     {
         $entity = Entity::find($entityId);
 
         if ($entity) {
             if ($entity->references()->detach($id)) {
+                toastr()->success('Registro desvinculado com sucesso!');
+
                 return response()->json([
                     'error' => false,
                     'message' => 'Referência removida com sucesso!',
@@ -370,9 +421,63 @@ class EntityController extends Controller
             }
         }
 
+        toastr()->error('Ocorreu um erro ao desvincular o registro, tente novamente mais tarde.');
+
         return response()->json([
             'error' => true,
             'message' => 'Ocorreu um erro ao remover referência',
+        ]);
+    }
+
+
+    public function classification(Request $request, int $classificationId, int $entityId)
+    {
+        if ($request->isMethod('post')) {
+            $validator = Validator::make($request->all(), [
+                'classification_id' => 'required',
+                'entity_id' => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                toastr()->error('Informações inválidas. Verifica as informações fornecidas!');
+
+                return redirect()
+                    ->route('entities.classification', ['classificationId' => (int) $classificationId, 'entityId' => $entityId])
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+
+            $entity = Entity::find($entityId);
+
+            if ($entity) {
+                $values = $request->values;
+
+                if (!empty($values)) {
+                    if ($entity->values()->sync(array_values($values)) ) {
+                        toastr()->success('Atualização efetuada com sucesso!');
+                    }
+                }
+            }
+
+            toastr()->error('Ocorreu um erro ao gravar as alterações, tente novamente mais tarde.');
+
+            return redirect()
+                ->route('entities.classification', ['classificationId' => $classificationId, 'entityId' => $entityId]);
+        }
+
+        $entity = Entity::with('values')->find($entityId);
+        $entityValues = [];
+        foreach ($entity->values as $v) {
+            $entityValues[] = $v->id;
+        }
+        $facetsGroups = app("App\Http\Controllers\FacetGroupController")->getFacetGroupsByClassificationId($classificationId);
+
+        return view('entity.classification.index', [
+            'entity' => $entity,
+            'entityValues' => $entityValues,
+            'facetsGroups' => $facetsGroups,
+            'classificationId' => $classificationId,
+            'entityId' => $entityId,
         ]);
     }
 }

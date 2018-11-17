@@ -59,6 +59,8 @@ class FacetController extends Controller
         ]);
 
         if ($validator->fails()) {
+            toastr()->error('Informações inválidas. Verifica as informações fornecidas!');
+
             return redirect()
                 ->route('facets.edit', ['classificationId' => (int) $request->classification_id, 'id' => 0])
                 ->withErrors($validator)
@@ -76,9 +78,13 @@ class FacetController extends Controller
         $facet->user_id = \Auth::user()->id;
 
         if ($facet->save()) {
+            toastr()->success('Cadastro efetuado com sucesso!');
+
             return redirect()
                 ->route('classifications.facets', ['classificationId' => $request->classification_id]);
         }
+
+        toastr()->error('Ocorreu um problema ao gravar as informações, tente novamente mais tarde.');
 
         return redirect()
             ->route('classifications.facets', ['classificationId' => $request->classification_id])
@@ -106,6 +112,8 @@ class FacetController extends Controller
         ]);
 
         if ($validator->fails()) {
+            toastr()->error('Informações inválidas. Verifica as informações fornecidas!');
+
             return redirect()
                 ->route('facets.edit', ['classificationId' => (int) $classificationId, 'id' => $id])
                 ->withErrors($validator)
@@ -121,9 +129,13 @@ class FacetController extends Controller
         $facet->type = $request->type;
 
         if ($facet->save()) {
+            toastr()->success('Atualização efetuada com sucesso!');
+
             return redirect()
                 ->route('classifications.facets', ['classificationId' => $classificationId]);
         }
+
+        toastr()->error('Ocorreu um problema ao gravar as informações, tente novamente mais tarde.');
 
         return redirect()
             ->route('facets.edit', ['classificationId' => (int) $classificationId, 'id' => $id])
@@ -141,12 +153,16 @@ class FacetController extends Controller
 
         if ($facet) {
             if ($facet->delete()) {
+                toastr()->success('Registro removido com sucesso!');
+
                 return response()->json([
                     'error' => false,
                     'message' => 'Faceta removida',
                 ]);
             }
         }
+
+        toastr()->error('Ocorreu um erro ao remover o registro, tente novamente mais tarde.');
 
         return response()->json([
             'error' => true,
@@ -202,6 +218,8 @@ class FacetController extends Controller
         ]);
 
         if ($validator->fails()) {
+            toastr()->error('Informações inválidas. Verifica as informações fornecidas!');
+
             return redirect()
                 ->route('facets.edit.values', ['classificationId' => (int) $request->classification_id, 'facetId' => (int) $request->facet_id, 'id' => 0])
                 ->withErrors($validator)
@@ -217,9 +235,13 @@ class FacetController extends Controller
         $value->description = $request->description;
 
         if ($value->save()) {
+            toastr()->success('Cadastro efetuado com sucesso!');
+
             return redirect()
                 ->route('facets.values', ['classificationId' => $request->classification_id, 'facetId' => $request->facet_id]);
         }
+
+        toastr()->error('Ocorreu um problema ao gravar as informações, tente novamente mais tarde.');
 
         return redirect()
             ->route('facets.values', ['classificationId' => $request->classification_id, 'facetId' => $request->facet_id])
@@ -249,6 +271,8 @@ class FacetController extends Controller
         ]);
 
         if ($validator->fails()) {
+            toastr()->error('Informações inválidas. Verifica as informações fornecidas!');
+
             return redirect()
                 ->route('facets.edit.values', ['classificationId' => (int) $classificationId, 'facetId' => $facetId, 'id' => $id])
                 ->withErrors($validator)
@@ -263,9 +287,13 @@ class FacetController extends Controller
         $value->description = $request->description;
 
         if ($value->save()) {
+            toastr()->success('Atualização efetuada com sucesso!');
+
             return redirect()
                 ->route('facets.values', ['classificationId' => $classificationId, 'facetId' => $facetId]);
         }
+
+        toastr()->error('Ocorreu um problema ao gravar as informações, tente novamente mais tarde.');
 
         return redirect()
             ->route('facets.edit.values', ['classificationId' => (int) $classificationId, 'facetId' => $facetId, 'id' => $id])
@@ -282,6 +310,8 @@ class FacetController extends Controller
 
         if ($value) {
             if ($value->delete()) {
+                toastr()->success('Registro removido com sucesso!');
+
                 return response()->json([
                     'error' => false,
                     'message' => 'Valor removido com sucesso!',
@@ -289,12 +319,20 @@ class FacetController extends Controller
             }
         }
 
+        toastr()->error('Ocorreu um erro ao remover o registro, tente novamente mais tarde.');
+
         return response()->json([
             'error' => true,
             'message' => 'Ocorreu um erro ao remover',
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param int $classificationId
+     * @param int $facetId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function references(Request $request, int $classificationId, int $facetId)
     {
         if ($request->isMethod('post')) {
@@ -305,6 +343,8 @@ class FacetController extends Controller
             ]);
 
             if ($validator->fails()) {
+                toastr()->error('Informações inválidas. Verifica as informações fornecidas!');
+
                 return redirect()
                     ->route('facets.references', ['classificationId' => (int) $classificationId, 'facetId' => $facetId])
                     ->withErrors($validator)
@@ -318,9 +358,13 @@ class FacetController extends Controller
                 $reference->description = $request->description;
 
                 if ($reference->save()) {
+                    toastr()->success('Cadastro efetuado com sucesso!');
+
                     $facet->references()->attach($reference, ['code' => $request->code]);
                 }
             }
+
+            toastr()->error('Informações inválidas. Verifica as informações fornecidas!');
 
             return redirect()
                 ->route('facets.references', ['classificationId' => $classificationId, 'facetId' => $facetId]);
@@ -335,18 +379,27 @@ class FacetController extends Controller
         ]);
     }
 
+    /**
+     * @param int $facetId
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function detachReference(int $facetId, int $id)
     {
         $facet = Facet::find($facetId);
 
         if ($facet) {
             if ($facet->references()->detach($id)) {
+                toastr()->success('Registro desvinculado com sucesso!');
+
                 return response()->json([
                     'error' => false,
                     'message' => 'Referência removida com sucesso!',
                 ]);
             }
         }
+
+        toastr()->error('Ocorreu um erro ao desvincular o registro, tente novamente mais tarde.');
 
         return response()->json([
             'error' => true,

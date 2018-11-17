@@ -12,7 +12,7 @@ class FacetGroupController extends Controller
     /**
      * @param string $slug
     * @return \Illuminate\Http\JsonResponse
-        */
+     */
     public function getFacetGroupsByClassificationSlug(string $slug)
     {
         return response()->json(FacetGroup::whereIn('id', function ($query) use ($slug) {
@@ -24,6 +24,23 @@ class FacetGroupController extends Controller
             ->orderBy('layout')
             ->with('facets.values')
             ->get());
+    }
+
+    /**
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getFacetGroupsByClassificationId(int $id)
+    {
+        return FacetGroup::whereIn('id', function ($query) use ($id) {
+            $query->select('facet_group_id')
+                ->from('facets')
+                ->join('classifications', 'classifications.id', 'facets.classification_id')
+                ->where('classifications.id', $id);
+        })
+            ->orderBy('layout')
+            ->with('facets.values')
+            ->get();
     }
 
     public function index()
@@ -53,6 +70,8 @@ class FacetGroupController extends Controller
         ]);
 
         if ($validator->fails()) {
+            toastr()->error('Informações inválidas. Verifica as informações fornecidas!');
+
             return redirect()
                 ->route('facets_groups.edit', ['id' => 0])
                 ->withErrors($validator)
@@ -65,9 +84,13 @@ class FacetGroupController extends Controller
         $facetGroup->layout = $request->layout;
 
         if ($facetGroup->save()) {
+            toastr()->success('Cadastro efetuado com sucesso!');
+
             return redirect()
                 ->route('facets_groups');
         }
+
+        toastr()->error('Ocorreu um problema ao gravar as informações, tente novamente mais tarde.');
 
         return redirect()
             ->route('facets_groups')
@@ -87,6 +110,8 @@ class FacetGroupController extends Controller
         ]);
 
         if ($validator->fails()) {
+            toastr()->error('Informações inválidas. Verifica as informações fornecidas!');
+
             return redirect()
                 ->route('facets_groups.edit', ['id' => $id])
                 ->withErrors($validator)
@@ -99,9 +124,13 @@ class FacetGroupController extends Controller
         $facetGroup->layout = $request->layout;
 
         if ($facetGroup->save()) {
+            toastr()->success('Atualização efetuada com sucesso!');
+
             return redirect()
                 ->route('facets_groups');
         }
+
+        toastr()->error('Ocorreu um problema ao gravar as informações, tente novamente mais tarde.');
 
         return redirect()
             ->route('facets_groups.edit', ['id' => $id])
