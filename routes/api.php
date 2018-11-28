@@ -38,4 +38,3 @@ Route::get('entities/{slug}/values', 'EntityController@getValuesByEntitySlug');
 Route::get('entities/page_views/{id}', 'EntityController@addPageView');
 
 Route::get('facet_groups/{classificationSlug}', 'FacetGroupController@getFacetGroupsByClassificationSlug');
-http://localhost:8080/api/classifications/tecnicas-de-elicitacao-de-requisitos/entities
