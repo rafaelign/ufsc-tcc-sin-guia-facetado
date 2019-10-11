@@ -18,8 +18,11 @@
                 entity: {},
                 values: [],
                 references: [],
+                approaches: [],
                 facets: [],
-                errors: []
+                errors: [],
+                approachesList: [],
+                entitiesApproachMap: {},
             }
         },
         created() {
@@ -34,14 +37,19 @@
                 axios.get(url + '/api/entities/' + entitySlug),
                 axios.get(url + '/api/entities/' + entitySlug + '/values'),
                 axios.get(url + '/api/entities/' + entitySlug + '/references'),
+                axios.get(url + '/api/entities/' + entitySlug + '/approaches'),
                 axios.get(url + '/api/facet_groups/' + classificationSlug)
-            ]).then(([responseClassification, responseEntities, responseEntityValues, responseEntityReferences, responseFacets]) => {
+            ]).then(([responseClassification, responseEntities, responseEntityValues, responseEntityReferences, responseApproaches, responseFacets]) => {
                 this.classification = responseClassification.data
                 this.entity = responseEntities.data
                 this.values = responseEntityValues.data
                 this.references = responseEntityReferences.data
+                this.approaches = responseApproaches.data
                 this.facets = responseFacets.data
 
+                this.entitiesApproachMap = _.groupBy(this.approaches, (value) => value.approach_slug)
+                this.approachesList = _.uniqBy(this.approaches.map((v) => _.pick(v, ['approach_slug', 'approach_title'])), 'approach_slug')
+                
                 axios.get(url + '/api/entities/page_views/' + this.entity.id)
                     .catch((error) => this.errors = error.response.data.errors)
 
@@ -108,7 +116,25 @@
                     </div>
                 </div>
 
-                <hr>
+                <div class="row content">
+                    <h4 class="title"><b-icon icon="apps" class="has-text-warning"></b-icon> Técnicas utilizadas em conjunto em abordagens de elicitação de requisitos</h4>
+                    <div class="columns is-multiline">
+                        <div class="column is-4 is-6-tablet is-12-mobile" v-for="approach in approachesList">
+                                <button class="button is-info is-small" @click="$router.push('/app/abordagens/' + approach.approach_slug)">
+                                    <span>{{ approach.approach_title }}</span>
+                                </button>
+                                <div class="margin-top-5">
+                                    <span class="margin-top-10" v-for="relatedEntity in entitiesApproachMap[approach.approach_slug]">
+                                        <button class="button margin-top-10 margin-right-5 is-small is-outlined" v-if="relatedEntity.entity_slug!==entity.slug" @click="$router.push('/app/classificacoes/' + $route.params.classification + '/entidades/' + relatedEntity.entity_slug, () => $router.go())">
+                                            <span class="has-text-info">{{ relatedEntity.title }}</span>
+                                        </button>
+                                    </span>
+                                </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div> <hr> </div>
 
                 <div class="row">
                     <classification :values="values" :items="facets"></classification>

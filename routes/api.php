@@ -31,6 +31,8 @@ Route::get('classifications/{slug}/facets/references', 'ClassificationController
 
 Route::get('entities/{slug}', 'EntityController@getBySlug');
 
+Route::get('entities/{slug}/approaches', 'EntityController@getApproachesByEntity');
+
 Route::get('entities/{slug}/references', 'EntityController@getReferencesByEntitySlug');
 
 Route::get('entities/{slug}/values', 'EntityController@getValuesByEntitySlug');
@@ -46,3 +48,5 @@ Route::get('approaches/{slug}', 'ApproachController@getApproachBySlug');
 Route::get('approaches/{slug}/references', 'ApproachController@getReferencesByApproachSlug');
 
 Route::get('approaches/{slug}/entities', 'ApproachController@getEntitiesByApproachSlug');
+
+Route::get('classification/{id}', 'ClassificationController@getClassificationSlugById');

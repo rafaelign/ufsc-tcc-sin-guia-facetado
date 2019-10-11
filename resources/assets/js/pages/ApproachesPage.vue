@@ -59,10 +59,10 @@
 
                 <div class="row content">
                     <div class="columns is-multiline">
-                        <div class="column is-4 is-6-tablet is-12-mobile" v-for="approach in approaches.slice()">
+                        <div class="column is-4 is-6-tablet is-12-mobile" v-for="approach in approaches">
                             <card :title="approach.approach_title"
                                   :content="approach.short_description"
-                                  :action="'/api/approaches'"></card>
+                                  :action="'/app/abordagens/' + approach.slug"></card>
                         </div>
                     </div>
                 </div>

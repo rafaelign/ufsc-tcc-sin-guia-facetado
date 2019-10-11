@@ -18,8 +18,7 @@ class ApproachController extends Controller
     public function index(Request $request)
     {
 
-        return response()->json(Approach::where('published', 1)
-            ->get(['id','approach_title', 'slug', 'short_description'])
+        return response()->json(Approach::get(['id','approach_title', 'slug', 'short_description'])
         );
         
     }
@@ -30,6 +29,7 @@ class ApproachController extends Controller
             Approach::where('slug', '=', $slug)
             ->where('published', 1)
             ->get(['approach_title', 'slug', 'approach_description', 'context_title','context_description'])
+            ->first()
         );
         
     }
@@ -52,9 +52,10 @@ class ApproachController extends Controller
 
         $entities = Approach::join('approaches_entities', 'approaches.id', '=', 'approaches_entities.approach_id')
         ->join('entities', 'entities.id', '=', 'approaches_entities.entity_id')
+        ->join('classifications', 'classifications.id', '=', 'entities.classification_id' )
         ->where('approaches.slug', '=', $slug)
         ->where('entities.published', Entity::PUBLISHED)
-        ->get(['entities.title', 'entities.slug', 'entities.short_description']);
+        ->get(['entities.title', 'entities.slug', 'entities.short_description', 'classifications.slug as classification_slug']);
 
         return response()->json($entities);
     }
