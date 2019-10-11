@@ -2127,6 +2127,90 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/pages/ApproachPage.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/pages/ApproachPage.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vue_markdown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-markdown */ "./node_modules/vue-markdown/dist/vue-markdown.common.js");
+/* harmony import */ var vue_markdown__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_markdown__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_References__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/References */ "./resources/assets/js/components/References.vue");
+/* harmony import */ var _components_Classification__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Classification */ "./resources/assets/js/components/Classification.vue");
+/* harmony import */ var _components_Breadcrumb__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Breadcrumb */ "./resources/assets/js/components/Breadcrumb.vue");
+/* harmony import */ var _components_Card__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/Card */ "./resources/assets/js/components/Card.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    VueMarkdown: vue_markdown__WEBPACK_IMPORTED_MODULE_1___default.a,
+    Classification: _components_Classification__WEBPACK_IMPORTED_MODULE_3__["default"],
+    References: _components_References__WEBPACK_IMPORTED_MODULE_2__["default"],
+    Card: _components_Card__WEBPACK_IMPORTED_MODULE_5__["default"],
+    Breadcrumb: _components_Breadcrumb__WEBPACK_IMPORTED_MODULE_4__["default"]
+  },
+  data: function data() {
+    return {
+      classification: {},
+      approach: {},
+      entities: [],
+      references: [],
+      errors: []
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    var approachSlug = this.$route.params.approach;
+    var classificationSlug = this.$route.params.classification;
+    var url = this.$store.getters.getUrl;
+    this.loading();
+    Promise.all([axios.get(url + '/api/classifications/' + classificationSlug), axios.get(url + '/api/approaches/' + approachSlug), axios.get(url + '/api/approaches/' + approachSlug + '/entities'), axios.get(url + '/api/approaches/' + approachSlug + '/references')]).then(function (_ref) {
+      var _ref2 = _slicedToArray(_ref, 4),
+          responseClassification = _ref2[0],
+          responseApproach = _ref2[1],
+          responseEntities = _ref2[2],
+          responseReferences = _ref2[3];
+
+      _this.classification = responseClassification.data;
+      _this.approach = responseApproach.data;
+      _this.entities = responseEntities.data;
+      _this.references = responseReferences.data;
+
+      _this.loaded();
+
+      console.log(_this.approach);
+    })["catch"](function (error) {
+      return _this.errors = error.response.data.errors;
+    });
+  },
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapMutations"])(['loading', 'loaded']))
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/pages/ApproachesPage.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/pages/ApproachesPage.vue?vue&type=script&lang=js& ***!
@@ -2408,8 +2492,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       entity: {},
       values: [],
       references: [],
+      approaches: [],
       facets: [],
-      errors: []
+      errors: [],
+      approachesList: [],
+      entitiesApproachMap: {}
     };
   },
   created: function created() {
@@ -2419,19 +2506,27 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     var entitySlug = this.$route.params.entity;
     var url = this.$store.getters.getUrl;
     this.loading();
-    Promise.all([axios.get(url + '/api/classifications/' + classificationSlug), axios.get(url + '/api/entities/' + entitySlug), axios.get(url + '/api/entities/' + entitySlug + '/values'), axios.get(url + '/api/entities/' + entitySlug + '/references'), axios.get(url + '/api/facet_groups/' + classificationSlug)]).then(function (_ref) {
-      var _ref2 = _slicedToArray(_ref, 5),
+    Promise.all([axios.get(url + '/api/classifications/' + classificationSlug), axios.get(url + '/api/entities/' + entitySlug), axios.get(url + '/api/entities/' + entitySlug + '/values'), axios.get(url + '/api/entities/' + entitySlug + '/references'), axios.get(url + '/api/entities/' + entitySlug + '/approaches'), axios.get(url + '/api/facet_groups/' + classificationSlug)]).then(function (_ref) {
+      var _ref2 = _slicedToArray(_ref, 6),
           responseClassification = _ref2[0],
           responseEntities = _ref2[1],
           responseEntityValues = _ref2[2],
           responseEntityReferences = _ref2[3],
-          responseFacets = _ref2[4];
+          responseApproaches = _ref2[4],
+          responseFacets = _ref2[5];
 
       _this.classification = responseClassification.data;
       _this.entity = responseEntities.data;
       _this.values = responseEntityValues.data;
       _this.references = responseEntityReferences.data;
+      _this.approaches = responseApproaches.data;
       _this.facets = responseFacets.data;
+      _this.entitiesApproachMap = _.groupBy(_this.approaches, function (value) {
+        return value.approach_slug;
+      });
+      _this.approachesList = _.uniqBy(_this.approaches.map(function (v) {
+        return _.pick(v, ['approach_slug', 'approach_title']);
+      }), 'approach_slug');
       axios.get(url + '/api/entities/page_views/' + _this.entity.id)["catch"](function (error) {
         return _this.errors = error.response.data.errors;
       });
@@ -71600,6 +71695,158 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/pages/ApproachPage.vue?vue&type=template&id=838d18d8&":
+/*!*****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/pages/ApproachPage.vue?vue&type=template&id=838d18d8& ***!
+  \*****************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return this.$store.getters.isLoaded
+    ? _c("section", [
+        _c("section", { staticClass: "hero" }, [
+          _c(
+            "div",
+            { staticClass: "hero-body" },
+            [
+              _c("breadcrumb", {
+                attrs: {
+                  items: [
+                    {
+                      url: "/app",
+                      title: "Guia Facetado de Engenharia de Requisitos"
+                    },
+                    {
+                      url: "/app/abordagens/",
+                      title: "Abordagens de elicitação de requisitos"
+                    },
+                    {
+                      url: "#",
+                      title: _vm.approach.approach_title,
+                      active: true
+                    }
+                  ]
+                }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "row content" }, [
+                _c(
+                  "h1",
+                  { staticClass: "title" },
+                  [
+                    _c("b-icon", { attrs: { icon: "bookmark-outline" } }),
+                    _vm._v(" " + _vm._s(_vm.approach.approach_title))
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "has-text-justified" },
+                  [
+                    _c("vue-markdown", {
+                      attrs: { source: _vm.approach.approach_description }
+                    })
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row content" }, [
+                _c(
+                  "h3",
+                  { staticClass: "title" },
+                  [
+                    _c("b-icon", { attrs: { icon: "bookmark-outline" } }),
+                    _vm._v(" " + _vm._s(_vm.approach.context_title))
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "has-text-justified" },
+                  [
+                    _c("vue-markdown", {
+                      attrs: { source: _vm.approach.context_description }
+                    })
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row content" }, [
+                _c(
+                  "h2",
+                  { staticClass: "title" },
+                  [
+                    _c("b-icon", { attrs: { icon: "bookmark-outline" } }),
+                    _vm._v(" Técnicas utilizadas nesta abordagem")
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "columns is-multiline" },
+                  _vm._l(_vm.entities, function(entity) {
+                    return _c(
+                      "div",
+                      { staticClass: "column is-4 is-6-tablet is-12-mobile" },
+                      [
+                        _c("card", {
+                          attrs: {
+                            title: entity.title,
+                            content: entity.short_description,
+                            action:
+                              "/app/classificacoes/" +
+                              entity.classification_slug +
+                              "/entidades/" +
+                              entity.slug
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  }),
+                  0
+                )
+              ]),
+              _vm._v(" "),
+              _c("hr"),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "row content" },
+                [
+                  _c("references", {
+                    attrs: { title: "Referências", items: _vm.references }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ])
+      ])
+    : _vm._e()
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/pages/ApproachesPage.vue?vue&type=template&id=783c99fc&":
 /*!*******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/assets/js/pages/ApproachesPage.vue?vue&type=template&id=783c99fc& ***!
@@ -71684,7 +71931,7 @@ var render = function() {
                 _c(
                   "div",
                   { staticClass: "columns is-multiline" },
-                  _vm._l(_vm.approaches.slice(), function(approach) {
+                  _vm._l(_vm.approaches, function(approach) {
                     return _c(
                       "div",
                       { staticClass: "column is-4 is-6-tablet is-12-mobile" },
@@ -71693,7 +71940,7 @@ var render = function() {
                           attrs: {
                             title: approach.approach_title,
                             content: approach.short_description,
-                            action: "/api/approaches"
+                            action: "/app/abordagens/" + approach.slug
                           }
                         })
                       ],
@@ -72265,7 +72512,107 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("hr"),
+              _c("div", { staticClass: "row content" }, [
+                _c(
+                  "h4",
+                  { staticClass: "title" },
+                  [
+                    _c("b-icon", {
+                      staticClass: "has-text-warning",
+                      attrs: { icon: "apps" }
+                    }),
+                    _vm._v(
+                      " Técnicas utilizadas em conjunto em abordagens de elicitação de requisitos"
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "columns is-multiline" },
+                  _vm._l(_vm.approachesList, function(approach) {
+                    return _c(
+                      "div",
+                      { staticClass: "column is-4 is-6-tablet is-12-mobile" },
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "button is-info is-small",
+                            on: {
+                              click: function($event) {
+                                return _vm.$router.push(
+                                  "/app/abordagens/" + approach.approach_slug
+                                )
+                              }
+                            }
+                          },
+                          [
+                            _c("span", [
+                              _vm._v(_vm._s(approach.approach_title))
+                            ])
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "margin-top-5" },
+                          _vm._l(
+                            _vm.entitiesApproachMap[approach.approach_slug],
+                            function(relatedEntity) {
+                              return _c(
+                                "span",
+                                { staticClass: "margin-top-10" },
+                                [
+                                  relatedEntity.entity_slug !== _vm.entity.slug
+                                    ? _c(
+                                        "button",
+                                        {
+                                          staticClass:
+                                            "button margin-top-10 margin-right-5 is-small is-outlined",
+                                          on: {
+                                            click: function($event) {
+                                              _vm.$router.push(
+                                                "/app/classificacoes/" +
+                                                  _vm.$route.params
+                                                    .classification +
+                                                  "/entidades/" +
+                                                  relatedEntity.entity_slug,
+                                                function() {
+                                                  return _vm.$router.go()
+                                                }
+                                              )
+                                            }
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "span",
+                                            { staticClass: "has-text-info" },
+                                            [
+                                              _vm._v(
+                                                _vm._s(relatedEntity.title)
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    : _vm._e()
+                                ]
+                              )
+                            }
+                          ),
+                          0
+                        )
+                      ]
+                    )
+                  }),
+                  0
+                )
+              ]),
+              _vm._v(" "),
+              _vm._m(0),
               _vm._v(" "),
               _c(
                 "div",
@@ -72297,7 +72644,14 @@ var render = function() {
       ])
     : _vm._e()
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [_c("hr")])
+  }
+]
 render._withStripped = true
 
 
@@ -90061,6 +90415,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/assets/js/pages/ApproachPage.vue":
+/*!****************************************************!*\
+  !*** ./resources/assets/js/pages/ApproachPage.vue ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ApproachPage_vue_vue_type_template_id_838d18d8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ApproachPage.vue?vue&type=template&id=838d18d8& */ "./resources/assets/js/pages/ApproachPage.vue?vue&type=template&id=838d18d8&");
+/* harmony import */ var _ApproachPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ApproachPage.vue?vue&type=script&lang=js& */ "./resources/assets/js/pages/ApproachPage.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ApproachPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ApproachPage_vue_vue_type_template_id_838d18d8___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ApproachPage_vue_vue_type_template_id_838d18d8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/pages/ApproachPage.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/assets/js/pages/ApproachPage.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************!*\
+  !*** ./resources/assets/js/pages/ApproachPage.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ApproachPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./ApproachPage.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/pages/ApproachPage.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ApproachPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/assets/js/pages/ApproachPage.vue?vue&type=template&id=838d18d8&":
+/*!***********************************************************************************!*\
+  !*** ./resources/assets/js/pages/ApproachPage.vue?vue&type=template&id=838d18d8& ***!
+  \***********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ApproachPage_vue_vue_type_template_id_838d18d8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./ApproachPage.vue?vue&type=template&id=838d18d8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/assets/js/pages/ApproachPage.vue?vue&type=template&id=838d18d8&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ApproachPage_vue_vue_type_template_id_838d18d8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ApproachPage_vue_vue_type_template_id_838d18d8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/pages/ApproachesPage.vue":
 /*!******************************************************!*\
   !*** ./resources/assets/js/pages/ApproachesPage.vue ***!
@@ -90454,6 +90877,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_EntitiesPage_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../pages/EntitiesPage.vue */ "./resources/assets/js/pages/EntitiesPage.vue");
 /* harmony import */ var _pages_FacetsPage_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../pages/FacetsPage.vue */ "./resources/assets/js/pages/FacetsPage.vue");
 /* harmony import */ var _pages_ApproachesPage_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../pages/ApproachesPage.vue */ "./resources/assets/js/pages/ApproachesPage.vue");
+/* harmony import */ var _pages_ApproachPage_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../pages/ApproachPage.vue */ "./resources/assets/js/pages/ApproachPage.vue");
+
 
 
 
@@ -90472,6 +90897,10 @@ var routes = [{
   path: '/app/abordagens',
   component: _pages_ApproachesPage_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
   name: 'abordagens'
+}, {
+  path: '/app/abordagens/:approach',
+  component: _pages_ApproachPage_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+  name: 'abordagem'
 }, {
   path: '/app/classificacoes/:classification/facetas',
   component: _pages_FacetsPage_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
