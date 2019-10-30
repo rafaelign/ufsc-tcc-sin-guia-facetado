@@ -50,7 +50,7 @@ O uso de histórias de usuário é comum em equipes de desenvolvimento onde os t
             'cons'              => $cons,
             'images'            => '[{"src": "/guia/images/tecnicas-re/user_story.png", "title": "Figura 1 - Exemplo de aplicação da técnica Histórias de usuário"}]',
             'classification_id' => $RETechniqueClassification->id,
-            'user_id'           => $user->id,
+            'user_id'           => 1,
             'published'         => 1,
             'created_at'        => Carbon::now(),
             'updated_at'        => Carbon::now(),

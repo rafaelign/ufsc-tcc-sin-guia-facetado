@@ -50,7 +50,7 @@ Para que a técnica seja realmente eficaz, deve ser mantido o foco sobre estas p
             'cons'              => $cons,
             'images'            => '[{"src": "/guia/images/tecnicas-re/personas.png", "title": "Figura 1 - Exemplo de uma Persona"}]',
             'classification_id' => $RETechniqueClassification->id,
-            'user_id'           => $user->id,
+            'user_id'           => 1,
             'published'         => 1,
             'created_at'        => Carbon::now(),
             'updated_at'        => Carbon::now(),

@@ -56,7 +56,7 @@ nos dados.
             'pros'              => $pros,
             'cons'              => $cons,
             'classification_id' => $RETechniqueClassification->id,
-            'user_id'           => $user->id,
+            'user_id'           => 1,
             'published'         => 1,
             'created_at'        => Carbon::now(),
             'updated_at'        => Carbon::now(),

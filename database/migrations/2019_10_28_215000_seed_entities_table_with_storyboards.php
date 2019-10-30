@@ -46,7 +46,7 @@ Storyboards são utilizados por pessoas envolvidas na criação de filmes, desen
             'cons'              => $cons,
             'images'            => '[{"src": "/guia/images/tecnicas-re/storyboard.png", "title": "Figura 1 - Exemplo de um Storyboard"}]',
             'classification_id' => $RETechniqueClassification->id,
-            'user_id'           => $user->id,
+            'user_id'           => 1,
             'published'         => 1,
             'created_at'        => Carbon::now(),
             'updated_at'        => Carbon::now(),

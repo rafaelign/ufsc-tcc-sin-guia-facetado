@@ -55,7 +55,7 @@ De maneira geral, o Mapa Mental é uma representação de como pensamos, ou seja
             'cons'              => $cons,
             'images'            => '[{"src": "/guia/images/tecnicas-re/mind_mapping.png", "title": "Figura 1 - Exemplo de um mapa mental"}]',
             'classification_id' => $RETechniqueClassification->id,
-            'user_id'           => $user->id,
+            'user_id'           => 1,
             'published'         => 1,
             'created_at'        => Carbon::now(),
             'updated_at'        => Carbon::now(),
