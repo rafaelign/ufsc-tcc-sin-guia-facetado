@@ -72,7 +72,7 @@
                 </div>
 
                                 <div class="row content">
-                    <h3 class="title"><b-icon icon="bookmark-outline"></b-icon> {{ approach.context_title }}</h3>
+                    <h3 class="title"><b-icon icon="bookmark-outline"></b-icon> Contexto de aplicação: {{ approach.context_title }}</h3>
 
                     <div class="has-text-justified">
                         <vue-markdown :source="approach.context_description"></vue-markdown>

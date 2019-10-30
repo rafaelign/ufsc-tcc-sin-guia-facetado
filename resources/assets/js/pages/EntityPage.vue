@@ -115,9 +115,9 @@
                         </div>
                     </div>
                 </div>
-
+                <div> <hr v-if="approachesList.length > 0"> </div>
                 <div class="row content">
-                    <h4 class="title"><b-icon icon="apps" class="has-text-warning"></b-icon> Técnicas utilizadas em conjunto em abordagens de elicitação de requisitos</h4>
+                    <h4 class="title" v-if="approachesList.length > 0" ><b-icon icon="apps" class="has-text-warning"></b-icon> Técnicas utilizadas em conjunto em abordagens de elicitação de requisitos</h4>
                     <div class="columns is-multiline">
                         <div class="column is-4 is-6-tablet is-12-mobile" v-for="approach in approachesList">
                                 <button class="button is-info is-small" @click="$router.push('/app/abordagens/' + approach.approach_slug)">
@@ -144,6 +144,7 @@
 
                 <div class="row content">
                     <references title="Referências" :items="references"></references>
+                    <br>
                 </div>
             </div>
         </section>

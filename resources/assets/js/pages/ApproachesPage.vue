@@ -49,7 +49,7 @@
 
                 <div class="row content">
                     <h1 class="title"><b-icon icon="bookmark"></b-icon> {{ 'Abordagens de elicitação de requisitos' }}</h1>
-                 <p class="has-text-justified">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras placerat, lectus quis volutpat euismod, mauris orci faucibus orci, eu sagittis sapien ex a risus. Nulla facilisi. Morbi eu ligula vitae est rhoncus gravida.</p>
+                 <p class="has-text-justified">Abordagens de elicitação de requisitos são formadas por conjuntos de técnicas que são utilizadas em conjunto em um processo de elicitação de requisitos de forma a aprimorá-lo. As abordagens usualmente foram desenvolvidas para um contexto específico de aplicação, porém nada impede que elas sejam testadas e possuam um bom desempenho em contextos diferentes. </p>
                 </div>
 
                 <div class="row content">
