@@ -46,8 +46,8 @@
                                     <span>{{ value.title }}</span>
                                 </span>
                             </div>
-                            <span v-else class="tag is-primary margin-top-10">
-                                <i>null</i>
+                            <span v-else class="tag is-light margin-top-10">
+                                <i>Não informado</i>
                             </span>
                         </div>
                     </div>

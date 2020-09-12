@@ -6,6 +6,8 @@ use App\Models\Entity;
 use App\Models\Facet;
 use App\Models\FacetGroup;
 use App\Models\Reference;
+use App\Models\Approach;
+use App\Models\ApproachesEntities;
 use App\Models\Value;
 use App\Models\Classification;
 use Illuminate\Http\Request;
@@ -429,6 +431,23 @@ class EntityController extends Controller
         ]);
     }
 
+    public function getApproachesByEntity(string $slug)
+    {
+
+        $entity = Entity::where('slug', '=', $slug)
+        ->where('published', Entity::PUBLISHED)
+        ->get(['id'])
+        ->first();
+
+        $approaches_entities = ApproachesEntities::join('approaches_entities AS ae1', 'ae1.approach_id', '=', 'approaches_entities.approach_id')
+        ->join('entities', 'entities.id', '=', 'ae1.entity_id')
+        ->join('approaches', 'approaches.id', '=', 'ae1.approach_id')
+        ->where('approaches_entities.entity_id', '=', $entity->id)
+        ->get(['entities.title', 'entities.slug as entity_slug', 'approaches.approach_title', 'approaches.slug as approach_slug']);
+
+        return response()->json($approaches_entities);
+
+    }
 
     public function classification(Request $request, int $classificationId, int $entityId)
     {

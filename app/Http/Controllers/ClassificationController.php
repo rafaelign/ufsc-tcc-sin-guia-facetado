@@ -153,6 +153,20 @@ class ClassificationController extends Controller
     }
 
     /**
+     * Get classification slug by id
+     *
+     * @param string $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getClassificationSlugById(int $id)
+    {
+
+        $classification = Classification::find($id);
+
+        return response()->json($classification);
+    }
+
+    /**
      * @param string $slug
      * @return \Illuminate\Http\JsonResponse
      */

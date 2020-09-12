@@ -9,9 +9,10 @@ import VueLoading from 'vue-loading-overlay'
 import Sidebar from './components/Sidebar'
 import Buefy from 'buefy'
 import Lightbox from 'vue-pure-lightbox'
-import { APP_URL } from './utils/config'
+import {APP_URL} from './utils/config'
 
 import { routes } from './utils/routes';
+import 'buefy/dist/buefy.css'
 
 Vue.use(Vuex);
 Vue.use(VueRouter);

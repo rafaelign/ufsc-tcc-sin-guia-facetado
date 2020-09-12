@@ -40,6 +40,7 @@
                     Sobre este guia
                 </router-link>
             </li>
+
             <li v-for="item,key in entities">
                 <router-link :to="{ path: '/app/classificacoes/' + item.slug }">
                     {{ item.title }}
@@ -57,6 +58,11 @@
                         </router-link>
                     </li>
                 </ul>
+            </li>
+            <li>
+                <router-link to="/app/abordagens">
+                    Abordagens de elicitação de requisitos
+                </router-link>
             </li>
             <li class="is-hidden-tablet">
                 <router-link to="#">Compartilhe</router-link>

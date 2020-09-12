@@ -75,4 +75,10 @@ Route::prefix('admin')->group(function () {
     Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
     Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
     Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.reset');
+
+    // Approaches
+    Route::get('approaches', 'ApproachController@index')->name('approaches');
+    Route::get('approaches/{slug}', 'ApproachController@getApproachBySlug')->name('approach.slug');
+    Route::get('approaches/{slug}/references', 'ApproachController@getReferencesByApproachSlug')->name('approach.references');
+    Route::get('approaches/{slug}/entities', 'ApproachController@getEntitiesByApproachSlug')->name('approach.entities');
 });
