@@ -12,13 +12,13 @@ class DeleteDummieApproach extends Migration
      */
     public function up()
     {
-       $dummieapproach = DB::table('approaches')
-            ->select(['id'])
-            ->where('slug', 'abordagem-exemplo')
-            ->first();
+    //    $dummieapproach = DB::table('approaches')
+    //         ->select(['id'])
+    //         ->where('slug', 'abordagem-exemplo')
+    //         ->first();
 
-        DB::table('approaches')
-            ->delete($dummieapproach->id);
+    //     DB::table('approaches')
+    //         ->delete($dummieapproach->id);
     }
 
 }

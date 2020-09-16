@@ -9,7 +9,7 @@ import VueLoading from 'vue-loading-overlay'
 import Sidebar from './components/Sidebar'
 import Buefy from 'buefy'
 import Lightbox from 'vue-pure-lightbox'
-import {APP_URL} from './utils/config'
+import { APP_URL } from './utils/config'
 
 import { routes } from './utils/routes';
 import 'buefy/dist/buefy.css'
@@ -36,10 +36,10 @@ const store = new Vuex.Store({
         isLoading: false
     },
     mutations: {
-        updateMode (state, mode) {
+        updateMode(state, mode) {
             state.filters.mode = mode
         },
-        addFilter (state, filter) {
+        addFilter(state, filter) {
             state.filters.values.forEach((item, index) => {
                 if (item.name === filter.name) {
                     state.filters.values.splice(index, 1)
@@ -48,7 +48,7 @@ const store = new Vuex.Store({
 
             state.filters.values.push(filter)
         },
-        addDefaultValue (state, filter) {
+        addDefaultValue(state, filter) {
             state.defaultValues.forEach((item, index) => {
                 if (item.name === filter.name) {
                     state.defaultValues.splice(index, 1)
@@ -57,16 +57,16 @@ const store = new Vuex.Store({
 
             state.defaultValues.push(filter)
         },
-        resetFilters (state) {
+        resetFilters(state) {
             state.filters = {
                 mode: 'restrict',
                 values: []
             }
         },
-        loading (state) {
+        loading(state) {
             state.isLoading = true
         },
-        loaded (state) {
+        loaded(state) {
             state.isLoading = false
         }
     },
@@ -99,7 +99,7 @@ const store = new Vuex.Store({
             return state.isLoading
         },
         isLoaded: (state) => {
-            return ! state.isLoading
+            return !state.isLoading
         },
         getUrl: () => {
             return APP_URL
@@ -116,7 +116,7 @@ const app = new Vue({
         Loading: VueLoading
     },
     computed: {
-        url () {
+        url() {
             return this.$store.getters.getUrl
         }
     },
