@@ -47987,7 +47987,7 @@ if (token) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "APP_URL", function() { return APP_URL; });
-var APP_URL = 'https://tcc-ufsc-guia-facetado.herokuapp.com/';
+var APP_URL = 'https://tcc-ufsc-guia-facetado.herokuapp.com';
 
 /***/ }),
 
