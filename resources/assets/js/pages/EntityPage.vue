@@ -87,8 +87,8 @@
                             <div v-for="image in entity.images_array">
                                 <lightbox
                                         style="width: 40em"
-                                        :thumbnail="image.src"
-                                        :images="[image.src]"
+                                        :thumbnail="$root.url + image.src"
+                                        :images="[$root.url + image.src]"
                                 >
                                     <lightbox-default-loader slot="loader"/>
                                 </lightbox>
