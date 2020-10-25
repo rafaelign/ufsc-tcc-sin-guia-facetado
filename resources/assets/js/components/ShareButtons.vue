@@ -1,13 +1,11 @@
 <script>
     import VueGoodshareFacebook from 'vue-goodshare/src/providers/Facebook'
-    import VueGoodshareGoogleplus from 'vue-goodshare/src/providers/GooglePlus'
     import VueGoodshareTwitter from 'vue-goodshare/src/providers/Twitter'
     import VueGoodshareLinkedin from 'vue-goodshare/src/providers/LinkedIn'
 
     export default {
         components: {
             VueGoodshareFacebook,
-            VueGoodshareGoogleplus,
             VueGoodshareTwitter,
             VueGoodshareLinkedin
         },

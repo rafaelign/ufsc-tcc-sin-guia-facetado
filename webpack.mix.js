@@ -10,6 +10,7 @@ mix
         'node_modules/bulma-modal-fx/dist/css/modal-fx.css'
     ], 'public/css/vendor.css')
     .copy('resources/assets/images', 'public/images')
+    .copy('resources/assets/files', 'public/files')
     .copy('node_modules/bulma-modal-fx/dist/css/modal-fx.css.min.map', 'public/css/modal-fx.css.min.map')
     .options({
         fileLoaderDirs: {
