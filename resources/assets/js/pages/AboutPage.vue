@@ -8,7 +8,8 @@
             References
         },
         data () {
-            return {}
+            return {
+            }
         }
     }
 </script>
@@ -21,7 +22,7 @@
                 ]"></breadcrumb>
 
                 <section class="content">
-                    <h1 class="title"><b-icon icon="information"></b-icon> Sobre este guia</h1>
+                    <h1 class="title"><b-icon icon="information-outline"></b-icon> Sobre este guia</h1>
                     <p class="has-text-justified">
                         Este guia procura apresentar técnicas de elicitação de requisitos e suas respectivas informações de uma maneira didática e simples.
                         A execução da pesquisa demonstrou que existem diversos métodos que podem ser utilizados para elicitar requisitos de software.
@@ -54,8 +55,16 @@
                         </div>
                     </div>
 
-                    <h2 class="subtitle"><b-icon icon="target"></b-icon> Sobre a pesquisa</h2>
-                    <p>A pesquisa se divide em duas etapas: A primeira foi a execução de um mapeamento sistemática para coleta de informações sobre as técnicas e posterior classificação das mesmas através da técnica de facetas. Foram encontradas mais de 90 técnicas referenciadas pelos autores como parte da etapa de elicitação de requisitos.</p>
+                    <h2 class="subtitle"><b-icon icon="note-text-outline"></b-icon> Sobre a pesquisa</h2>
+                    <p>Como parte do projeto RETraining, este guia pode receber incrementos conforme as pesquisas avançam. Até o momento tivemos dois trabalhos de evolução do guia:</p>
+                    <p>
+                        <ul>
+                            <li>Guia Facetado de Técnicas de Elicitação de Requisitos.<sup>[1]</sup></li>
+                            <li>Recomendações de técnicas complementares de elicitação de requisitos em um guia facetado.<sup>[2]</sup></li>
+                        </ul>
+                    </p>
+
+                    <p>O primeiro trabalho deu início ao Guia, catalogando as primeiras técnicas. Essa pesquisa se dividiu em duas etapas: Execução de um mapeamento sistemática para coleta de informações sobre as técnicas e posterior classificação das mesmas através da técnica de facetas. Foram encontradas mais de 90 técnicas referenciadas pelos autores como parte da etapa de elicitação de requisitos.</p>
                     <div class="columns">
 
                         <div class="column">
@@ -73,7 +82,8 @@
                             Esta núvem de palavras contém todas técnicas encontradas e seu tamanho é proporcional ao número de artigos que às citam. <sup>[1]</sup>
                         </div>
                     </div>
-                    <p>Na segunda etapa foi realizado um segundo mapeamento sistemático, desta vez para encontrar abordagens de elicitação de requisitos que utilizam uma combinação de técnicas. Foram encontradas 35 abordagens, muitas delas com contextos de aplicação específicos. Cerca de 40% destas abordagens foram aplicadas na prática e avaliadas, como é possível observar na figura abaixo. </p>
+                    
+                    <p>No segundo trabalho também foi realizado um mapeamento sistemático, desta vez para encontrar abordagens de elicitação de requisitos que utilizam uma combinação de técnicas. Foram encontradas 35 abordagens, muitas delas com contextos de aplicação específicos. Cerca de 40% destas abordagens foram aplicadas na prática e avaliadas, como é possível observar na figura abaixo. </p>
 
                     <div class="columns">
 
@@ -95,10 +105,11 @@
                     <hr>
 
                     <div class="row content">
-                        <references title="Referências" :items="[{code: 1, description: 'IGNACIO, Rafael C. Guia Facetado de Técnicas de Elicitação de Requisitos. Universidade Federal de Santa Catarina. 2018'}, {code: 2, description: 'Brito, Nathália L. Recomendações de técnicas complementares de elicitação de requisitos em um guia facetado. Universidade Federal de Santa Catarina. 2019'}]"></references>
-
+                        <references title="Referências" :items="[
+                            {code: 1, description: 'IGNACIO, Rafael C. Guia Facetado de Técnicas de Elicitação de Requisitos. Universidade Federal de Santa Catarina. 2018'}, 
+                            {code: 2, description: 'BRITO, Nathália L. Recomendações de técnicas complementares de elicitação de requisitos em um guia facetado. Universidade Federal de Santa Catarina. 2019'}
+                        ]"></references>
                         <br>
-
                     </div>
                 </section>
             </div>

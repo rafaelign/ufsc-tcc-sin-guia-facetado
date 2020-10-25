@@ -6,6 +6,7 @@ import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import VueMarkdown from 'vue-markdown'
 import VueLoading from 'vue-loading-overlay'
+import VueYoutube from 'vue-youtube'
 import Sidebar from './components/Sidebar'
 import Buefy from 'buefy'
 import Lightbox from 'vue-pure-lightbox'
@@ -20,6 +21,7 @@ Vue.use(Buefy);
 Vue.use(VueMarkdown);
 Vue.use(VueLoading);
 Vue.use(Lightbox);
+Vue.use(VueYoutube);
 
 const router = new VueRouter({
     mode: 'history',

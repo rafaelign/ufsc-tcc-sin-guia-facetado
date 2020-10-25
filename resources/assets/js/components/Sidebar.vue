@@ -41,6 +41,12 @@
                 </router-link>
             </li>
 
+            <li>
+                <router-link to="/app/apresentacoes">
+                    Apresentações
+                </router-link>
+            </li>
+
             <li v-for="item,key in entities">
                 <router-link :to="{ path: '/app/classificacoes/' + item.slug }">
                     {{ item.title }}
