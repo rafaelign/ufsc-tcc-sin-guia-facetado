@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Carbon\Carbon;
 
-class SeedEntitiesTableWithPrototyping extends Migration
+class UpdatePrototypingEntity extends Migration
 {
     /**
      * Run the migrations.
