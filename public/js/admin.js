@@ -48238,7 +48238,8 @@ if (token) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "APP_URL", function() { return APP_URL; });
-var APP_URL = 'http://tcc-ufsc-guia-facetado.herokuapp.com';
+// export const APP_URL = 'http://localhost:8080'
+var APP_URL = 'http://tcc-ufsc-guia-facetado.herokuapp.com'; // export const APP_URL = 'http://tcc-ufsc-guia-facetado.herokuapp.com'
 
 /***/ }),
 

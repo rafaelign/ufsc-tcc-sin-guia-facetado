@@ -5,11 +5,11 @@ import EntitiesPage from '../pages/EntitiesPage.vue';
 import FacetsPage from '../pages/FacetsPage.vue';
 import ApproachesPage from '../pages/ApproachesPage.vue';
 import ApproachPage from '../pages/ApproachPage.vue';
-import PresentationsPage from '../pages/PresentationsPage.vue';
+import JournalsPage from '../pages/JournalsPage.vue';
 
 export const routes = [
     { path: '/app', component: AboutPage, name: 'about' },
-    { path: '/app/apresentacoes', component: PresentationsPage, name: 'presentations' },
+    { path: '/app/publicacoes', component: JournalsPage, name: 'journals' },
     { path: '/app/classificacoes/:classification', component: CollectionPage, name: 'classificacoes' },
     { path: '/app/abordagens', component: ApproachesPage, name: 'abordagens' },
     { path: '/app/abordagens/:approach', component: ApproachPage, name: 'abordagem' },
