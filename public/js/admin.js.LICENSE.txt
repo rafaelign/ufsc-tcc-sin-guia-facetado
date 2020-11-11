@@ -1,6 +1,6 @@
 /*!
-  * vue-router v3.4.7
-  * (c) 2020 Evan You
+  * vue-router v3.1.2
+  * (c) 2019 Evan You
   * @license MIT
   */
 
@@ -23,8 +23,8 @@
  */
 
 /*!
- * Vue.js v2.6.12
- * (c) 2014-2020 Evan You
+ * Vue.js v2.6.10
+ * (c) 2014-2019 Evan You
  * Released under the MIT License.
  */
 
@@ -53,7 +53,7 @@
 
 /**!
  * @fileOverview Kickass library to create and place poppers near their reference elements.
- * @version 1.16.1
+ * @version 1.15.0
  * @license
  * Copyright (c) 2016 Federico Zivolo and contributors
  *
