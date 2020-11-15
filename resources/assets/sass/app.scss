@@ -24,6 +24,10 @@ html, body, #app {
   height: 100%;
 }
 
+iframe {
+  height: 100% !important;
+}
+
 #app {
   min-height: 100%;
 }

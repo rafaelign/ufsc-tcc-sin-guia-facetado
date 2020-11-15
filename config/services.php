@@ -35,4 +35,8 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'typeform' => [
+        'url' => env('TYPEFORM_URL'),
+    ],
+
 ];
