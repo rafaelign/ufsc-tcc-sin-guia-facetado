@@ -1,14 +1,17 @@
 <script>
 import ClipLoader from "vue-spinner/src/ClipLoader";
 import ShareButtons from "./ShareButtons";
+import ModalGoogleForm from "./ModalGoogleForm";
 
 export default {
   components: {
+    ModalGoogleForm,
     ClipLoader,
     ShareButtons,
   },
   data: function () {
     return {
+      isComponentModalGoogleActive: false,
       entities: [],
       errors: [],
       isLoadingMenu: false,
@@ -95,5 +98,51 @@ export default {
         <share-buttons label="Compartilhe"></share-buttons>
       </div>
     </nav>
+
+    <div>
+      <b-modal
+        :active.sync="isComponentModalGoogleActive"
+        class="modal modal-full-screen modal-fx-fadeInScale"
+        width="100%"
+      >
+        <modal-google-form
+          title="Gostaríamos de saber o que você achou do Guia REtraining."
+        ></modal-google-form>
+      </b-modal>
+      <button
+        class="button is-primary is-medium"
+        style="
+          display: inline-block;
+          text-decoration: none;
+          background-color: #3a7685;
+          color: white;
+          cursor: pointer;
+          font-family: Helvetica, Arial, sans-serif;
+          font-size: 20px;
+          line-height: 50px;
+          text-align: center;
+          margin: 0;
+          height: 50px;
+          padding: 0px 33px;
+          border-radius: 25px;
+          max-width: 100%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-weight: bold;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          position: fixed;
+          box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.06),
+            0px 2px 4px rgba(0, 0, 0, 0.08);
+          right: 26px;
+          bottom: 26px;
+          z-index: 39;
+        "
+        @click="isComponentModalGoogleActive = true"
+      >
+        <b-icon icon="comment-quote"></b-icon> <span>Feedback</span>
+      </button>
+    </div>
   </aside>
 </template>
