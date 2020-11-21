@@ -69,8 +69,8 @@ export default {
 
                     <div class="row content">
                         <references title="Referências" :items="[
-                            {code: 1, description: 'IGNÁCIO, R.C.; BENITTI, F.B.V. Improving the selection of requirements elicitation techniques: a faceted guide. Anais do WER20 - Workshop em Engenharia de Requisitos, São José dos Campos, SP, Brasil, Agosto 24-28, 2020. http://wer.inf.puc-rio.br/WERpapers/artigos/artigos_WER20/01_WER_2020_paper_1.pdf'}, 
-                            {code: 2, description: 'BRITO, N.L.; BENITTI, F.B.V. In Proceedings XXIII Ibero-American Conference on Software Engineering (CIbSE 2020). Curitiba, Nov. 2020. http://cibse2020.ppgia.pucpr.br/images/artigos/7/S07_P1.pdf'}
+                            {code: 1, description: 'IGNÁCIO, R.C.; BENITTI, F.B.V. Improving the selection of requirements elicitation techniques: a faceted guide. Anais do WER20 - Workshop em Engenharia de Requisitos, São José dos Campos, SP, Brasil, Agosto 24-28, 2020.', link: 'http://wer.inf.puc-rio.br/WERpapers/artigos/artigos_WER20/01_WER_2020_paper_1.pdf'}, 
+                            {code: 2, description: 'BRITO, N.L.; BENITTI, F.B.V. In Proceedings XXIII Ibero-American Conference on Software Engineering (CIbSE 2020). Curitiba, Nov. 2020.', link: 'http://cibse2020.ppgia.pucpr.br/images/artigos/7/S07_P1.pdf'}
                         ]"></references>
                         <br>
                     </div>

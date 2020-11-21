@@ -1,17 +1,16 @@
 <script>
-    import Breadcrumb from '../components/Breadcrumb'
-    import References from '../components/References'
+import Breadcrumb from "../components/Breadcrumb";
+import References from "../components/References";
 
-    export default {
-        components: {
-            Breadcrumb,
-            References
-        },
-        data () {
-            return {
-            }
-        }
-    }
+export default {
+  components: {
+    Breadcrumb,
+    References,
+  },
+  data() {
+    return {};
+  },
+};
 </script>
 <template>
     <section v-if="this.$store.getters.isLoaded">
@@ -106,8 +105,8 @@
 
                     <div class="row content">
                         <references title="Referências" :items="[
-                            {code: 1, description: 'IGNACIO, Rafael C. Guia Facetado de Técnicas de Elicitação de Requisitos. Universidade Federal de Santa Catarina. 2018'}, 
-                            {code: 2, description: 'BRITO, Nathália L. Recomendações de técnicas complementares de elicitação de requisitos em um guia facetado. Universidade Federal de Santa Catarina. 2019'}
+                            {code: 1, description: 'IGNACIO, Rafael C. Guia Facetado de Técnicas de Elicitação de Requisitos. Universidade Federal de Santa Catarina. 2018', link: 'https://repositorio.ufsc.br/bitstream/handle/123456789/192155/TCC___Rafael_Crispim_Ignacio.pdf'}, 
+                            {code: 2, description: 'BRITO, Nathália L. Recomendações de técnicas complementares de elicitação de requisitos em um guia facetado. Universidade Federal de Santa Catarina. 2019', link: 'https://repositorio.ufsc.br/bitstream/handle/123456789/202674/Monografia_Nathalia_Brito.pdf'}
                         ]"></references>
                         <br>
                     </div>
