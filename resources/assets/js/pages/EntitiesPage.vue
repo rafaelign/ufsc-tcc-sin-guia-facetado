@@ -54,6 +54,8 @@ export default {
       const slug = this.$route.params.classification;
       const url = this.$store.getters.getUrl;
 
+      console.log(url);
+
       this.loading();
 
       axios
@@ -65,7 +67,8 @@ export default {
           }
         )
         .then((responseEntities) => {
-          this.filteredEntities = responseEntities.data / this.loaded();
+          this.filteredEntities = responseEntities.data;
+          this.loaded();
         })
         .catch((error) => (this.errors = error.response.data.errors));
     },
