@@ -14,7 +14,7 @@ mix
     .copy('node_modules/bulma-modal-fx/dist/css/modal-fx.css.min.map', 'public/css/modal-fx.css.min.map')
     .options({
         fileLoaderDirs: {
-            fonts: '../fonts'
+            fonts: 'guia/fonts'
         }
     });
 
